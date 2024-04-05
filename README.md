@@ -1,4 +1,4 @@
-# TCSS 360 Spring 2024 Project - ChatGPTatHome
+# TCSS 360 Spring 2024 Project - ChatGPT at Home
 
 Members: Anthony Chapkin, Hai Duong, Jeremiah Brenio, Windie Le.
 
