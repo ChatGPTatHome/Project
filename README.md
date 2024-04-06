@@ -11,7 +11,7 @@ Anthony Chapkin, Hai Duong, Jeremiah Brenio, Windie Le
 # Meeting History
 |Meeting number|Summary                                                                                          |
 |--------------|-------------------------------------------------------------------------------------------------|
-|1             |https://docs.google.com/document/d1xZKx7wwDbx5J7gVDX9hYspG0jNgAVtNv8lWwbG3rm-I/edit?usp=sharing  |
+|1             |https://docs.google.com/document/d/1xZKx7wwDbx5J7gVDX9hYspG0jNgAVtNv8lWwbG3rm-I/edit?usp=sharing |
 |2             |https://docs.google.com/document/d/1Abra1g07KV6WZ7nmgzvDAyyVFzCp-SPW-EP1qXnuXcM/edit?usp=sharing |
 
 ---
