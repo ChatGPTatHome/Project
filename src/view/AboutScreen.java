@@ -1,8 +1,21 @@
 package view;
 
-public class AboutScreen {
+import javax.swing.*;
 
-    public void openAbout() {
+/**
+ * Is a JPanel. Shows information about the app.
+ */
+public class AboutScreen extends JPanel {
 
+    /**
+     * Constructs this AboutScreen Panel.
+     */
+    AboutScreen() {
+        
     }
+
+
+
+
+
 }
