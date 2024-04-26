@@ -1,9 +1,11 @@
-package src.controller;
+package controller;
+
+import view.MainScreen;
 
 public class ProjectHub {
 
     public static void main(String[] theArgs) {
-        System.out.println("Hello PH");
+        new MainScreen().start();
     }
-    
+
 }

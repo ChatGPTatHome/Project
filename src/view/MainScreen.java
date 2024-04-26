@@ -7,11 +7,11 @@ import java.awt.Toolkit;
 /**
  * @author Anthony Chapkin, Hai Duong, Jeremiah Brenio, Windie Le.
  *
- * @version v0.00
+ * @version v1.00
  * 
- *          Displays an empty GUI with minimal functionality.
+ *          Displays an empty GUI.
  */
-public class Main {
+public class MainScreen {
     // constants
     /** A ToolKit for centering the main window. */
     private static final Toolkit KIT = Toolkit.getDefaultToolkit();
@@ -28,9 +28,11 @@ public class Main {
     /** Scaling size of the window. */
     private static final int SCALE = 3;
 
-    public static void main(String[] args) {
+    private JFrame frame;
 
-        JFrame frame = new JFrame("ChatGPT at Home");
+    public MainScreen() {
+
+        frame = new JFrame("ProjectHub");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         frame.setSize(SCREEN_WIDTH / SCALE, SCREEN_HEIGHT / SCALE);
@@ -39,6 +41,9 @@ public class Main {
         frame.setLocation(SCREEN_WIDTH / 2 - frame.getWidth() / 2,
                 SCREEN_HEIGHT / 2 - frame.getHeight() / 2);
 
+    }
+
+    public void start() {
         frame.setVisible(true);
     }
 }
