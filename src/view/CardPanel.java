@@ -1,5 +1,6 @@
 package view;
+import javax.swing.JPanel;
 
-public interface CardPanel {
-    public String getName();
+public abstract class CardPanel extends JPanel {
+    public abstract String getName();
 }

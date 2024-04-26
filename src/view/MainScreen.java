@@ -1,8 +1,11 @@
 package view;
 
 import javax.swing.JFrame;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
 import javax.swing.JPanel;
 
+import java.awt.CardLayout;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 
@@ -31,29 +34,58 @@ public class MainScreen {
     private static final int SCALE = 3;
 
     private JFrame frame;
+    private CardLayout cardLayout;
+    private JPanel panel;
+    private JMenuBar menuBar;
 
     public MainScreen() {
+        // JFRAME STUFF
+        this.frame = new JFrame("ProjectHub");
+        this.frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        frame = new JFrame("ProjectHub");
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
-        frame.setSize(SCREEN_WIDTH / SCALE, SCREEN_HEIGHT / SCALE);
+        this.frame.setSize(SCREEN_WIDTH / SCALE, SCREEN_HEIGHT / SCALE);
 
         // position the frame in the center of the screen
-        frame.setLocation(SCREEN_WIDTH / 2 - frame.getWidth() / 2,
-                SCREEN_HEIGHT / 2 - frame.getHeight() / 2);
+        this.frame.setLocation(SCREEN_WIDTH / 2 - this.frame.getWidth() / 2,
+                SCREEN_HEIGHT / 2 - this.frame.getHeight() / 2);
 
-        // ADD MENU BARS
+        // JPANEL STUFF
+        this.cardLayout = new CardLayout();
+        
+        this.panel = new JPanel(this.cardLayout);
+        this.frame.add(this.panel);
+
+        // JMENU STUFF
+        this.menuBar = new JMenuBar();
+        this.frame.setJMenuBar(this.menuBar);
     }
 
-    public void addCard(JPanel card) {
+    /**
+     * Adds the given card.
+     * 
+     * @param card The CardPanel to add.
+     */
+    public void addCard(CardPanel card) {
+        JMenu menu = new JMenu(card.getName());
+        menu.addActionListener(e -> this.showCard(card));
+
+        this.panel.add(card);
+        
+        this.menuBar.add(menu);
+    }
+
+    /**
+     * Shows the given card.
+     * 
+     * @param card The card to show.
+     */
+    public void showCard(CardPanel card) {
 
     }
 
-    public void showCard(JPanel card) {
-
-    }
-
+    /**
+     * Reveals the JFrame.
+     */
     public void start() {
         frame.setVisible(true);
     }
