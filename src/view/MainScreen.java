@@ -1,6 +1,8 @@
 package view;
 
 import javax.swing.JFrame;
+import javax.swing.JPanel;
+
 import java.awt.Dimension;
 import java.awt.Toolkit;
 
@@ -40,6 +42,15 @@ public class MainScreen {
         // position the frame in the center of the screen
         frame.setLocation(SCREEN_WIDTH / 2 - frame.getWidth() / 2,
                 SCREEN_HEIGHT / 2 - frame.getHeight() / 2);
+
+        // ADD MENU BARS
+    }
+
+    public void addCard(JPanel card) {
+
+    }
+
+    public void showCard(JPanel card) {
 
     }
 
