@@ -39,5 +39,4 @@ public class AboutScreen extends CardPanel {
         setLayout(new FlowLayout());
     }
 
-
 }

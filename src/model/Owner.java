@@ -28,8 +28,13 @@ public class Owner {
     }
 
     /** Returns the Owner's information. */
-    public String getOwner() {
-        return name + "" + email;
+    public String getName() {
+        return name;
+    }
+
+    /** Returns the Owner's information. */
+    public String getEmail() {
+        return email;
     }
 
 }
