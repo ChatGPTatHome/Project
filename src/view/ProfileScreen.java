@@ -29,27 +29,18 @@ public class ProfileScreen extends CardPanel {
     private JLabel emailLabel;
 
     /** Makes a ProfileScreen with text boxes. */
-    public ProfileScreen() {
+    public ProfileScreen(Owner owner) {
         super();
-        owner = new Owner();
+        this.owner = owner;
         nameLabel = new JLabel("NAME: " + owner.getName());
         emailLabel = new JLabel("EMAIL: " + owner.getEmail());
 
-        setLayout(new BorderLayout());
-        add(nameLabel, BorderLayout.NORTH);
-        add(emailLabel, BorderLayout.SOUTH);
+        setLayout(new FlowLayout(FlowLayout.CENTER));
+        add(nameLabel);
+        add(emailLabel);
     }
 
     public String getName() {
         return "Profile";
     }
-
-    public static void main(String[] args) {
-        JFrame frame = new JFrame();
-        frame.add(new ProfileScreen());
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(500, 500);
-        frame.setVisible(true);
-    }
-
 }
