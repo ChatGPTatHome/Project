@@ -41,26 +41,13 @@ public class AboutScreen extends CardPanel {
 
     }
 
-    private void setText() {
-        add(new JLabel("Version: V" + About.getVersion()));
-        add(new JLabel("Group: ChatGPTatHome"));
-        add(new JLabel(Developer.getAnthony()));
-        add(new JLabel(Developer.getHai()));
-        add(new JLabel(Developer.getJeremiah()));
-        add(new JLabel(Developer.getWindie()));
-    }
-
-    private void setLayout() {
-        setLayout(new FlowLayout());
-    }
-
     private void setUpPanel() {
         JPanel panel1 = new JPanel();
         panel1.setLayout(new BoxLayout(panel1, BoxLayout.Y_AXIS));
 
         panel1.add(new JLabel("Version: V" + About.getVersion()));
         panel1.add(new JLabel(" "));
-        panel1.add(new JLabel("Developers: "));
+        panel1.add(new JLabel("Group: ChatGPTatHome"));
         panel1.add(new JLabel(" "));
         panel1.add(new JLabel(Developer.getAnthony()));
         panel1.add(new JLabel(Developer.getHai()));
