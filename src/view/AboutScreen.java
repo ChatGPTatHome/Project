@@ -1,6 +1,7 @@
 package view;
 
 import model.About;
+import model.Developer;
 
 import javax.swing.*;
 import java.awt.*;

@@ -2,19 +2,19 @@ package model;
 
 public class Developer {
 
-    public String getAnthony() {
+    public static String getAnthony() {
         return "Anthony";
     }
 
-    public String getHai() {
+    public static String getHai() {
         return "Hai";
     }
 
-    public String getJeremiah() {
+    public static String getJeremiah() {
         return "Jeremiah";
     }
 
-    public String getWindie() {
+    public static String getWindie() {
         return "Windie";
     }
 }
