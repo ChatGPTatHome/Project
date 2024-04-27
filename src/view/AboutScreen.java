@@ -7,6 +7,8 @@ import java.awt.*;
 
 /**
  * Is a JPanel. Shows information about the app.
+ *
+ * @author Anthony Chapkin
  */
 public class AboutScreen extends CardPanel {
 
