@@ -43,7 +43,7 @@ public class AboutScreen extends CardPanel {
 
     private void setText() {
         add(new JLabel("Version: V" + About.getVersion()));
-        add(new JLabel("Developers: "));
+        add(new JLabel("Group: ChatGPTatHome"));
         add(new JLabel(Developer.getAnthony()));
         add(new JLabel(Developer.getHai()));
         add(new JLabel(Developer.getJeremiah()));
