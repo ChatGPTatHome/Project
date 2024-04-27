@@ -33,6 +33,9 @@ public class AboutScreen extends CardPanel {
         return NAME;
     }
 
+    /**
+     * Does nothing, just overrides update.
+     */
     @Override
     public void update() {
 
