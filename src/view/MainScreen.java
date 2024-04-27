@@ -80,7 +80,7 @@ public class MainScreen {
      * @param card The card to show.
      */
     public void showCard(CardPanel card) {
-
+        this.cardLayout.show(this.panel, card.getName());
     }
 
     /**
