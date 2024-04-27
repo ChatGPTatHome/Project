@@ -1,12 +1,7 @@
 package view;
 
-import java.awt.BorderLayout;
 import java.awt.FlowLayout;
-import java.awt.GridLayout;
-
-import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JTextField;
 
 import model.Owner;
 
@@ -40,6 +35,7 @@ public class ProfileScreen extends CardPanel {
         add(emailLabel);
     }
 
+    @Override
     public String getName() {
         return "Profile";
     }
