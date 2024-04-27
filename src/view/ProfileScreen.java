@@ -31,15 +31,22 @@ public class ProfileScreen extends CardPanel {
         emailLabel = new JLabel("EMAIL: " + owner.getEmail());
 
         setLayout(new FlowLayout(FlowLayout.CENTER));
+        add(new JLabel("Owner: "));
         add(nameLabel);
         add(emailLabel);
     }
 
+    /**
+     * Returns the name of the Screen.
+     */
     @Override
     public String getName() {
         return "Profile";
     }
 
+    /**
+     * Updates the Owner's information.
+     */
     @Override
     public void update() {
         nameLabel.setText(owner.getName());

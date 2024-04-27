@@ -8,6 +8,8 @@ import java.awt.*;
 
 /**
  * Is a JPanel. Shows information about the app.
+ *
+ * @author Anthony Chapkin
  */
 public class AboutScreen extends CardPanel {
 
@@ -18,8 +20,7 @@ public class AboutScreen extends CardPanel {
      * methods to set up this panel.
      */
     public AboutScreen() {
-        setLayout();
-        setText();
+        setUpPanel();
     }
 
     /**
@@ -48,6 +49,25 @@ public class AboutScreen extends CardPanel {
 
     private void setLayout() {
         setLayout(new FlowLayout());
+    }
+
+    private void setUpPanel() {
+        JPanel panel1 = new JPanel();
+        panel1.setLayout(new BoxLayout(panel1, BoxLayout.Y_AXIS));
+
+        panel1.add(new JLabel("Version: V" + About.getVersion()));
+        panel1.add(new JLabel(" "));
+        panel1.add(new JLabel("Developers: "));
+        panel1.add(new JLabel(" "));
+        panel1.add(new JLabel(Developer.getAnthony()));
+        panel1.add(new JLabel(Developer.getHai()));
+        panel1.add(new JLabel(Developer.getJeremiah()));
+        panel1.add(new JLabel(Developer.getWindie()));
+
+        add(panel1);
+
+        setLayout(new FlowLayout());
+
     }
 
 }
