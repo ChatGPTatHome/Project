@@ -30,6 +30,10 @@ public class AboutScreen extends CardPanel {
     public String getName() {
         return NAME;
     }
+    
+    public void update() {
+
+    }
 
     private void setText() {
         add(new JLabel("Version: V" + About.getVersion()));
