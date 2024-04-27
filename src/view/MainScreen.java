@@ -72,12 +72,12 @@ public class MainScreen {
         // menu.addActionListener(e -> System.out.println(card.getName()));
         menu.addMouseListener(new MouseListener() {
             @Override
-            public void mouseClicked(MouseEvent e) {
-                showCard(card);
-            }
+            public void mouseClicked(MouseEvent e) {}
 
             @Override
-            public void mousePressed(MouseEvent e) {}
+            public void mousePressed(MouseEvent e) {
+                showCard(card);
+            }
 
             @Override
             public void mouseReleased(MouseEvent e) {}

@@ -4,7 +4,6 @@ import view.MainScreen;
 import view.HomeScreen;
 import model.Owner;
 import view.AboutScreen;
-import view.Developer;
 import view.ProfileScreen;
 
 public class ProjectHub {
@@ -25,5 +24,4 @@ public class ProjectHub {
 
         window.start();
     }
-
 }
