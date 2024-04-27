@@ -27,10 +27,12 @@ public class AboutScreen extends CardPanel {
      *
      * @return the name "About".
      */
+    @Override
     public String getName() {
         return NAME;
     }
-    
+
+    @Override
     public void update() {
 
     }
