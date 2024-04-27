@@ -11,11 +11,7 @@ public class AboutScreen extends JPanel {
      * Constructs this AboutScreen Panel.
      */
     AboutScreen() {
-        
+
     }
-
-
-
-
 
 }

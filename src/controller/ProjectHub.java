@@ -9,7 +9,7 @@ public class ProjectHub {
 
     public static void main(String[] theArgs) {
         MainScreen window = new MainScreen();
-        
+
         HomeScreen home = new HomeScreen();
         // AboutScreen about = new AboutScreen();
         // ProfileScreen profile = new ProfileScreen();
