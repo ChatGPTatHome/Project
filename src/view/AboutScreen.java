@@ -31,8 +31,12 @@ public class AboutScreen extends CardPanel {
     }
 
     private void setText() {
-        JLabel label = new JLabel("Version: V" + About.getVersion());
-        add(label);
+        add(new JLabel("Version: V" + About.getVersion()));
+        add(new JLabel("Developers: "));
+        add(new JLabel(Developer.getAnthony()));
+        add(new JLabel(Developer.getHai()));
+        add(new JLabel(Developer.getJeremiah()));
+        add(new JLabel(Developer.getWindie()));
     }
 
     private void setLayout() {
