@@ -1,14 +1,17 @@
 package model;
 
-public static final VERSION = 0.1;
-
+/**
+ *
+ */
 public class About {
+    private static final double VERSION = 0.1;
 
-    public void getVersion() {
+    public static double getVersion() {
+        return VERSION;
+    }
+
+    public static void getDevelopers() {
 
     }
 
-    public void getDevelopers() {
-
-    }
 }

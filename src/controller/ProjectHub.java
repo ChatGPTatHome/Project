@@ -11,11 +11,11 @@ public class ProjectHub {
         MainScreen window = new MainScreen();
 
         HomeScreen home = new HomeScreen();
-        // AboutScreen about = new AboutScreen();
+        AboutScreen about = new AboutScreen();
         // ProfileScreen profile = new ProfileScreen();
 
         window.addCard(home);
-        // window.addCard(about);
+        window.addCard(about);
         // window.addCard(profile);
 
         window.showCard(home);
