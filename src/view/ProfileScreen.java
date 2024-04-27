@@ -6,7 +6,7 @@ import javax.swing.JLabel;
 import model.Owner;
 
 /**
- * @author Hai Duong, Jeremiah Brenio.
+ * @author Jeremiah Brenio, Hai Duong.
  *
  * @version v1.00
  * 
