@@ -43,4 +43,9 @@ public class ProfileScreen extends CardPanel {
     public String getName() {
         return "Profile";
     }
+
+    @Override
+    public void update() {
+        owner.setOwner(owner.getName(), owner.getEmail());
+    }
 }
