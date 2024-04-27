@@ -43,6 +43,10 @@ public class HomeScreen extends CardPanel {
         this.add(home, BorderLayout.CENTER);
     }
 
+    @Override
+    public void update() {}
+
+    @Override
     public String getName() {
         return "Home";
     }
