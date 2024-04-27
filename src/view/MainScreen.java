@@ -8,6 +8,8 @@ import javax.swing.JPanel;
 import java.awt.CardLayout;
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 
 /**
  * @author Anthony Chapkin, Hai Duong, Jeremiah Brenio, Windie Le.
@@ -67,10 +69,27 @@ public class MainScreen {
      */
     public void addCard(CardPanel card) {
         JMenu menu = new JMenu(card.getName());
-        menu.addActionListener(e -> this.showCard(card));
+        // menu.addActionListener(e -> System.out.println(card.getName()));
+        menu.addMouseListener(new MouseListener() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                showCard(card);
+            }
 
-        this.panel.add(card);
-        
+            @Override
+            public void mousePressed(MouseEvent e) {}
+
+            @Override
+            public void mouseReleased(MouseEvent e) {}
+
+            @Override
+            public void mouseEntered(MouseEvent e) {}
+
+            @Override
+            public void mouseExited(MouseEvent e) {}
+        });
+
+        this.panel.add(card, card.getName());
         this.menuBar.add(menu);
     }
 
