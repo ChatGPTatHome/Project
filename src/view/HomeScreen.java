@@ -10,7 +10,19 @@ import javax.swing.JTextField;
 
 import model.Owner;
 
+/**
+ * @author Hai Duong, Jeremiah Brenio.
+ *
+ * @version v1.00
+ * 
+ *          Displays a JPanel to set ownership of the App.
+ */
 public class HomeScreen extends CardPanel {
+    /**
+     * Constructs a HomeScreen.
+     * 
+     * @param owner The owner object of this app.
+     */
     public HomeScreen(Owner owner) {
         this.setLayout(new BorderLayout());
         

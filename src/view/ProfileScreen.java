@@ -6,11 +6,11 @@ import javax.swing.JLabel;
 import model.Owner;
 
 /**
- * @author Jeremiah Brenio.
+ * @author Hai Duong, Jeremiah Brenio.
  *
  * @version v1.00
  * 
- *          Displays a JPanel to set ownership of the App.
+ *          Displays a JPanel to display ownership of the App.
  */
 public class ProfileScreen extends CardPanel {
 
