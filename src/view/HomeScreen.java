@@ -55,9 +55,16 @@ public class HomeScreen extends CardPanel {
         this.add(home, BorderLayout.CENTER);
     }
 
+    /**
+     * Updates the home screen view.
+     */
     @Override
     public void update() {}
 
+    /**
+     * Gets the name for the home screen.
+     * @return The name of the home screen.
+     */
     @Override
     public String getName() {
         return "Home";

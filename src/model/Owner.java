@@ -1,11 +1,12 @@
 package model;
 
 /**
+ * Stores the Owner's information.
+ *
  * @author Jeremiah Brenio.
  *
  * @version v1.00
- * 
- *          Stores the Owner's information.
+ *
  */
 public class Owner {
 

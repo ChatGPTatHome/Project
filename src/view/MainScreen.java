@@ -97,7 +97,7 @@ public class MainScreen {
      * Shows the given card.
      * 
      * @param card The card to show.
-     */
+//     */
     public void showCard(CardPanel card) {
         card.update();
         this.cardLayout.show(this.panel, card.getName());
