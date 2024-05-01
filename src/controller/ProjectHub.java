@@ -8,7 +8,7 @@ import view.ProfileScreen;
 
 /**
  *
- * @author
+ * @author ChatGPTatHome
  * @version 1.0
  */
 

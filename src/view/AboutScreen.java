@@ -45,7 +45,7 @@ public class AboutScreen extends CardPanel {
         JPanel panel1 = new JPanel();
         panel1.setLayout(new BoxLayout(panel1, BoxLayout.Y_AXIS));
 
-        panel1.add(new JLabel("Version: V" + About.getVersion()));
+        panel1.add(new JLabel("Version: " + About.getVersion()));
         panel1.add(new JLabel(" "));
         panel1.add(new JLabel("Group: ChatGPTatHome"));
         panel1.add(new JLabel(" "));
