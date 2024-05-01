@@ -1,6 +1,6 @@
 package controller;
 
-import view.MainScreen;
+import view.MainFrame;
 import view.HomeScreen;
 import model.Owner;
 import view.AboutScreen;
@@ -21,7 +21,7 @@ public class ProjectHub {
      * It creates the main window, adds the home, about, and profile screens.
      */
     public static void main(String[] theArgs) {
-        MainScreen window = new MainScreen();
+        MainFrame window = new MainFrame();
 
         HomeScreen home = new HomeScreen(owner);
         AboutScreen about = new AboutScreen();

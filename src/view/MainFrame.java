@@ -18,7 +18,7 @@ import java.awt.event.MouseListener;
  * 
  *          Displays an empty GUI.
  */
-public class MainScreen {
+public class MainFrame {
     // constants
     /** A ToolKit for centering the main window. */
     private static final Toolkit KIT = Toolkit.getDefaultToolkit();
@@ -40,7 +40,7 @@ public class MainScreen {
     private JPanel panel;
     private JMenuBar menuBar;
 
-    public MainScreen() {
+    public MainFrame() {
         // JFRAME STUFF
         this.frame = new JFrame("ProjectHub");
         this.frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
