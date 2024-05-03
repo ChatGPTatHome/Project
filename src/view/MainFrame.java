@@ -67,7 +67,16 @@ public class MainFrame {
      * 
      * @param card The CardPanel to add.
      */
-    public void addCard(CardPanel card) {
+    public CardPanel addCard(CardPanel card) {
+        return this.addCard(card, false);
+    }
+
+    /**
+     * Adds the given card.
+     * 
+     * @param card The CardPanel to add.
+     */
+    public CardPanel addCard(CardPanel card, boolean focus) {
         JMenu menu = new JMenu(card.getName());
         // menu.addActionListener(e -> System.out.println(card.getName()));
         menu.addMouseListener(new MouseListener() {
@@ -76,7 +85,7 @@ public class MainFrame {
 
             @Override
             public void mousePressed(MouseEvent e) {
-                showCard(card);
+                focusCard(card);
             }
 
             @Override
@@ -91,6 +100,8 @@ public class MainFrame {
 
         this.panel.add(card, card.getName());
         this.menuBar.add(menu);
+
+        return focus ? this.focusCard(card) : card;
     }
 
     /**
@@ -98,9 +109,11 @@ public class MainFrame {
      * 
      * @param card The card to show.
 //     */
-    public void showCard(CardPanel card) {
+    public CardPanel focusCard(CardPanel card) {
         card.update();
         this.cardLayout.show(this.panel, card.getName());
+
+        return card;
     }
 
     /**
