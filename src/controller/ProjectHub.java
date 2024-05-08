@@ -3,8 +3,6 @@ package controller;
 import view.MainFrame;
 import view.HomeScreen;
 
-import java.lang.reflect.InvocationTargetException;
-
 import view.AboutScreen;
 import view.ProfileScreen;
 
@@ -26,8 +24,7 @@ public class ProjectHub {
             window.addCard(HomeScreen.class, true);
             window.addCard(AboutScreen.class);
             window.addCard(ProfileScreen.class);
-        } catch (InstantiationException | IllegalAccessException | IllegalArgumentException | InvocationTargetException
-                | NoSuchMethodException | SecurityException e) {
+        } catch (Exception e) {
             e.printStackTrace();
             return;
         }

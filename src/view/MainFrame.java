@@ -74,11 +74,11 @@ public class MainFrame {
      * Adds the given card.
      * 
      * @param card The CardPanel to add.
-     * @throws SecurityException 
-     * @throws NoSuchMethodException 
-     * @throws InvocationTargetException 
-     * @throws IllegalArgumentException 
-     * @throws IllegalAccessException 
+     * @throws SecurityException
+     * @throws NoSuchMethodException
+     * @throws InvocationTargetException
+     * @throws IllegalArgumentException
+     * @throws IllegalAccessException
      * @throws InstantiationException 
      */
     public CardPanel addCard(Class cardClass) throws InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchMethodException, SecurityException {
@@ -96,7 +96,7 @@ public class MainFrame {
      * @throws SecurityException 
      * @throws NoSuchMethodException 
      */
-    public CardPanel addCard(Class cardClass, boolean focus) throws InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchMethodException, SecurityException {
+    public CardPanel addCard(Class<? extends CardPanel> cardClass, boolean focus) throws InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchMethodException, SecurityException {
         Constructor<?> cardConstructor = cardClass.getConstructor(CardModel.class);
         CardPanel card = (CardPanel)(cardConstructor.newInstance(new Object[] { this.models }));
         
