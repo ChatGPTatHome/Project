@@ -8,6 +8,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import model.CardModel;
 import model.Owner;
 
 /**
@@ -23,7 +24,8 @@ public class HomeScreen extends CardPanel {
      * 
      * @param owner The owner object of this app.
      */
-    public HomeScreen(Owner owner) {
+    public HomeScreen(CardModel cardModel) {
+        super(cardModel);
         this.setLayout(new BorderLayout());
         
         JPanel home = new JPanel();
@@ -49,7 +51,7 @@ public class HomeScreen extends CardPanel {
         home.add(entries);
 
         JButton button = new JButton("Submit");
-        button.addActionListener(e -> owner.setOwner(nameField.getText(), emailField.getText()));
+        button.addActionListener(e -> ((Owner)this.getModel(Owner.class)).setOwner(nameField.getText(), emailField.getText()));
         home.add(button);
 
         this.add(home, BorderLayout.CENTER);

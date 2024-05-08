@@ -2,6 +2,7 @@ package view;
 
 import model.About;
 import model.Developer;
+import model.CardModel;
 
 import javax.swing.*;
 import java.awt.*;
@@ -19,7 +20,8 @@ public class AboutScreen extends CardPanel {
      * Constructs this AboutScreen Panel. Calls multiple
      * methods to set up this panel.
      */
-    public AboutScreen() {
+    public AboutScreen(CardModel cardModel) {
+        super(cardModel);
         setUpPanel();
     }
 

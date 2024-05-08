@@ -13,9 +13,6 @@ import view.ProfileScreen;
  */
 
 public class ProjectHub {
-    // Holds the owner information for the application.
-    private static final Owner owner = new Owner();
-
     /**
      * Main method to start the application.
      * It creates the main window, adds the home, about, and profile screens.
@@ -23,9 +20,9 @@ public class ProjectHub {
     public static void main(String[] theArgs) {
         MainFrame window = new MainFrame();
 
-        window.addCard(new HomeScreen(owner), true);
-        window.addCard(new AboutScreen());
-        window.addCard(new ProfileScreen(owner));
+        window.addCard(HomeScreen.class, true);
+        window.addCard(AboutScreen.class);
+        window.addCard(ProfileScreen.class);
 
         window.start();
     }

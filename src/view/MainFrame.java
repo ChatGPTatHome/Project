@@ -5,11 +5,14 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JPanel;
 
+import model.CardModel;
+
 import java.awt.CardLayout;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.lang.reflect.Constructor;
 
 /**
  * @author Anthony Chapkin, Hai Duong, Jeremiah Brenio, Windie Le.
@@ -35,6 +38,7 @@ public class MainFrame {
     /** Scaling size of the window. */
     private static final int SCALE = 3;
 
+    private CardModel models;
     private JFrame frame;
     private CardLayout cardLayout;
     private JPanel panel;
@@ -67,8 +71,8 @@ public class MainFrame {
      * 
      * @param card The CardPanel to add.
      */
-    public CardPanel addCard(CardPanel card) {
-        return this.addCard(card, false);
+    public CardPanel addCard(Class cardClass) {
+        return this.addCard(cardClass, false);
     }
 
     /**
@@ -76,9 +80,18 @@ public class MainFrame {
      * 
      * @param card The CardPanel to add.
      */
-    public CardPanel addCard(CardPanel card, boolean focus) {
+    public CardPanel addCard(Class cardClass, boolean focus) {
+        CardPanel card;
+
+        try {
+            Constructor<?> cardConstructor = cardClass.getConstructor(CardModel.class);
+            card = (CardPanel)(cardConstructor.newInstance(new Object[] { this.models }));
+        } catch (Exception e) {
+            throw new IllegalArgumentException("bad cardCLass");
+        }
+        
         JMenu menu = new JMenu(card.getName());
-        // menu.addActionListener(e -> System.out.println(card.getName()));
+        
         menu.addMouseListener(new MouseListener() {
             @Override
             public void mouseClicked(MouseEvent e) {}
