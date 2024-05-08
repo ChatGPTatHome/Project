@@ -8,7 +8,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-import model.CardModel;
+import model.Models;
 import model.Owner;
 
 /**
@@ -24,7 +24,7 @@ public class HomeScreen extends CardPanel {
      * 
      * @param owner The owner object of this app.
      */
-    public HomeScreen(CardModel cardModel) {
+    public HomeScreen(Models cardModel) {
         super(cardModel);
         this.setLayout(new BorderLayout());
         

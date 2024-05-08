@@ -2,8 +2,8 @@ package model;
 
 import java.util.Hashtable;
 
-public class CardModel {
-    Hashtable<Class<?>, Object> models = new Hashtable<Class<?>, Object>();
+public class Models {
+    private Hashtable<Class<?>, Object> models = new Hashtable<Class<?>, Object>();
 
     /**
      * Gets the desired model class.

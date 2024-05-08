@@ -5,7 +5,7 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JPanel;
 
-import model.CardModel;
+import model.Models;
 
 import java.awt.CardLayout;
 import java.awt.Dimension;
@@ -39,7 +39,7 @@ public class MainFrame {
     /** Scaling size of the window. */
     private static final int SCALE = 3;
 
-    private CardModel models;
+    private Models models;
     private JFrame frame;
     private CardLayout cardLayout;
     private JPanel panel;
@@ -47,7 +47,7 @@ public class MainFrame {
 
     public MainFrame() {
         // SETUP
-        this.models = new CardModel();
+        this.models = new Models();
         
         // JFRAME STUFF
         this.frame = new JFrame("ProjectHub");
@@ -97,7 +97,7 @@ public class MainFrame {
      * @throws NoSuchMethodException 
      */
     public CardPanel addCard(Class<? extends CardPanel> cardClass, boolean focus) throws InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchMethodException, SecurityException {
-        Constructor<?> cardConstructor = cardClass.getConstructor(CardModel.class);
+        Constructor<?> cardConstructor = cardClass.getConstructor(Models.class);
         CardPanel card = (CardPanel)(cardConstructor.newInstance(new Object[] { this.models }));
         
         JMenu menu = new JMenu(card.getName());

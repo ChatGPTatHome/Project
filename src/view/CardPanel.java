@@ -1,6 +1,6 @@
 package view;
 import javax.swing.JPanel;
-import model.CardModel;
+import model.Models;
 
 /**
  * @author Hai Duong.
@@ -10,13 +10,13 @@ import model.CardModel;
  *          Standard for JPanels to be added into CardLayout Panel.
  */
 public abstract class CardPanel extends JPanel {
-    private CardModel model;
+    private Models models;
 
     /**
      * Constructs a CardPanel
      */
-    public CardPanel(CardModel model) {
-        this.model = model;
+    public CardPanel(Models model) {
+        this.models = model;
     }
 
     /**
@@ -33,6 +33,6 @@ public abstract class CardPanel extends JPanel {
      * Gets the desired model
      */
     public <T> T getModel(Class<T> modelClass) {
-        return this.model.getModel(modelClass);
+        return this.models.getModel(modelClass);
     }
 }
