@@ -3,14 +3,13 @@ package model;
 import java.util.Hashtable;
 
 public class CardModel {
-    Hashtable<Class, Object> models = new Hashtable<Class, Object>();
+    Hashtable<Class<?>, Object> models = new Hashtable<Class<?>, Object>();
 
     /**
      * Gets the desired model class.
      */
-    public Object getModel(Class modelClass) {
-        System.out.println("C");
-        if (!this.models.contains(modelClass)) {
+    public <T> T getModel(Class<T> modelClass) {
+        if (!this.models.containsKey(modelClass)) {
             try {
                 this.models.put(modelClass, modelClass.newInstance());
             } catch (Exception e) {
@@ -18,6 +17,6 @@ public class CardModel {
             };
         }
         
-        return this.models.get(modelClass);
+        return modelClass.cast(this.models.get(modelClass));
     }
 }

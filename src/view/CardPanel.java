@@ -32,8 +32,7 @@ public abstract class CardPanel extends JPanel {
     /**
      * Gets the desired model
      */
-    public Object getModel(Class modelClass) {
-        System.out.println("B");
+    public <T> T getModel(Class<T> modelClass) {
         return this.model.getModel(modelClass);
     }
 }

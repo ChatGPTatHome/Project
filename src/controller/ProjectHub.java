@@ -2,7 +2,9 @@ package controller;
 
 import view.MainFrame;
 import view.HomeScreen;
-import model.Owner;
+
+import java.lang.reflect.InvocationTargetException;
+
 import view.AboutScreen;
 import view.ProfileScreen;
 
@@ -20,9 +22,15 @@ public class ProjectHub {
     public static void main(String[] theArgs) {
         MainFrame window = new MainFrame();
 
-        window.addCard(HomeScreen.class, true);
-        window.addCard(AboutScreen.class);
-        window.addCard(ProfileScreen.class);
+        try {
+            window.addCard(HomeScreen.class, true);
+            window.addCard(AboutScreen.class);
+            window.addCard(ProfileScreen.class);
+        } catch (InstantiationException | IllegalAccessException | IllegalArgumentException | InvocationTargetException
+                | NoSuchMethodException | SecurityException e) {
+            e.printStackTrace();
+            return;
+        }
 
         window.start();
     }

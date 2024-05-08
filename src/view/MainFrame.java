@@ -13,6 +13,7 @@ import java.awt.Toolkit;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.lang.reflect.Constructor;
+import java.lang.reflect.InvocationTargetException;
 
 /**
  * @author Anthony Chapkin, Hai Duong, Jeremiah Brenio, Windie Le.
@@ -45,6 +46,9 @@ public class MainFrame {
     private JMenuBar menuBar;
 
     public MainFrame() {
+        // SETUP
+        this.models = new CardModel();
+        
         // JFRAME STUFF
         this.frame = new JFrame("ProjectHub");
         this.frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -70,8 +74,14 @@ public class MainFrame {
      * Adds the given card.
      * 
      * @param card The CardPanel to add.
+     * @throws SecurityException 
+     * @throws NoSuchMethodException 
+     * @throws InvocationTargetException 
+     * @throws IllegalArgumentException 
+     * @throws IllegalAccessException 
+     * @throws InstantiationException 
      */
-    public CardPanel addCard(Class cardClass) {
+    public CardPanel addCard(Class cardClass) throws InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchMethodException, SecurityException {
         return this.addCard(cardClass, false);
     }
 
@@ -79,16 +89,16 @@ public class MainFrame {
      * Adds the given card.
      * 
      * @param card The CardPanel to add.
+     * @throws InvocationTargetException 
+     * @throws IllegalArgumentException 
+     * @throws IllegalAccessException 
+     * @throws InstantiationException 
+     * @throws SecurityException 
+     * @throws NoSuchMethodException 
      */
-    public CardPanel addCard(Class cardClass, boolean focus) {
-        CardPanel card;
-
-        try {
-            Constructor<?> cardConstructor = cardClass.getConstructor(CardModel.class);
-            card = (CardPanel)(cardConstructor.newInstance(new Object[] { this.models }));
-        } catch (Exception e) {
-            throw new IllegalArgumentException("bad cardCLass");
-        }
+    public CardPanel addCard(Class cardClass, boolean focus) throws InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchMethodException, SecurityException {
+        Constructor<?> cardConstructor = cardClass.getConstructor(CardModel.class);
+        CardPanel card = (CardPanel)(cardConstructor.newInstance(new Object[] { this.models }));
         
         JMenu menu = new JMenu(card.getName());
         

@@ -51,7 +51,7 @@ public class HomeScreen extends CardPanel {
         home.add(entries);
 
         JButton button = new JButton("Submit");
-        button.addActionListener(e -> ((Owner)this.getModel(Owner.class)).setOwner(nameField.getText(), emailField.getText()));
+        button.addActionListener(e -> (this.getModel(Owner.class)).setOwner(nameField.getText(), emailField.getText()));
         home.add(button);
 
         this.add(home, BorderLayout.CENTER);
