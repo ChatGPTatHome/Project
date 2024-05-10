@@ -69,6 +69,15 @@ public class MainFrame {
         this.frame.setJMenuBar(this.menuBar);
     }
 
+    private static boolean hasModelConstructor(Class<? extends CardPanel> cardClass) {
+        try {
+            Constructor<?> cardConstructor = cardClass.getConstructor(Models.class);
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
     /**
      * Adds the given card.
      * 
@@ -87,10 +96,16 @@ public class MainFrame {
     public CardPanel addCard(Class<? extends CardPanel> cardClass, boolean focus) {
         CardPanel card;
         try {
-            Constructor<?> cardConstructor = cardClass.getConstructor(Models.class);
-            card = (CardPanel)(cardConstructor.newInstance(new Object[] { this.models }));
-            card.setModelSource(this.models);
+            if (MainFrame.hasModelConstructor(cardClass)) {
+                Constructor<?> cardConstructor = cardClass.getConstructor(Models.class);
+                card = (CardPanel)(cardConstructor.newInstance(new Object[] { this.models }));
+            } else {
+                Constructor<?> cardConstructor = cardClass.getConstructor();
+                card = (CardPanel)(cardConstructor.newInstance());
+                card.setModelSource(this.models);
+            }
         } catch (Exception e) {
+            e.printStackTrace();
             throw new IllegalArgumentException("Bad card class.");
         }
         
