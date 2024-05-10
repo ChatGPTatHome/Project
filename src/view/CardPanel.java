@@ -10,13 +10,24 @@ import model.Models;
  *          Standard for JPanels to be added into CardLayout Panel.
  */
 public abstract class CardPanel extends JPanel {
-    private Models models;
+    private Models modelSource;
 
     /**
      * Constructs a CardPanel
      */
-    public CardPanel(Models model) {
-        this.models = model;
+    public CardPanel() {
+        this(null);
+    }
+    
+    /**
+     * Constructs a CardPanel
+     */
+    public CardPanel(Models modelSource) {
+        this.modelSource = modelSource;
+    }
+
+    public void setModelSource(Models modelSource) {
+        this.modelSource = modelSource;
     }
 
     /**
@@ -33,6 +44,6 @@ public abstract class CardPanel extends JPanel {
      * Gets the desired model
      */
     public <T> T getModel(Class<T> modelClass) {
-        return this.models.getModel(modelClass);
+        return this.modelSource.getModel(modelClass);
     }
 }

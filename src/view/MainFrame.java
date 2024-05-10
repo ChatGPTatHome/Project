@@ -81,7 +81,7 @@ public class MainFrame {
      * @throws IllegalAccessException
      * @throws InstantiationException 
      */
-    public CardPanel addCard(Class cardClass) throws InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchMethodException, SecurityException {
+    public CardPanel addCard(Class<? extends CardPanel> cardClass) {
         return this.addCard(cardClass, false);
     }
 
@@ -96,9 +96,14 @@ public class MainFrame {
      * @throws SecurityException 
      * @throws NoSuchMethodException 
      */
-    public CardPanel addCard(Class<? extends CardPanel> cardClass, boolean focus) throws InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchMethodException, SecurityException {
-        Constructor<?> cardConstructor = cardClass.getConstructor(Models.class);
-        CardPanel card = (CardPanel)(cardConstructor.newInstance(new Object[] { this.models }));
+    public CardPanel addCard(Class<? extends CardPanel> cardClass, boolean focus) {
+        CardPanel card;
+        try {
+            Constructor<?> cardConstructor = cardClass.getConstructor(Models.class);
+            card = (CardPanel)(cardConstructor.newInstance(new Object[] { this.models }));
+        } catch (Exception e) {
+            throw new IllegalArgumentException("Bad card class.");
+        }
         
         JMenu menu = new JMenu(card.getName());
         
