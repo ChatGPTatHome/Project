@@ -13,6 +13,7 @@ Anthony Chapkin, Hai Duong, Jeremiah Brenio, Windie Le
 |4             |https://docs.google.com/document/d/17-bEesmFNG7QUthPEeyCtNlvWvAnaDDGrXtIg3C9TPA/edit?usp=sharing |
 |5             |https://docs.google.com/document/d/1om1tmXvMRCY4-dOt4vlJstauxQ2l0RwB6IIq3SpFcuA/edit?usp=sharing |
 |6             |https://docs.google.com/document/d/1VVMsUQSiryp5Pysgj8eo_UEXKvOtnbChT_t9Y0b956o/edit?usp=sharing |
+|7             |https://docs.google.com/document/d/1EGDD3Nuglp-7MsPdEUPn08rlufXaoTdNaiQUMMcUDOY/edit?usp=sharing |
 ---
 
 # Contact Information
