@@ -128,7 +128,7 @@ public class MainFrame {
             throw new IllegalArgumentException("Bad card class.");
         }
         
-        return this.addCard(card);
+        return this.addCard(card, focus);
     }
 
     /**
