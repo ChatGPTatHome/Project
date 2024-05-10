@@ -38,11 +38,11 @@ public class MainFrame {
     /** Scaling size of the window. */
     private static final int SCALE = 3;
 
-    private Models models;
-    private JFrame frame;
-    private CardLayout cardLayout;
-    private JPanel panel;
-    private JMenuBar menuBar;
+    private final Models models;
+    private final JFrame frame;
+    private final CardLayout cardLayout;
+    private final JPanel panel;
+    private final JMenuBar menuBar;
 
     public MainFrame() {
         // SETUP
@@ -69,13 +69,21 @@ public class MainFrame {
         this.frame.setJMenuBar(this.menuBar);
     }
 
+    /**
+     * Gets the Models object from this MainFrame. Use cautiously.
+     */
+    public Models getModelSource() {
+        return this.models;
+    }
+
     private static boolean hasModelConstructor(Class<? extends CardPanel> cardClass) {
-        try {
-            Constructor<?> cardConstructor = cardClass.getConstructor(Models.class);
-            return true;
-        } catch (Exception e) {
-            return false;
+        for (Constructor<?> constructor : cardClass.getDeclaredConstructors()) {
+            if ((constructor.getParameterCount() == 1) 
+            && (constructor.getParameterTypes()[0] == Models.class))
+                return true;
         }
+
+        return false;
     }
 
     /**
@@ -95,6 +103,7 @@ public class MainFrame {
      */
     public CardPanel addCard(Class<? extends CardPanel> cardClass, boolean focus) {
         CardPanel card;
+
         try {
             if (MainFrame.hasModelConstructor(cardClass)) {
                 Constructor<?> cardConstructor = cardClass.getConstructor(Models.class);
@@ -109,6 +118,18 @@ public class MainFrame {
             throw new IllegalArgumentException("Bad card class.");
         }
         
+        this.addMenuTab(card);
+        this.panel.add(card, card.getName());
+
+        return focus ? this.focusCard(card) : card;
+    }
+
+    /**
+     * Adds a card to the JMenu.
+     * 
+     * @param card the card to add.
+     */
+    private void addMenuTab(CardPanel card) {
         JMenu menu = new JMenu(card.getName());
         
         menu.addMouseListener(new MouseListener() {
@@ -129,11 +150,8 @@ public class MainFrame {
             @Override
             public void mouseExited(MouseEvent e) {}
         });
-
-        this.panel.add(card, card.getName());
+        
         this.menuBar.add(menu);
-
-        return focus ? this.focusCard(card) : card;
     }
 
     /**
