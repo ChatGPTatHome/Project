@@ -11,7 +11,7 @@ public class Models {
     public <T> T getModel(Class<T> modelClass) {
         if (!this.models.containsKey(modelClass)) {
             try {
-                this.models.put(modelClass, modelClass.newInstance());
+                this.models.put(modelClass, modelClass.getConstructor().newInstance());
             } catch (Exception e) {
                 e.printStackTrace();
                 System.out.println("Error thrown on model instantiate");
