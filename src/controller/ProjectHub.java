@@ -20,10 +20,7 @@ public class ProjectHub {
 public static void main(String[] theArgs) {
     MainFrame window = new MainFrame();
 
-    HomeScreen home = new HomeScreen();
-    home.setModelSource(window.getModelSource());
-    
-    window.addCard(home, true);
+    window.addCard(HomeScreen.class, true);
     window.addCard(AboutScreen.class);
     window.addCard(ProfileScreen.class);
 
