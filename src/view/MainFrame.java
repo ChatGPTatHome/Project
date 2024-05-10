@@ -128,10 +128,7 @@ public class MainFrame {
             throw new IllegalArgumentException("Bad card class.");
         }
         
-        this.addMenuTab(card);
-        this.panel.add(card, card.getName());
-
-        return focus ? this.focusCard(card) : card;
+        return this.addCard(card);
     }
 
     /**
