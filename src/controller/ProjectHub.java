@@ -20,14 +20,9 @@ public class ProjectHub {
     public static void main(String[] theArgs) {
         MainFrame window = new MainFrame();
 
-        try {
-            window.addCard(HomeScreen.class, true);
-            window.addCard(AboutScreen.class);
-            window.addCard(ProfileScreen.class);
-        } catch (Exception e) {
-            e.printStackTrace();
-            return;
-        }
+        window.addCard(HomeScreen.class, true);
+        window.addCard(AboutScreen.class);
+        window.addCard(ProfileScreen.class);
 
         window.start();
     }

@@ -25,8 +25,8 @@ public class ProfileScreen extends CardPanel {
     private JLabel emailLabel;
 
     /** Makes a ProfileScreen with text boxes. */
-    public ProfileScreen(Models models) {
-        super(models);
+    public ProfileScreen(Models modelSource) {
+        super(modelSource);
         this.owner = this.getModel(Owner.class);
         nameLabel = new JLabel("NAME: " + owner.getName());
         emailLabel = new JLabel("EMAIL: " + owner.getEmail());

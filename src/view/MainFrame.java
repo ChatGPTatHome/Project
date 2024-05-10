@@ -13,7 +13,6 @@ import java.awt.Toolkit;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.lang.reflect.Constructor;
-import java.lang.reflect.InvocationTargetException;
 
 /**
  * @author Anthony Chapkin, Hai Duong, Jeremiah Brenio, Windie Le.
@@ -70,18 +69,21 @@ public class MainFrame {
         this.frame.setJMenuBar(this.menuBar);
     }
 
+    private static boolean hasModelConstructor(Class<? extends CardPanel> cardClass) {
+        try {
+            Constructor<?> cardConstructor = cardClass.getConstructor(Models.class);
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
     /**
      * Adds the given card.
      * 
-     * @param card The CardPanel to add.
-     * @throws SecurityException
-     * @throws NoSuchMethodException
-     * @throws InvocationTargetException
-     * @throws IllegalArgumentException
-     * @throws IllegalAccessException
-     * @throws InstantiationException 
+     * @param card The CardPanel to add without focus.
      */
-    public CardPanel addCard(Class cardClass) throws InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchMethodException, SecurityException {
+    public CardPanel addCard(Class<? extends CardPanel> cardClass) {
         return this.addCard(cardClass, false);
     }
 
@@ -89,16 +91,23 @@ public class MainFrame {
      * Adds the given card.
      * 
      * @param card The CardPanel to add.
-     * @throws InvocationTargetException 
-     * @throws IllegalArgumentException 
-     * @throws IllegalAccessException 
-     * @throws InstantiationException 
-     * @throws SecurityException 
-     * @throws NoSuchMethodException 
+     * @boolean focus Whether to focus on this card on start.
      */
-    public CardPanel addCard(Class<? extends CardPanel> cardClass, boolean focus) throws InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchMethodException, SecurityException {
-        Constructor<?> cardConstructor = cardClass.getConstructor(Models.class);
-        CardPanel card = (CardPanel)(cardConstructor.newInstance(new Object[] { this.models }));
+    public CardPanel addCard(Class<? extends CardPanel> cardClass, boolean focus) {
+        CardPanel card;
+        try {
+            if (MainFrame.hasModelConstructor(cardClass)) {
+                Constructor<?> cardConstructor = cardClass.getConstructor(Models.class);
+                card = (CardPanel)(cardConstructor.newInstance(new Object[] { this.models }));
+            } else {
+                Constructor<?> cardConstructor = cardClass.getConstructor();
+                card = (CardPanel)(cardConstructor.newInstance());
+                card.setModelSource(this.models);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new IllegalArgumentException("Bad card class.");
+        }
         
         JMenu menu = new JMenu(card.getName());
         

@@ -13,6 +13,7 @@ public class Models {
             try {
                 this.models.put(modelClass, modelClass.newInstance());
             } catch (Exception e) {
+                e.printStackTrace();
                 System.out.println("Error thrown on model instantiate");
             };
         }
