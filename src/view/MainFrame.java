@@ -101,6 +101,16 @@ public class MainFrame {
      * @param card The CardPanel to add.
      * @boolean focus Whether to focus on this card on start.
      */
+    public CardPanel addCard(CardPanel card) {
+        return this.addCard(card, false);
+    }
+
+    /**
+     * Adds the given card.
+     * 
+     * @param card The CardPanel to add.
+     * @boolean focus Whether to focus on this card on start.
+     */
     public CardPanel addCard(Class<? extends CardPanel> cardClass, boolean focus) {
         CardPanel card;
 
@@ -118,6 +128,19 @@ public class MainFrame {
             throw new IllegalArgumentException("Bad card class.");
         }
         
+        this.addMenuTab(card);
+        this.panel.add(card, card.getName());
+
+        return focus ? this.focusCard(card) : card;
+    }
+
+    /**
+     * Adds the given card.
+     * 
+     * @param card The CardPanel to add.
+     * @boolean focus Whether to focus on this card on start.
+     */
+    public CardPanel addCard(CardPanel card, boolean focus) {
         this.addMenuTab(card);
         this.panel.add(card, card.getName());
 
