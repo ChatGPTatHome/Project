@@ -20,8 +20,8 @@ public class AboutScreen extends CardPanel {
      * Constructs this AboutScreen Panel. Calls multiple
      * methods to set up this panel.
      */
-    public AboutScreen(Models cardModel) {
-        super(cardModel);
+    public AboutScreen(Models models) {
+        super(models);
         setUpPanel();
     }
 

@@ -24,8 +24,8 @@ public class HomeScreen extends CardPanel {
      * 
      * @param owner The owner object of this app.
      */
-    public HomeScreen(Models cardModel) {
-        super(cardModel);
+    public HomeScreen(Models models) {
+        super(models);
         this.setLayout(new BorderLayout());
         
         JPanel home = new JPanel();
