@@ -3,7 +3,6 @@ package view;
 import java.awt.FlowLayout;
 import javax.swing.JLabel;
 
-import model.Models;
 import model.Owner;
 
 /**
@@ -25,8 +24,7 @@ public class ProfileScreen extends CardPanel {
     private JLabel emailLabel;
 
     /** Makes a ProfileScreen with text boxes. */
-    public ProfileScreen(Models cardModel) {
-        super(cardModel);
+    public ProfileScreen() {
         this.owner = this.getModel(Owner.class);
         nameLabel = new JLabel("NAME: " + owner.getName());
         emailLabel = new JLabel("EMAIL: " + owner.getEmail());
