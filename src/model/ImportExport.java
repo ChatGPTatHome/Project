@@ -5,6 +5,7 @@ import com.google.gson.Gson;
 import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
+import java.io.IOException;
 
 public class ImportExport {
 
@@ -78,6 +79,18 @@ public class ImportExport {
         } catch (Exception e) {
             System.out.println(e.toString());
         }
+    }
+
+    public void pushData(String filePath) {
+        Gson gson = new Gson();
+        File file = new File(filePath + "/settings.JSON");
+            try {
+                FileWriter writer = new FileWriter(file);
+                gson.toJson(this, writer);
+                writer.close();
+            } catch (Exception e) {
+                System.out.println(e.toString());
+            }
     }
 
 }
