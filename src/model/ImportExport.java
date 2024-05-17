@@ -66,4 +66,18 @@ public class ImportExport {
         }
     }
 
+    public void pullData(String filePath) {
+        Gson gson = new Gson();
+        File file = new File(filePath);
+        try {
+            FileReader reader =  new FileReader(file);
+            ImportExport importExport = gson.fromJson(reader, ImportExport.class);
+            this.name = importExport.name;
+            this.email = importExport.email;
+            reader.close();
+        } catch (Exception e) {
+            System.out.println(e.toString());
+        }
+    }
+
 }

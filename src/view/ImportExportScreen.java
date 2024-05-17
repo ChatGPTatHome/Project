@@ -42,6 +42,8 @@ public class ImportExportScreen extends Screen{
             if (r == JFileChooser.APPROVE_OPTION) {
                 String path = chooser.getSelectedFile().getAbsolutePath();
                 labelImportPath.setText(path);
+                importExport.pullData(path);
+                importExport.updateSettings();
             }
         });
         this.add(importButton);
