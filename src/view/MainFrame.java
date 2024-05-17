@@ -76,7 +76,7 @@ public class MainFrame {
         return this.models;
     }
 
-    private static boolean hasModelConstructor(Class<? extends CardPanel> cardClass) {
+    private static boolean hasModelConstructor(Class<? extends Screen> cardClass) {
         for (Constructor<?> constructor : cardClass.getDeclaredConstructors()) {
             if ((constructor.getParameterCount() == 1) 
             && (constructor.getParameterTypes()[0] == Models.class))
@@ -91,7 +91,7 @@ public class MainFrame {
      * 
      * @param card The CardPanel to add without focus.
      */
-    public CardPanel addCard(Class<? extends CardPanel> cardClass) {
+    public Screen addCard(Class<? extends Screen> cardClass) {
         return this.addCard(cardClass, false);
     }
 
@@ -101,7 +101,7 @@ public class MainFrame {
      * @param card The CardPanel to add.
      * @boolean focus Whether to focus on this card on start.
      */
-    public CardPanel addCard(CardPanel card) {
+    public Screen addCard(Screen card) {
         return this.addCard(card, false);
     }
 
@@ -111,16 +111,16 @@ public class MainFrame {
      * @param card The CardPanel to add.
      * @boolean focus Whether to focus on this card on start.
      */
-    public CardPanel addCard(Class<? extends CardPanel> cardClass, boolean focus) {
-        CardPanel card;
+    public Screen addCard(Class<? extends Screen> cardClass, boolean focus) {
+        Screen card;
 
         try {
             if (MainFrame.hasModelConstructor(cardClass)) {
                 Constructor<?> cardConstructor = cardClass.getConstructor(Models.class);
-                card = (CardPanel)(cardConstructor.newInstance(new Object[] { this.models }));
+                card = (Screen)(cardConstructor.newInstance(new Object[] { this.models }));
             } else {
                 Constructor<?> cardConstructor = cardClass.getConstructor();
-                card = (CardPanel)(cardConstructor.newInstance());
+                card = (Screen)(cardConstructor.newInstance());
                 card.setModelSource(this.models);
             }
         } catch (Exception e) {
@@ -137,7 +137,7 @@ public class MainFrame {
      * @param card The CardPanel to add.
      * @boolean focus Whether to focus on this card on start.
      */
-    public CardPanel addCard(CardPanel card, boolean focus) {
+    public Screen addCard(Screen card, boolean focus) {
         this.addMenuTab(card);
         this.panel.add(card, card.getName());
 
@@ -149,7 +149,7 @@ public class MainFrame {
      * 
      * @param card the card to add.
      */
-    private void addMenuTab(CardPanel card) {
+    private void addMenuTab(Screen card) {
         JMenu menu = new JMenu(card.getName());
         
         menu.addMouseListener(new MouseListener() {
@@ -179,7 +179,7 @@ public class MainFrame {
      * 
      * @param card The card to show.
 //     */
-    public CardPanel focusCard(CardPanel card) {
+    public Screen focusCard(Screen card) {
         card.update();
         this.cardLayout.show(this.panel, card.getName());
 

@@ -2,25 +2,25 @@ package view;
 
 import model.Models;
 
-public class ImportExportScreen extends CardPanel {
+public class ImportExportScreen extends Screen{
 
-    public ImportExportScreen(Models models) {
+    public ImportExportScreen(Models models){
         super(models);
     }
 
     /**
-     * Updates the home screen view.
+     * Updates the ImportExport screen view.
      */
     @Override
-    public void update() {
-    }
+    public void update() {}
 
     /**
-     * Gets the name for the home screen.
-     * @return The name of the home screen.
+     * Gets the name for the ImportExport screen.
+     * @return The name of the ImportExport screen.
      */
     @Override
     public String getName() {
-        return "Home";
+        return "ImportExport";
     }
+
 }

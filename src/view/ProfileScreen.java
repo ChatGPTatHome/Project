@@ -13,7 +13,7 @@ import model.Owner;
  * 
  *          Displays a JPanel to display ownership of the App.
  */
-public class ProfileScreen extends CardPanel {
+public class ProfileScreen extends Screen {
 
     /** To store the owner's name and email address. */
     private Owner owner;
