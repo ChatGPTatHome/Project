@@ -14,7 +14,7 @@ import model.Owner;
  * 
  *          Displays a JPanel to display ownership of the App.
  */
-public class ProfileScreen extends CardPanel {
+public class ProfileScreen extends Screen {
 
     private ImportExport importExport;
 

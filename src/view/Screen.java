@@ -9,20 +9,20 @@ import model.Models;
  * 
  *          Standard for JPanels to be added into CardLayout Panel.
  */
-public abstract class CardPanel extends JPanel {
+public abstract class Screen extends JPanel {
     private Models modelSource;
 
     /**
      * Constructs a CardPanel
      */
-    public CardPanel() {
+    public Screen() {
         this(null);
     }
     
     /**
      * Constructs a CardPanel
      */
-    public CardPanel(Models modelSource) {
+    public Screen(Models modelSource) {
         this.modelSource = modelSource;
     }
 
