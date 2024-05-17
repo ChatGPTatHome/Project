@@ -10,7 +10,6 @@ import javax.swing.JTextField;
 
 import model.ImportExport;
 import model.Models;
-import model.Owner;
 
 /**
  * @author Hai Duong, Jeremiah Brenio.
@@ -22,10 +21,9 @@ import model.Owner;
 public class HomeScreen extends Screen {
     /**
      * Constructs a HomeScreen.
-     * 
+     *
      * @param owner The owner object of this app.
      */
-    Owner owner;
 
     private ImportExport importExport;
 

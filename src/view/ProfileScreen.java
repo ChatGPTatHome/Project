@@ -5,7 +5,6 @@ import javax.swing.JLabel;
 
 import model.ImportExport;
 import model.Models;
-import model.Owner;
 
 /**
  * @author Jeremiah Brenio, Hai Duong.
