@@ -19,6 +19,7 @@ public class ImportExport {
         email = "N/A";
     }
 
+    // Writes the settings to json
     public void updateSettings() {
         Gson gson = new Gson();
         File file = new File("./src/data/settings.json");
@@ -51,7 +52,7 @@ public class ImportExport {
         this.email = email;
     }
 
-    public void pullSettings() {
+    public void pullData() {
         Gson gson = new Gson();
         File file = new File("./src/data/settings.json");
         try {
