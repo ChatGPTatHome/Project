@@ -18,7 +18,7 @@ import model.Owner;
  * 
  *          Displays a JPanel to set ownership of the App.
  */
-public class HomeScreen extends CardPanel {
+public class HomeScreen extends Screen {
     /**
      * Constructs a HomeScreen.
      * 
