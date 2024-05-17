@@ -1,5 +1,7 @@
 package model;
 
+import com.google.gson.*;
+
 /**
  * Stores the Owner's information.
  *
