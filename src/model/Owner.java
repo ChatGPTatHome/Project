@@ -1,6 +1,12 @@
 package model;
 
 import com.google.gson.*;
+import com.google.gson.stream.JsonWriter;
+
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.Writer;
 
 /**
  * Stores the Owner's information.
@@ -28,8 +34,15 @@ public class Owner {
     public void setOwner(String name, String email) {
         this.name = name;
         this.email = email;
+        Gson gson = new Gson();
+        File file = new File("../data/settings.JSON");
+        try {
+            FileWriter writer = new FileWriter(file);
+            gson.toJson(this, writer);
+        } catch (Exception e) {
+            System.out.println("No file found.");
+        }
     }
-
     /** Returns the Owner's information. */
     public String getName() {
         return name;
