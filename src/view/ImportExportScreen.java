@@ -1,9 +1,11 @@
 package view;
 
+import model.Models;
+
 public class ImportExportScreen extends Screen{
 
-    public ImportExportScreen(){
-
+    public ImportExportScreen(Models models){
+        super(models);
     }
 
     /**
