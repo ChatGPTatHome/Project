@@ -6,7 +6,7 @@
 .idea/
 out/
 local.properties
-#.vscode
+.vscode
 out/
 .xml
 

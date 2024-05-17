@@ -11,7 +11,7 @@ import com.google.gson.*;
  *
  */
 public class Owner {
-
+    
     /** The Owner's name. */
     private String name;
 
