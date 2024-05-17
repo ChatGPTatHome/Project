@@ -8,6 +8,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import model.Models;
 import model.Owner;
 
 /**
@@ -23,7 +24,15 @@ public class HomeScreen extends CardPanel {
      * 
      * @param owner The owner object of this app.
      */
-    public HomeScreen() {
+    Owner owner;
+
+
+    public HomeScreen(Models models) {
+        super(models);
+
+        this.owner = getModel(Owner.class);
+        owner.pullData();
+
         this.setLayout(new BorderLayout());
         
         JPanel home = new JPanel();
@@ -49,7 +58,7 @@ public class HomeScreen extends CardPanel {
         home.add(entries);
 
         JButton button = new JButton("Submit");
-        button.addActionListener(e -> (this.getModel(Owner.class)).setOwner(nameField.getText(), emailField.getText()));
+        button.addActionListener(e -> this.owner.setOwner(nameField.getText(), emailField.getText()));
         home.add(button);
 
         this.add(home, BorderLayout.CENTER);
@@ -59,7 +68,8 @@ public class HomeScreen extends CardPanel {
      * Updates the home screen view.
      */
     @Override
-    public void update() {}
+    public void update() {
+    }
 
     /**
      * Gets the name for the home screen.

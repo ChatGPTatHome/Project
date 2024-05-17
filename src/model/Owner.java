@@ -1,7 +1,6 @@
 package model;
 
 import com.google.gson.*;
-import com.google.gson.stream.JsonWriter;
 
 import java.io.*;
 
@@ -25,17 +24,6 @@ public class Owner {
     public Owner() {
         name = "N/A";
         email = "N/A";
-        Gson gson = new Gson();
-        File file = new File("./src/data/settings.json");
-        try {
-            FileReader reader =  new FileReader(file);
-            Owner owner = gson.fromJson(reader, Owner.class);
-            this.name = owner.name;
-            this.email = owner.email;
-            reader.close();
-        } catch (Exception e) {
-            System.out.println("No file found.");
-        }
     }
 
     /** Sets the Owner's information. */
@@ -60,6 +48,20 @@ public class Owner {
     /** Returns the Owner's information. */
     public String getEmail() {
         return email;
+    }
+
+    public void pullData() {
+        Gson gson = new Gson();
+        File file = new File("./src/data/settings.json");
+        try {
+            FileReader reader =  new FileReader(file);
+            Owner owner = gson.fromJson(reader, Owner.class);
+            this.name = owner.name;
+            this.email = owner.email;
+            reader.close();
+        } catch (Exception e) {
+            System.out.println("No file found.");
+        }
     }
 
 }
