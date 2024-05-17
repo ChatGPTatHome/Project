@@ -35,10 +35,11 @@ public class Owner {
         this.name = name;
         this.email = email;
         Gson gson = new Gson();
-        File file = new File("../data/settings.JSON");
+        File file = new File("./src/data/settings.json");
         try {
             FileWriter writer = new FileWriter(file);
             gson.toJson(this, writer);
+            writer.close();
         } catch (Exception e) {
             System.out.println("No file found.");
         }
