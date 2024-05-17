@@ -4,6 +4,7 @@ import model.ImportExport;
 import model.Models;
 
 import javax.swing.*;
+import java.awt.*;
 
 public class ImportExportScreen extends Screen{
 
@@ -13,10 +14,10 @@ public class ImportExportScreen extends Screen{
         super(models);
         importExport = getModel(ImportExport.class);
 
-        JLabel label = new JLabel("Path:");
-        this.add(label);
+        JLabel labelExportPath = new JLabel("ExportPath:");
+        this.add(labelExportPath);
 
-        JButton exportButton = new JButton("Import Settings");
+        JButton exportButton = new JButton("Export Settings");
         exportButton.addActionListener(e -> {
             JFileChooser chooser = new JFileChooser();
             chooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
@@ -24,10 +25,26 @@ public class ImportExportScreen extends Screen{
 
             if (r == JFileChooser.APPROVE_OPTION) {
                 String path = chooser.getSelectedFile().getAbsolutePath();
-                label.setText(path);
+                labelExportPath.setText(path);
             }
         });
         this.add(exportButton);
+
+        JLabel labelImportPath = new JLabel("ImportPath:");
+        this.add(labelImportPath);
+
+        JButton importButton = new JButton("Import Settings");
+        importButton.addActionListener(e -> {
+            JFileChooser chooser = new JFileChooser();
+            chooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
+            int r = chooser.showOpenDialog(null);
+
+            if (r == JFileChooser.APPROVE_OPTION) {
+                String path = chooser.getSelectedFile().getAbsolutePath();
+                labelImportPath.setText(path);
+            }
+        });
+        this.add(importButton);
 
     }
 
