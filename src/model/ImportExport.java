@@ -1,13 +1,68 @@
 package model;
 
+import com.google.gson.Gson;
+
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
+
 public class ImportExport {
 
+    /** The Owner's name. */
+    private String name;
+
+    /** The Owner's email. */
+    private String email;
+
+    public ImportExport() {
+        name = "N/A";
+        email = "N/A";
+    }
+
     public void updateSettings() {
-        // TODO: Implement this method
+        Gson gson = new Gson();
+        File file = new File("./src/data/settings.json");
+        try {
+            FileWriter writer = new FileWriter(file);
+            gson.toJson(this, writer);
+            writer.close();
+        } catch (Exception e) {
+            System.out.println(e.toString());
+        }
     }
 
     public void getSettings() {
-        // TODO: Implement this method
+
+    }
+
+    public String getName() {
+        return this.name;
+    }
+
+    public String getEmail() {
+        return this.email;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public void pullSettings() {
+        Gson gson = new Gson();
+        File file = new File("./src/data/settings.json");
+        try {
+            FileReader reader =  new FileReader(file);
+            ImportExport importExport = gson.fromJson(reader, ImportExport.class);
+            this.name = importExport.name;
+            this.email = importExport.email;
+            reader.close();
+        } catch (Exception e) {
+            System.out.println(e.toString());
+        }
     }
 
 }
