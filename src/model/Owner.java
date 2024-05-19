@@ -34,6 +34,7 @@ public class Owner {
             this.email = owner.email;
             reader.close();
         } catch (Exception e) {
+            e.printStackTrace();
             System.out.println("No file found.");
         }
     }
