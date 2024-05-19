@@ -1,10 +1,6 @@
 package controller;
 
-import view.MainFrame;
-import view.HomeScreen;
-
-import view.AboutScreen;
-import view.ProfileScreen;
+import view.*;
 
 /**
  *
@@ -23,6 +19,7 @@ public static void main(String[] theArgs) {
     window.addCard(HomeScreen.class, true);
     window.addCard(AboutScreen.class);
     window.addCard(ProfileScreen.class);
+    window.addCard(ImportExportScreen.class);
 
     window.start();
 }

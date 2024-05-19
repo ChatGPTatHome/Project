@@ -3,8 +3,8 @@ package view;
 import java.awt.FlowLayout;
 import javax.swing.JLabel;
 
+import model.ImportExport;
 import model.Models;
-import model.Owner;
 
 /**
  * @author Jeremiah Brenio, Hai Duong.
@@ -13,10 +13,9 @@ import model.Owner;
  * 
  *          Displays a JPanel to display ownership of the App.
  */
-public class ProfileScreen extends CardPanel {
+public class ProfileScreen extends Screen {
 
-    /** To store the owner's name and email address. */
-    private Owner owner;
+    private ImportExport importExport;
 
     /** To show owner's name. */
     private JLabel nameLabel;
@@ -27,9 +26,9 @@ public class ProfileScreen extends CardPanel {
     /** Makes a ProfileScreen with text boxes. */
     public ProfileScreen(Models modelSource) {
         super(modelSource);
-        this.owner = this.getModel(Owner.class);
-        nameLabel = new JLabel("NAME: " + owner.getName());
-        emailLabel = new JLabel("EMAIL: " + owner.getEmail());
+        this.importExport = this.getModel(ImportExport.class);
+        nameLabel = new JLabel("NAME: " + importExport.getName());
+        emailLabel = new JLabel("EMAIL: " + importExport.getEmail());
 
         setLayout(new FlowLayout(FlowLayout.CENTER));
         add(new JLabel("Owner: "));
@@ -50,7 +49,8 @@ public class ProfileScreen extends CardPanel {
      */
     @Override
     public void update() {
-        nameLabel.setText(owner.getName());
-        emailLabel.setText(owner.getEmail());
+        nameLabel.setText(importExport.getName());
+        emailLabel.setText(importExport.getEmail());
+        importExport.updateSettings();
     }
 }

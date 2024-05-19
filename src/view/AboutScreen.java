@@ -11,7 +11,7 @@ import java.awt.*;
  *
  * @author Anthony Chapkin
  */
-public class AboutScreen extends CardPanel {
+public class AboutScreen extends Screen {
 
     private static final String NAME = "About";
 
