@@ -1,9 +1,9 @@
 package model;
 
 import com.google.gson.*;
-import com.google.gson.stream.JsonWriter;
 
 import java.io.*;
+import java.nio.file.Paths;
 
 /**
  * Stores the Owner's information.
@@ -44,7 +44,7 @@ public class Owner {
         this.name = name;
         this.email = email;
         Gson gson = new Gson();
-        File file = new File("./src/data/settings.json");
+        File file = new File(Paths.get(System.getProperty("user.dir"), "data", "settings.json").toString());
         try {
             FileWriter writer = new FileWriter(file);
             gson.toJson(this, writer);

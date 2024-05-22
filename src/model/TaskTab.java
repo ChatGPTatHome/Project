@@ -1,20 +1,40 @@
 package model;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+
+/**
+ * Tab model used for storing tasks.
+ * 
+ * @author Hai Duong
+ */
 public class TaskTab extends Tab {
+    private List<String> tasks;
 
-    @Override
-    public void getData() {
-        // TODO Auto-generated method stub
+    /**
+     * Constructs a TaskTab in a null-state.
+     */
+    public TaskTab() {
+        this.tasks = new ArrayList<>();
+    }
+
+    /**
+     * Gets the task list.
+     * @return the task list.
+     */
+    public List<String> getTasks() {
+        return this.tasks;
     }
 
     @Override
-    public void saveData() {
-        // TODO Auto-generated method stub
+    public String getKey() {
+        return "tasks";
     }
 
+    @SuppressWarnings("unchecked")
     @Override
-    public void setData() {
-        // TODO Auto-generated method stub
+    public void instantiate(Map<String, Object> tab) {
+        this.tasks = (List<String>)tab.get("tasks");
     }
-
 }

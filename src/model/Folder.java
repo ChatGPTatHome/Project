@@ -4,8 +4,6 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 
-import com.google.gson.Gson;
-
 public class Folder {
 
     // File already has getpath and getdir
@@ -14,7 +12,7 @@ public class Folder {
 
     public Folder() {
         this.rootDirectory = new File(System.getProperty("user.dir"), "data");
-        this.currentDirectory = rootDirectory;
+        this.currentDirectory = this.rootDirectory;
     }
 
     public String[] list() {
@@ -34,6 +32,18 @@ public class Folder {
     public void createFolder(String directory) {
         this.enterDirectory(directory);
         this.createFolder();
+    }
+
+    public void resetDirectory() {
+        this.currentDirectory = this.rootDirectory;
+    }
+
+    public File getFileObject() {
+        return this.currentDirectory;
+    }
+
+    public File getFileObject(String item) {
+        return new File(this.currentDirectory, item);
     }
 
     public FileWriter createProject(String projectName) {

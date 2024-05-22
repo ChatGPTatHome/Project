@@ -7,22 +7,22 @@ import java.awt.Insets;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
-import model.ToolTab;
+import model.MaterialTab;
 import view.components.LabeldeTextField;
 import view.components.PricedItemTable;
 
 /**
- * The ToolTabScreen displays the tools entered by the user
+ * The MaterialTabScreen displays the materials entered by the user
  * for their project.
  * 
  * @author Hai Duong
  */
-public class ToolTabScreen extends JPanel {
-    public ToolTabScreen(ToolTab toolModel) {
+public class MaterialTabScreen extends JPanel {
+    public MaterialTabScreen(MaterialTab materialModel) {
         this.setLayout(new GridBagLayout());
         GridBagConstraints constraints = new GridBagConstraints();
 
-        PricedItemTable table = new PricedItemTable(toolModel.getTools());
+        PricedItemTable table = new PricedItemTable(materialModel.getMaterials());
 
         constraints.fill = GridBagConstraints.BOTH;
         constraints.gridx = 0;
@@ -51,7 +51,7 @@ public class ToolTabScreen extends JPanel {
                 addMaterialPanelConstraints.anchor = GridBagConstraints.CENTER;
                 addMaterialPanelConstraints.weightx = 1;
 
-                LabeldeTextField nameField = new LabeldeTextField("Tool: ", 10, true);
+                LabeldeTextField nameField = new LabeldeTextField("Material: ", 10, true);
                 addMaterialPanelConstraints.gridy = 0;
                 addMaterialPanel.add(nameField, addMaterialPanelConstraints.clone());
 
@@ -63,7 +63,7 @@ public class ToolTabScreen extends JPanel {
                 addMaterialPanelConstraints.gridy = 2;
                 addMaterialPanel.add(quantityField, addMaterialPanelConstraints.clone());
 
-                JButton addButton = new JButton("Add Tool");
+                JButton addButton = new JButton("Add Material");
                 addButton.addActionListener(e -> {
                     if (nameField.getTextField().getText().equals(""))
                         return;
