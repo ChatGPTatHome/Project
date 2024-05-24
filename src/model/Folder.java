@@ -38,6 +38,13 @@ public class Folder {
         this.currentDirectory = this.rootDirectory;
     }
 
+    public void goBackDirectory() {
+        if (this.currentDirectory.equals(this.rootDirectory))
+            return;
+
+        this.currentDirectory = this.currentDirectory.getParentFile();
+    }
+
     public File getFileObject() {
         return this.currentDirectory;
     }
