@@ -2,14 +2,14 @@ package view;
 
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
-import java.awt.Insets;
 
 import javax.swing.JButton;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
 
 import model.ToolTab;
-import view.components.LabeldeTextField;
 import view.components.PricedItemTable;
+import view.components.SubmittableTextField;
 
 /**
  * The ToolTabScreen displays the tools entered by the user
@@ -38,6 +38,22 @@ public class ToolTabScreen extends JPanel {
         constraints.weighty = 1;
         {
             JPanel parent = new JPanel(new GridBagLayout());
+            
+            GridBagConstraints addToolPanelConstraints = new GridBagConstraints();
+            addToolPanelConstraints.anchor = GridBagConstraints.CENTER;
+            addToolPanelConstraints.weightx = 1;
+
+            SubmittableTextField itemFields = new SubmittableTextField(10, "Add Tool", true);
+            itemFields.setChildConstraints(addToolPanelConstraints);
+
+            JTextField nameField = itemFields.addTextField("Tool:", (String text) -> !text.isEmpty());
+            JTextField priceField = itemFields.addTextField("Price:", (String text) -> Double.valueOf(text) >= 0);
+            JTextField quantityField = itemFields.addTextField("Quantity:", (String text) -> Integer.valueOf(text) >= 1);
+            
+            itemFields.setActionCallback(() -> {
+                table.addRow(nameField.getText(), priceField.getText(), quantityField.getText());
+            });
+
             GridBagConstraints innerConstraints = new GridBagConstraints();
             
             innerConstraints.gridy = 0;
@@ -45,48 +61,8 @@ public class ToolTabScreen extends JPanel {
             innerConstraints.weightx = 1;
             innerConstraints.weighty = 1;
             innerConstraints.anchor = GridBagConstraints.CENTER;
-            {
-                JPanel addMaterialPanel = new JPanel(new GridBagLayout());
-                GridBagConstraints addMaterialPanelConstraints = new GridBagConstraints();
-                addMaterialPanelConstraints.anchor = GridBagConstraints.CENTER;
-                addMaterialPanelConstraints.weightx = 1;
-
-                LabeldeTextField nameField = new LabeldeTextField("Tool: ", 10, true);
-                addMaterialPanelConstraints.gridy = 0;
-                addMaterialPanel.add(nameField, addMaterialPanelConstraints.clone());
-
-                LabeldeTextField priceField = new LabeldeTextField("Price: ", 10, true);
-                addMaterialPanelConstraints.gridy = 1;
-                addMaterialPanel.add(priceField, addMaterialPanelConstraints.clone());
-
-                LabeldeTextField quantityField = new LabeldeTextField("Quantity: ", 10, true);
-                addMaterialPanelConstraints.gridy = 2;
-                addMaterialPanel.add(quantityField, addMaterialPanelConstraints.clone());
-
-                JButton addButton = new JButton("Add Tool");
-                addButton.addActionListener(e -> {
-                    if (nameField.getTextField().getText().equals(""))
-                        return;
-                    else if (priceField.getTextField().getText().equals(""))
-                        return;
-                    else if (quantityField.getTextField().getText().equals(""))
-                        return;
-
-                    try {
-                        table.addRow(nameField.getTextField().getText(), priceField.getTextField().getText(), quantityField.getTextField().getText());
-                    } catch (Exception err) { /* MAYBE SHOW MINI WARNING WINDOW */ }
-
-                    nameField.getTextField().setText("");
-                    priceField.getTextField().setText("");
-                    quantityField.getTextField().setText("");
-                });
-                addMaterialPanelConstraints.gridy = 3;
-                addMaterialPanelConstraints.anchor = GridBagConstraints.CENTER;
-                addMaterialPanelConstraints.insets = new Insets(10, 0, 0, 0);
-                addMaterialPanel.add(addButton, addMaterialPanelConstraints);
-
-                parent.add(addMaterialPanel, innerConstraints.clone());
-            }
+            
+            parent.add(itemFields, innerConstraints);
 
             JButton removeButton = new JButton("Remove Selection");
             removeButton.addActionListener(e -> table.removeSelectedRow());
@@ -96,9 +72,9 @@ public class ToolTabScreen extends JPanel {
             innerConstraints.weightx = 0;
             innerConstraints.weighty = 1;
             innerConstraints.anchor = GridBagConstraints.CENTER;
-            parent.add(removeButton, innerConstraints.clone());
+            parent.add(removeButton, innerConstraints);
 
-            this.add(parent, constraints.clone());
+            this.add(parent, constraints);
         }
     }
 }

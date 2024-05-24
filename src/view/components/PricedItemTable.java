@@ -132,7 +132,7 @@ public class PricedItemTable extends JScrollPane {
     public PricedItem removeSelectedRow() {
         int index = this.table.getSelectedRow();
         if (index != -1)
-            return this.list.remove(index);
+            return this.removeRow(index);
             
         return null;
     }

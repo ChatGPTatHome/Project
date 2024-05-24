@@ -9,6 +9,7 @@ import javax.swing.JTextField;
 
 import model.TaskTab;
 import view.components.ListJListSyncer;
+import view.components.SubmittableTextField;
 
 /**
  * The TaskTabScreen displays the tasks entered by the user
@@ -26,6 +27,7 @@ public class TaskTabScreen extends JPanel {
         this.setLayout(new GridBagLayout());
         GridBagConstraints constraints = new GridBagConstraints();
 
+        // ADD LIST
         constraints.fill = GridBagConstraints.BOTH;
         constraints.weightx = 1;
         constraints.weighty = 1;
@@ -33,47 +35,33 @@ public class TaskTabScreen extends JPanel {
         ListJListSyncer<String> list = new ListJListSyncer<>(taskModel.getTasks());
         this.add(list, constraints);
 
+        // CREATE BOTTOM ROW
         constraints.fill = GridBagConstraints.HORIZONTAL;
         constraints.weightx = 1;
         constraints.weighty = 0;
         constraints.gridy = 1;
-        {
-            JPanel parent = new JPanel(new GridBagLayout());
-            GridBagConstraints innerConstraints = new GridBagConstraints();
-            
-            innerConstraints.weightx = 1;
-            innerConstraints.anchor = GridBagConstraints.LINE_START;
-            {
-                JPanel addTaskPanel = new JPanel(new GridBagLayout());
-                GridBagConstraints addTaskPanelConstraints = new GridBagConstraints();
-                addTaskPanelConstraints.fill = GridBagConstraints.VERTICAL;
+        JPanel bottomRow = new JPanel(new GridBagLayout());
+        
+        // ADD SUBMITTABLE TEXT FIELD
+        SubmittableTextField addTaskForm = new SubmittableTextField(30, "Add Task");
+        GridBagConstraints textFieldConstraint = new GridBagConstraints();
+        textFieldConstraint.fill = GridBagConstraints.VERTICAL;
+        textFieldConstraint.weighty = 1;
+        addTaskForm.setChildConstraints(textFieldConstraint);
+        JTextField taskField = addTaskForm.addTextField((String text) -> !text.isEmpty());
+        addTaskForm.setActionCallback(() -> list.addRow(taskField.getText()));
+        
+        bottomRow.add(addTaskForm, textFieldConstraint);
 
-                JTextField textField = new JTextField(30);
-                addTaskPanel.add(textField, addTaskPanelConstraints);
+        // ADD REMOVE BUTTON
+        JButton removeButton = new JButton("Remove Selection");
+        removeButton.addActionListener(e -> list.removeSelectedRow());
 
-                JButton addButton = new JButton("Add Task");
-                addButton.addActionListener(e -> {
-                    String text = textField.getText();
-                    if (text.equals(""))
-                        return;
+        GridBagConstraints removeConstraints = new GridBagConstraints();
+        removeConstraints.weightx = 1;
+        removeConstraints.anchor = GridBagConstraints.LINE_END;
+        bottomRow.add(removeButton, removeConstraints);
 
-                    list.addRow(text);
-                    textField.setText("");
-                });
-
-                addTaskPanel.add(addButton, addTaskPanelConstraints);
-
-                parent.add(addTaskPanel, innerConstraints);
-            }
-
-            JButton removeButton = new JButton("Remove Selection");
-            removeButton.addActionListener(e -> list.removeSelectedRow());
-
-            innerConstraints.weightx = 1;
-            innerConstraints.anchor = GridBagConstraints.LINE_END;
-            parent.add(removeButton, innerConstraints);
-
-            this.add(parent, constraints);
-        }
+        this.add(bottomRow, constraints);
     }
 }

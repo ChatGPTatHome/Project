@@ -14,10 +14,11 @@ import javax.swing.JTextField;
  * 
  * @author Hai Duong
  */
-public class LabeldeTextField extends JPanel {
+public class LabeledTextField extends JPanel implements GBComponent {
     private JTextField textField;
+    private JLabel label;
     
-    public LabeldeTextField(String label, int length) {
+    public LabeledTextField(String label, int length) {
         this(label, length, false);
     }
     
@@ -30,14 +31,15 @@ public class LabeldeTextField extends JPanel {
      * @param length the length of the text field.
      * @param vertical whether or not to place label above text field.
      */
-    public LabeldeTextField(String label, int length, boolean vertical) {
+    public LabeledTextField(String label, int length, boolean vertical) {
         super(new GridBagLayout());
         GridBagConstraints constraints = new GridBagConstraints();
         constraints.anchor = GridBagConstraints.LINE_START;
 
         this.textField = new JTextField(length);
+        this.label = new JLabel(label);
 
-        this.add(new JLabel(label), constraints);
+        this.add(this.label, constraints);
 
         if (vertical) constraints.gridy = 1;
         this.add(this.textField, constraints);
@@ -59,5 +61,15 @@ public class LabeldeTextField extends JPanel {
     public void makeReadOnly() {
         this.textField.setEditable(false);
         this.textField.setFocusable(false);
+    }
+
+    @Override
+    public void setChildConstraints(GridBagConstraints constraints) {
+        GridBagLayout layout = (GridBagLayout)this.getLayout();
+        constraints.anchor = GridBagConstraints.LINE_START;
+        constraints.gridy = 0;
+        layout.setConstraints(this.label, constraints);
+        if (layout.getConstraints(this.textField).gridy == 1) constraints.gridy = 1;
+        layout.setConstraints(this.textField, constraints);
     }
 }

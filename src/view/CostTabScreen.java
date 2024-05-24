@@ -9,7 +9,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import model.CostTab;
-import view.components.LabeldeTextField;
+import view.components.LabeledTextField;
 
 /**
  * The ToolTabScreen displays the budget, total, and cost.
@@ -20,9 +20,9 @@ import view.components.LabeldeTextField;
  */
 public class CostTabScreen extends JPanel {
     CostTab costModel;
-    LabeldeTextField budgetField;
-    LabeldeTextField costField;
-    LabeldeTextField remainderField;
+    LabeledTextField budgetField;
+    LabeledTextField costField;
+    LabeledTextField remainderField;
     
     public CostTabScreen(CostTab costModel) {
         super(new GridBagLayout());
@@ -32,16 +32,16 @@ public class CostTabScreen extends JPanel {
         GridBagConstraints constraints = new GridBagConstraints();
         constraints.anchor = GridBagConstraints.CENTER;
 
-        this.budgetField = new LabeldeTextField("Budget: ", 12);
+        this.budgetField = new LabeledTextField("Budget: ", 12);
         budgetField.getTextField().setText("0.0");
         
-        this.costField = new LabeldeTextField("Cost: ", 12);
+        this.costField = new LabeledTextField("Cost: ", 12);
         costField.makeReadOnly();
 
-        this.remainderField = new LabeldeTextField("Remaining: ", 12);
+        this.remainderField = new LabeledTextField("Remaining: ", 12);
         remainderField.makeReadOnly();
 
-        budgetField.addKeyListener(new KeyAdapter() {
+        budgetField.getTextField().addKeyListener(new KeyAdapter() {
             private boolean dispatched = false;
             
             @Override
