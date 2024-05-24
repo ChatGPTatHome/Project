@@ -36,7 +36,7 @@ public class MainFrame {
     private static final int SCREEN_HEIGHT = SCREEN_SIZE.height;
 
     /** Scaling size of the window. */
-    private static final int SCALE = 3;
+    private static final int SCALE = 2;
 
     private final Models models;
     private final JFrame frame;
