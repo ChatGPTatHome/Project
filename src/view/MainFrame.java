@@ -186,6 +186,10 @@ public class MainFrame {
         return card;
     }
 
+    public void focusCard(String cardName) {
+        this.cardLayout.show(this.panel, cardName);
+    }
+
     /**
      * Reveals the JFrame.
      */

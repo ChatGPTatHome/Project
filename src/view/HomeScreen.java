@@ -214,6 +214,7 @@ public class HomeScreen extends Screen {
                         String item = projectList.getModel().getElementAt(index).toString();
                         CardLayout cl = (CardLayout)(cards.getLayout());
                         //cl.show(cards, "Project Screen");
+                        mainFrame.focusCard("Project");
                     }
                 }
             }

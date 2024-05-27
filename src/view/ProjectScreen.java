@@ -64,7 +64,8 @@ public class ProjectScreen extends Screen {
         backButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                System.out.println("Back button clicked"); // Placeholder action
+                //System.out.println("Back button clicked"); // Placeholder action
+                mainFrame.focusCard("Home");
             }
         });
 
