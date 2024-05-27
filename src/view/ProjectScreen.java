@@ -8,11 +8,12 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 
-public class ProjectScreen extends JPanel{
+public class ProjectScreen extends Screen {
+
     private JTabbedPane tabbedPane;
     private JButton backButton;
     public ProjectScreen() {
-        super(new BorderLayout());
+        setLayout(new BorderLayout());
         initializeUI();
     }
 
@@ -56,5 +57,14 @@ public class ProjectScreen extends JPanel{
         add(backButton, BorderLayout.NORTH);
     }
 
+    @Override
+    public String getName() {
+        return "";
+    }
+
+    @Override
+    public void update() {
+
+    }
 
 }

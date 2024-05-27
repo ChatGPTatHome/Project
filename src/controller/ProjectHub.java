@@ -20,6 +20,7 @@ public class ProjectHub {
         window.addCard(AboutScreen.class);
         window.addCard(ProfileScreen.class);
         window.addCard(ImportExportScreen.class);
+        window.addCard(ProjectScreen.class);
 
         window.start();
     }
