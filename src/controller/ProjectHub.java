@@ -1,5 +1,6 @@
 package controller;
 
+import model.Models;
 import view.*;
 
 /**
@@ -15,12 +16,15 @@ public class ProjectHub {
      */
     public static void main(String[] theArgs) {
         MainFrame window = new MainFrame();
+        Models models = window.getModelSource();
+        HomeScreen homeScreen = new HomeScreen(models, window);
+        ProjectScreen projectScreen = new ProjectScreen(models, window);
 
-        window.addCard(HomeScreen.class, true);
+        window.addCard(homeScreen, true);
         window.addCard(AboutScreen.class);
         window.addCard(ProfileScreen.class);
         window.addCard(ImportExportScreen.class);
-        window.addCard(ProjectScreen.class);
+        window.addCard(projectScreen);
 
         window.start();
     }

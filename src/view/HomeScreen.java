@@ -138,9 +138,12 @@ public class HomeScreen extends Screen {
     private JPanel mainPanel;
     private ProjectScreen projectScreen;
     private JPanel cards;
+    private MainFrame mainFrame;
 
-    public HomeScreen(Models models) {
+    public HomeScreen(Models models, MainFrame mainFrame) {
         super(models);
+
+        this.mainFrame = mainFrame;
 
         this.importExport = getModel(ImportExport.class);
         importExport.pullData();
@@ -198,9 +201,9 @@ public class HomeScreen extends Screen {
         mainPanel.add(entryFields);
         mainPanel.add(buttonPanel);
 
-        projectScreen = new ProjectScreen();
+        //projectScreen = new ProjectScreen();
         cards.add(mainPanel, "Main Panel");
-        cards.add(projectScreen, "Project Screen");
+        //cards.add(projectScreen, "Project Screen");
         add(cards, BorderLayout.CENTER);
         projectList.addMouseListener(new MouseAdapter() {
             @Override
@@ -210,7 +213,7 @@ public class HomeScreen extends Screen {
                     if (index >= 0) {
                         String item = projectList.getModel().getElementAt(index).toString();
                         CardLayout cl = (CardLayout)(cards.getLayout());
-                        cl.show(cards, "Project Screen");
+                        //cl.show(cards, "Project Screen");
                     }
                 }
             }
