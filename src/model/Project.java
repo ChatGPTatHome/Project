@@ -25,6 +25,8 @@ public class Project {
     private TaskTab taskTab;
     private CostTab costTab;
 
+    private File currFile;
+
     public Project() {
         this.materialTab = new MaterialTab();
         this.toolTab = new ToolTab();
@@ -58,7 +60,8 @@ public class Project {
      * 
      * @param file the JSON to get the data from.
      */
-    public void getData(File file) {
+    public void pullData(File file) {
+        currFile = file;
         Gson gson = new Gson();
         try {
             FileReader reader = new FileReader(file);
@@ -91,11 +94,11 @@ public class Project {
      * 
      * @param file The JSON to save the data to.
      */
-    public void saveData(File file) {
+    public void saveData() {
         // format JSON to look readable
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
         try {
-            FileWriter writer = new FileWriter(file);
+            FileWriter writer = new FileWriter(currFile);
 
             Map<String, Object> data = new HashMap<>();
             data.put(materialTab.getKey(), Collections.singletonMap(materialTab.getKey(), materialTab.getMaterials()));
@@ -113,7 +116,7 @@ public class Project {
         }
     }
 
-    public void pullData() {
+    public void createProject() {
         // TODO implement here
     }
 }
