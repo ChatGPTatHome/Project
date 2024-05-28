@@ -20,11 +20,11 @@ public class ProjectHub {
         HomeScreen homeScreen = new HomeScreen(models, window);
         ProjectScreen projectScreen = new ProjectScreen(models, window);
 
-        window.addCard(homeScreen, true);
+        window.addCard(homeScreen, true, true);
         window.addCard(AboutScreen.class);
         window.addCard(ProfileScreen.class);
         window.addCard(ImportExportScreen.class);
-        window.addCard(projectScreen);
+        window.addCard(projectScreen, false, false);
 
         window.start();
     }
