@@ -30,22 +30,6 @@ public class ImportExport {
     }
 
     /**
-     * Writes the current state of this model to
-     * persistent data. Has a built-in file path.
-     */
-    public void updateSettings() {
-        Gson gson = new Gson();
-        File file = new File("./src/data/settings.json");
-        try {
-            FileWriter writer = new FileWriter(file);
-            gson.toJson(this, writer);
-            writer.close();
-        } catch (Exception e) {
-            System.out.printf("ImportExport: %s", e);
-        }
-    }
-
-    /**
      * Getter method for user's name.
      *
      * @return user's name as a String.
@@ -82,6 +66,22 @@ public class ImportExport {
     }
 
     /**
+     * Writes the current state of this model to
+     * persistent data. Has a built-in file path.
+     */
+    public void updateSettings() {
+        Gson gson = new Gson();
+        File file = new File("./src/data/settings.json");
+        try {
+            FileWriter writer = new FileWriter(file);
+            gson.toJson(this, writer);
+            writer.close();
+        } catch (Exception e) {
+            System.out.printf("ImportExport Update: %s", e);
+        }
+    }
+
+    /**
      * Reads persistent data and updates the fields accordingly.
      * Has an in-built file path to fetch data from.
      */
@@ -95,7 +95,26 @@ public class ImportExport {
             this.email = importExport.email;
             reader.close();
         } catch (Exception e) {
-            System.out.printf("ImportExport: %s", e);
+            System.out.printf("ImportExport Pull: %s", e);
+        }
+    }
+
+    /**
+     * Writes the current state of this model to a file
+     * specified by a file path. If no file exists, creates one.
+     *
+     * @param filePath The file path of the file to be written
+     *                 data to. Is a String.
+     */
+    public void pushData(String filePath) {
+        Gson gson = new Gson();
+        File file = new File(filePath + "/settings.JSON");
+        try {
+            FileWriter writer = new FileWriter(file);
+            gson.toJson(this, writer);
+            writer.close();
+        } catch (Exception e) {
+            System.out.printf("ImportExport Push: %s", e);
         }
     }
 
@@ -121,24 +140,4 @@ public class ImportExport {
             return false;
         }
     }
-
-    /**
-     * Writes the current state of this model to a file
-     * specified by a file path. If no file exists, creates one.
-     *
-     * @param filePath The file path of the file to be written
-     *                 data to. Is a String.
-     */
-    public void pushData(String filePath) {
-        Gson gson = new Gson();
-        File file = new File(filePath + "/settings.JSON");
-            try {
-                FileWriter writer = new FileWriter(file);
-                gson.toJson(this, writer);
-                writer.close();
-            } catch (Exception e) {
-                System.out.printf("ImportExport: %s", e);
-            }
-    }
-
 }
