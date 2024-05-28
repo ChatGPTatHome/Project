@@ -4,6 +4,7 @@ import model.ImportExport;
 import model.Models;
 
 import javax.swing.*;
+import java.awt.*;
 
 public class ImportExportScreen extends Screen{
 
@@ -11,10 +12,12 @@ public class ImportExportScreen extends Screen{
 
     public ImportExportScreen(Models models){
         super(models);
-        importExport = getModel(ImportExport.class);
+        this.importExport = getModel(ImportExport.class);
 
-        JLabel labelExportPath = new JLabel("ExportPath:");
-        this.add(labelExportPath);
+        JPanel panel = new JPanel();
+        panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
+
+        JLabel labelExportPath = new JLabel();
 
         JButton exportButton = new JButton("Export Settings");
         exportButton.addActionListener(e -> {
@@ -28,10 +31,11 @@ public class ImportExportScreen extends Screen{
                 importExport.pushData(path);
             }
         });
-        this.add(exportButton);
+        panel.add(exportButton);
+        panel.add(labelExportPath);
+        panel.add(new Label());
 
-        JLabel labelImportPath = new JLabel("ImportPath:");
-        this.add(labelImportPath);
+        JLabel labelImportPath = new JLabel();
 
         JButton importButton = new JButton("Import Settings");
         importButton.addActionListener(e -> {
@@ -46,7 +50,10 @@ public class ImportExportScreen extends Screen{
                 importExport.updateSettings();
             }
         });
-        this.add(importButton);
+        panel.add(importButton);
+        panel.add(labelImportPath);
+
+        this.add(panel);
 
     }
 
