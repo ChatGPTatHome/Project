@@ -13,6 +13,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import javax.swing.JTree;
 import javax.swing.SwingConstants;
+import javax.swing.UIManager;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
 import javax.swing.tree.TreeNode;
@@ -22,10 +23,14 @@ import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
 
+import model.CostTab;
 import model.Folder;
 import model.ImportExport;
+import model.MaterialTab;
 import model.Models;
 import model.Project;
+import model.TaskTab;
+import model.ToolTab;
 
 /**
  * Displays a Screen to set ownership of the App
@@ -58,6 +63,10 @@ public class HomeScreen extends Screen {
         this.importExport = getModel(ImportExport.class);
         this.importExport.pullData();
         this.project = getModel(Project.class);
+        this.project.setMaterialTab(models.getModel(MaterialTab.class));
+        this.project.setToolTab(models.getModel(ToolTab.class));
+        this.project.setTaskTab(models.getModel(TaskTab.class));
+        this.project.setCostTab(models.getModel(CostTab.class));
         this.folder = getModel(Folder.class);
         this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 
@@ -139,6 +148,8 @@ public class HomeScreen extends Screen {
             if (file.isDirectory()) {
                 // Create a new node and add it to the parent node
                 DefaultMutableTreeNode node = new DefaultMutableTreeNode(file.getName());
+                // node.setCellRenderer(UIManager.getIcon("FileView.directoryIcon"));
+                // To Do: Add folder icon
                 model.insertNodeInto(node, parent, parent.getChildCount());
                 retrieveJSONFiles(file, node, model);
             } else if (file.getName().toLowerCase().endsWith(".json")) {

@@ -32,6 +32,22 @@ public class Project {
         this.costTab = new CostTab();
     }
 
+    public void setMaterialTab(MaterialTab materialTab) {
+        this.materialTab = materialTab;
+    }
+
+    public void setToolTab(ToolTab toolTab) {
+        this.toolTab = toolTab;
+    }
+
+    public void setTaskTab(TaskTab taskTab) {
+        this.taskTab = taskTab;
+    }
+
+    public void setCostTab(CostTab costTab) {
+        this.costTab = costTab;
+    }
+
     /**
      * Gets the data from the JSON file and initializes the tabs.
      * It reads the JSON file, converts it into a Map, and then instantiates the
@@ -99,5 +115,4 @@ public class Project {
     public void pullData() {
         // TODO implement here
     }
-
 }
