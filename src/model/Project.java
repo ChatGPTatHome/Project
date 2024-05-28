@@ -60,7 +60,8 @@ public class Project {
 
             reader.close();
         } catch (Exception e) {
-            System.out.println(e.toString());
+            System.err.println("FAILED TO LOAD DATA!!!");
+            System.err.println(e.toString());
         }
     }
 
@@ -90,7 +91,8 @@ public class Project {
             writer.write(json);
             writer.close();
         } catch (Exception e) {
-            System.out.println(e.toString());
+            System.err.println("FAILED TO SAVE DATA!!!");
+            System.err.println(e.toString());
         }
     }
 
