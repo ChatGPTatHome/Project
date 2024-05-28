@@ -134,6 +134,7 @@ public class HomeScreen extends Screen {
                         System.err.println("Selected file path: " + filePath.toString());
                         project.pullData(new File(filePath.toString()));
                         mainFrame.focusCard("Project");
+                        mainFrame.toggleMenuBar(false);
                     }
                 }
             }

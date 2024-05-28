@@ -66,6 +66,7 @@ public class ProjectScreen extends Screen {
                 // System.out.println("Back button clicked"); // Placeholder action
                 project.saveData();
                 mainFrame.focusCard("Home");
+                mainFrame.toggleMenuBar(true);
             }
         });
 
