@@ -8,12 +8,16 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 /**
- * Provides a GUI for managing various aspects of a project through a tabbed pane interface.
- * This class extends Screen and allows the user to interact with different facets
- *  of a project including tasks, materials, tools, and costs.
+ * Provides a GUI for managing various aspects of a project through a tabbed
+ * pane interface.
+ * This class extends Screen and allows the user to interact with different
+ * facets
+ * of a project including tasks, materials, tools, and costs.
  *
- *  The interface is built around a JTabbedPane that holds various tabs for different
- * sections of the project data. Each tab is associated with a specific aspect of the project
+ * The interface is built around a JTabbedPane that holds various tabs for
+ * different
+ * sections of the project data. Each tab is associated with a specific aspect
+ * of the project
  * and allows for detailed management and interaction.
  *
  * The class also includes a back button to navigate back to the home.
@@ -31,11 +35,14 @@ public class ProjectScreen extends Screen {
     private CostTab costTab;
 
     /**
-     * Constructs a new ProjectScreen which sets up the UI components and initializes
+     * Constructs a new ProjectScreen which sets up the UI components and
+     * initializes
      * interaction mechanisms between the tabs and the main application frame.
      *
-     * @param models the data model collection this screen will manipulate and display.
-     * @param mainFrame the main application frame to HomeScreen will return when the back button is pressed.
+     * @param models    the data model collection this screen will manipulate and
+     *                  display.
+     * @param mainFrame the main application frame to HomeScreen will return when
+     *                  the back button is pressed.
      */
     private Project project;
 
@@ -61,20 +68,13 @@ public class ProjectScreen extends Screen {
     }
 
     /**
-     * Initializes and configures the UI components of the screen, including setting up
+     * Initializes and configures the UI components of the screen, including setting
+     * up
      * the tabbed pane and back button functionalities.
      */
     private void initializeUI() {
         tabbedPane = new JTabbedPane();
         backButton = new JButton();
-
-        TaskTabScreen taskTabScreen = new TaskTabScreen(this.taskTab);
-
-        MaterialTabScreen MatTabScreen = new MaterialTabScreen(this.materialTab);
-
-        ToolTabScreen toolTabScreen = new ToolTabScreen(this.toolTab);
-
-        CostTabScreen costTabScreen = new CostTabScreen(this.costTab);
 
         this.taskTabScreen = new TaskTabScreen(this.taskTab);
         this.matTabScreen = new MaterialTabScreen(this.materialTab);
@@ -106,6 +106,7 @@ public class ProjectScreen extends Screen {
 
     /**
      * Return name of the screen
+     * 
      * @return Project
      */
     @Override
