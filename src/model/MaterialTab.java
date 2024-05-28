@@ -14,6 +14,8 @@ public class MaterialTab extends Tab {
 
     /**
      * Constructs a MaterialTab in a null-state.
+     * 
+     * @author Hai Duong
      */
     public MaterialTab() {
         this.materials = new ArrayList<>();
@@ -22,6 +24,8 @@ public class MaterialTab extends Tab {
     /**
      * Gets the material list.
      * @return the material list.
+     * 
+     * @author Hai Duong
      */
     public List<PricedItem> getMaterials() {
         return this.materials;

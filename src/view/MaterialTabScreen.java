@@ -17,7 +17,13 @@ import view.components.SubmittableTextField;
  * 
  * @author Hai Duong
  */
-public class MaterialTabScreen extends JPanel {
+public class MaterialTabScreen extends Screen {
+    /**
+     * Constructs a MaterialTabScreen.
+     * 
+     * @param materialModel the material model
+     * @author Hai Duong.
+     */
     public MaterialTabScreen(MaterialTab materialModel) {
         this.setLayout(new GridBagLayout());
         GridBagConstraints constraints = new GridBagConstraints();
@@ -77,4 +83,12 @@ public class MaterialTabScreen extends JPanel {
             this.add(parent, constraints);
         }
     }
+
+    @Override
+    public String getName() {
+        return "Materials";
+    }
+
+    @Override
+    public void update() { }
 }

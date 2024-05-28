@@ -14,6 +14,8 @@ public class TaskTab extends Tab {
 
     /**
      * Constructs a TaskTab in a null-state.
+     * 
+     * @author Hai Duong
      */
     public TaskTab() {
         this.tasks = new ArrayList<>();
@@ -22,6 +24,8 @@ public class TaskTab extends Tab {
     /**
      * Gets the task list.
      * @return the task list.
+     * 
+     * @author Hai Duong
      */
     public List<String> getTasks() {
         return this.tasks;

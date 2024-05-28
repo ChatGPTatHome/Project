@@ -17,11 +17,12 @@ import view.components.SubmittableTextField;
  * 
  * @author Hai Duong
  */
-public class TaskTabScreen extends JPanel {
+public class TaskTabScreen extends Screen {
     /**
      * Constructs a TaskTabScreen.
      * 
      * @param taskModel the TaskTab model to use.
+     * @author Hai Duong.
      */
     public TaskTabScreen(TaskTab taskModel) {
         this.setLayout(new GridBagLayout());
@@ -64,4 +65,12 @@ public class TaskTabScreen extends JPanel {
 
         this.add(bottomRow, constraints);
     }
+
+    @Override
+    public String getName() {
+        return "Tasks";
+    }
+
+    @Override
+    public void update() { }
 }

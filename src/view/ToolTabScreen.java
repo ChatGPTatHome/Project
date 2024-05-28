@@ -17,7 +17,14 @@ import view.components.SubmittableTextField;
  * 
  * @author Hai Duong
  */
-public class ToolTabScreen extends JPanel {
+public class ToolTabScreen extends Screen {
+
+    /**
+     * Constructs a ToolTabScreen
+     * 
+     * @param toolModel the tool model
+     * @author Hai Duong.
+     */
     public ToolTabScreen(ToolTab toolModel) {
         this.setLayout(new GridBagLayout());
         GridBagConstraints constraints = new GridBagConstraints();
@@ -77,4 +84,12 @@ public class ToolTabScreen extends JPanel {
             this.add(parent, constraints);
         }
     }
+
+    @Override
+    public String getName() {
+        return "Tools";
+    }
+
+    @Override
+    public void update() { }
 }

@@ -18,14 +18,20 @@ import view.components.LabeledTextField;
  * 
  * @author Hai Duong
  */
-public class CostTabScreen extends JPanel {
+public class CostTabScreen extends Screen {
     CostTab costModel;
     LabeledTextField budgetField;
     LabeledTextField costField;
     LabeledTextField remainderField;
     
+    /**
+     * Construct a CostTabScreen,
+     * 
+     * @param costModel the costModel.
+     * @author Hai Duong.
+     */
     public CostTabScreen(CostTab costModel) {
-        super(new GridBagLayout());
+        this.setLayout(new GridBagLayout());
 
         this.costModel = costModel;
         
@@ -96,8 +102,14 @@ public class CostTabScreen extends JPanel {
         this.update();
     }
 
+    @Override
     public void update() {
         this.costField.getTextField().setText(Double.toString(costModel.getCost()));
         this.remainderField.getTextField().setText(Double.toString(Double.parseDouble(this.budgetField.getTextField().getText()) - costModel.getCost()));
+    }
+
+    @Override
+    public String getName() {
+        return "Costs";
     }
 }

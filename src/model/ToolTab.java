@@ -14,6 +14,8 @@ public class ToolTab extends Tab {
 
     /**
      * Constructs a ToolTab in a null-state.
+     * 
+     * @author Hai Duong
      */
     public ToolTab() {
         this.tools = new ArrayList<>();
@@ -22,6 +24,8 @@ public class ToolTab extends Tab {
     /**
      * Gets the tool list.
      * @return the tool list.
+     * 
+     * @author Hai Duong
      */
     public List<PricedItem> getTools() {
         return this.tools;

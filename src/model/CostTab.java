@@ -5,6 +5,8 @@ import java.util.List;
 import java.util.Map;
 
 /**
+ * Cost model used for calculating costs.
+ * 
  * @author Hai Duong
  */
 public class CostTab extends Tab {
@@ -12,6 +14,8 @@ public class CostTab extends Tab {
 
     /**
      * Constructs a CostTab in a null-state.
+     * 
+     * @author Hai Duong
      */
     public CostTab() {
         this.costSources = new ArrayList<List<PricedItem>>();
@@ -30,6 +34,8 @@ public class CostTab extends Tab {
      * 
      * @param costSource the list containing PricedItem objects.
      * @return this CostTab.
+     * 
+     * @author Hai Duong
      */
     public CostTab addCostSource(List<PricedItem> costSource) {
         this.costSources.add(costSource);
@@ -42,6 +48,8 @@ public class CostTab extends Tab {
      * cost sources.
      * 
      * @return the cost of all PricedItem objects.
+     * 
+     * @author Hai Duong
      */
     public double getCost() {
         double total = 0;
