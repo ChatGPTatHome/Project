@@ -77,7 +77,7 @@ public class ImportExport {
             gson.toJson(this, writer);
             writer.close();
         } catch (Exception e) {
-            System.out.printf("ImportExport Update: %s", e);
+            System.out.printf("ImportExport Update: %s\n", e);
         }
     }
 
@@ -95,7 +95,7 @@ public class ImportExport {
             this.email = importExport.email;
             reader.close();
         } catch (Exception e) {
-            System.out.printf("ImportExport Pull: %s", e);
+            System.out.printf("ImportExport Pull: %s\n", e);
         }
     }
 
@@ -114,7 +114,7 @@ public class ImportExport {
             gson.toJson(this, writer);
             writer.close();
         } catch (Exception e) {
-            System.out.printf("ImportExport Push: %s", e);
+            System.out.printf("ImportExport Push: %s\n", e);
         }
     }
 
