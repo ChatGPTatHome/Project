@@ -1,0 +1,46 @@
+{
+  "materials": {
+    "materials": [
+      {
+        "name": "Diamond Boots",
+        "price": 27.0,
+        "quantity": 1
+      },
+      {
+        "name": "Diamond leggings",
+        "price": 33.0,
+        "quantity": 2
+      },
+      {
+        "name": "Diamond helmet",
+        "price": 27.0,
+        "quantity": 3
+      },
+      {
+        "name": "Diamond chestplate",
+        "price": 35.0,
+        "quantity": 4
+      }
+    ]
+  },
+  "tools": {
+    "tools": [
+      {
+        "name": "Crafting table",
+        "price": 0.0,
+        "quantity": 1
+      },
+      {
+        "name": "Hands",
+        "price": 50.0,
+        "quantity": 2
+      }
+    ]
+  },
+  "tasks": {
+    "tasks": [
+      "Yay",
+      "Yippeee"
+    ]
+  }
+}

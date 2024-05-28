@@ -3,6 +3,7 @@ package model;
 import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
@@ -116,7 +117,34 @@ public class Project {
         }
     }
 
-    public void createProject() {
-        // TODO implement here
+    /**
+     * Creates a new project with empty tabs.
+     * Saves the project to a JSON file.
+     * Formatted with line breaks and indentation for
+     * readability.
+     * 
+     * @author Jeremiah Brenio
+     * 
+     * @param file The JSON to save the data to.
+     */
+    public void createProject(File file) {
+        Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        try {
+            FileWriter writer = new FileWriter(file);
+
+            Map<String, Object> data = new HashMap<>();
+            data.put(materialTab.getKey(), Collections.singletonMap(materialTab.getKey(), new ArrayList<>()));
+            data.put(toolTab.getKey(), Collections.singletonMap(toolTab.getKey(), new ArrayList<>()));
+            data.put(taskTab.getKey(), Collections.singletonMap(taskTab.getKey(), new ArrayList<>()));
+
+            // Convert the map to a JSON string
+            String json = gson.toJson(data);
+            // Write the JSON string to the file
+            writer.write(json);
+            writer.close();
+        } catch (Exception e) {
+            System.err.println("FAILED TO SAVE DATA!!!");
+            System.err.println(e.toString());
+        }
     }
 }

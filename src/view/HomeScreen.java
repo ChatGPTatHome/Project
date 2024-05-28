@@ -3,6 +3,7 @@ package view;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.File;
+import java.io.IOException;
 
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
@@ -50,6 +51,7 @@ public class HomeScreen extends Screen {
     // To update working directory
     private DefaultMutableTreeNode root;
     private DefaultTreeModel model;
+    private File currFile = new Folder().getFileObject();
 
     /**
      * Constructs the HomeScreen.
@@ -131,9 +133,11 @@ public class HomeScreen extends Screen {
                         }
                         filePath.insert(0, "src/data");
                         filePath.append(".json");
+                        // currFile = new File(filePath.toString());
                         System.err.println("Selected file path: " + filePath.toString());
-                        project.pullData(new File(filePath.toString()));
+                        project.pullData(currFile);
                         mainFrame.focusCard("Project");
+                        mainFrame.toggleMenuBar(false);
                     }
                 }
             }
@@ -196,8 +200,15 @@ public class HomeScreen extends Screen {
         projectButton.addActionListener(e -> {
             String projectName = JOptionPane.showInputDialog("Enter project name:");
             if (projectName != null && !projectName.trim().isEmpty()) {
+
                 // Create new JSON file
-                folder.createProject(projectName);
+                File newProject = new File(currFile, projectName + ".json");
+                try {
+                    newProject.createNewFile();
+                    project.createProject(newProject);
+                } catch (IOException e1) {
+                    e1.printStackTrace();
+                }
                 update();
             }
         });
