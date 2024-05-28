@@ -39,6 +39,7 @@ public class TaskTab extends Tab {
     @SuppressWarnings("unchecked")
     @Override
     public void instantiate(Map<String, Object> tab) {
-        this.tasks = (List<String>)tab.get("tasks");
+        this.tasks.clear();
+        this.tasks.addAll((List<String>)tab.get("tasks"));
     }
 }

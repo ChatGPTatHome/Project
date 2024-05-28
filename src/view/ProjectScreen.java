@@ -22,7 +22,6 @@ import java.awt.event.ActionListener;
  * @version 1.0
  */
 public class ProjectScreen extends Screen {
-
     private JTabbedPane tabbedPane;
     private JButton backButton;
     private MainFrame mainFrame;
@@ -38,10 +37,20 @@ public class ProjectScreen extends Screen {
      * @param models the data model collection this screen will manipulate and display.
      * @param mainFrame the main application frame to HomeScreen will return when the back button is pressed.
      */
+    private Project project;
+
+    private TaskTabScreen taskTabScreen;
+    private MaterialTabScreen matTabScreen;
+    private ToolTabScreen toolTabScreen;
+    private CostTabScreen costTabScreen;
+
     public ProjectScreen(Models models, MainFrame mainFrame) {
         super(models);
 
         this.mainFrame = mainFrame;
+
+        this.project = this.getModel(Project.class);
+
         this.taskTab = this.getModel(TaskTab.class);
         this.materialTab = this.getModel(MaterialTab.class);
         this.toolTab = this.getModel(ToolTab.class);
@@ -67,9 +76,14 @@ public class ProjectScreen extends Screen {
 
         CostTabScreen costTabScreen = new CostTabScreen(this.costTab);
 
+        this.taskTabScreen = new TaskTabScreen(this.taskTab);
+        this.matTabScreen = new MaterialTabScreen(this.materialTab);
+        this.toolTabScreen = new ToolTabScreen(this.toolTab);
+        this.costTabScreen = new CostTabScreen(this.costTab);
+
         // Add tabs
         tabbedPane.addTab("Tasks", taskTabScreen);
-        tabbedPane.addTab("Materials", MatTabScreen);
+        tabbedPane.addTab("Materials", matTabScreen);
         tabbedPane.addTab("Tools", toolTabScreen);
         tabbedPane.addTab("Costs", costTabScreen);
 
@@ -77,10 +91,11 @@ public class ProjectScreen extends Screen {
 
         // Create Back Button
         backButton = new JButton("Back");
-        backButton.setBounds(10,10,10,10);
+        backButton.setBounds(10, 10, 10, 10);
         backButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                project.saveData();
                 mainFrame.focusCard("Home");
             }
         });
@@ -102,7 +117,9 @@ public class ProjectScreen extends Screen {
      */
     @Override
     public void update() {
-
+        this.taskTabScreen.update();
+        this.matTabScreen.update();
+        this.toolTabScreen.update();
+        this.costTabScreen.update();
     }
-
 }

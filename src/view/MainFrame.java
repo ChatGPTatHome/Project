@@ -198,4 +198,15 @@ public class MainFrame {
     public void start() {
         frame.setVisible(true);
     }
+
+    /**
+     * Toggles the MenuBar to be visible or not.
+     *
+     * @param isVisible true or false if MenuBar should
+     *                  be visible. Is a boolean.
+     */
+    public void toggleMenuBar(boolean isVisible) {
+        this.menuBar.setVisible(isVisible);
+    }
+
 }

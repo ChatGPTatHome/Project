@@ -39,6 +39,7 @@ public class MaterialTab extends Tab {
     @SuppressWarnings("unchecked")
     @Override
     public void instantiate(Map<String, Object> tab) {
-        this.materials = PricedItem.parseMaps((List<Map<String, Object>>)tab.get("materials"));
+        this.materials.clear();
+        this.materials.addAll(PricedItem.parseMaps((List<Map<String, Object>>)tab.get("materials")));
     }
 }

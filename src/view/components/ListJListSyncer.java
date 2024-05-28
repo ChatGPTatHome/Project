@@ -73,4 +73,14 @@ public class ListJListSyncer<T> extends JScrollPane {
             
         return null;
     }
+
+    /**
+     * Resyncs the list model with list.
+     * 
+     * @author Hai Duong
+     */
+    public void update() {
+        this.listModel.clear();
+        this.listModel.addAll(this.list);
+    }
 }

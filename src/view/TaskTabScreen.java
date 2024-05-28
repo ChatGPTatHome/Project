@@ -18,6 +18,8 @@ import view.components.SubmittableTextField;
  * @author Hai Duong
  */
 public class TaskTabScreen extends Screen {
+    ListJListSyncer<String> list;
+    
     /**
      * Constructs a TaskTabScreen.
      * 
@@ -33,7 +35,7 @@ public class TaskTabScreen extends Screen {
         constraints.weightx = 1;
         constraints.weighty = 1;
         constraints.gridy = 0;
-        ListJListSyncer<String> list = new ListJListSyncer<>(taskModel.getTasks());
+        this.list = new ListJListSyncer<>(taskModel.getTasks());
         this.add(list, constraints);
 
         // CREATE BOTTOM ROW
@@ -72,5 +74,7 @@ public class TaskTabScreen extends Screen {
     }
 
     @Override
-    public void update() { }
+    public void update() {
+        this.list.update();
+    }
 }

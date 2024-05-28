@@ -27,7 +27,9 @@ public class CostTab extends Tab {
     }
 
     @Override
-    public void instantiate(Map<String, Object> tab) {}
+    public void instantiate(Map<String, Object> tab) {
+        this.costSources.clear();
+    }
 
     /**
      * Adds a list source to find PricedItem objects.

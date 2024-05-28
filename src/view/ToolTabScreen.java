@@ -18,6 +18,7 @@ import view.components.SubmittableTextField;
  * @author Hai Duong
  */
 public class ToolTabScreen extends Screen {
+    private PricedItemTable table;
 
     /**
      * Constructs a ToolTabScreen
@@ -29,7 +30,7 @@ public class ToolTabScreen extends Screen {
         this.setLayout(new GridBagLayout());
         GridBagConstraints constraints = new GridBagConstraints();
 
-        PricedItemTable table = new PricedItemTable(toolModel.getTools());
+        table = new PricedItemTable(toolModel.getTools());
 
         constraints.fill = GridBagConstraints.BOTH;
         constraints.gridx = 0;
@@ -91,5 +92,7 @@ public class ToolTabScreen extends Screen {
     }
 
     @Override
-    public void update() { }
+    public void update() { 
+        this.table.update();
+    }
 }
