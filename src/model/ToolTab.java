@@ -39,6 +39,7 @@ public class ToolTab extends Tab {
     @SuppressWarnings("unchecked")
     @Override
     public void instantiate(Map<String, Object> tab) {
-        this.tools = PricedItem.parseMaps((List<Map<String, Object>>)tab.get("tools"));
+        this.tools.clear();
+        this.tools.addAll(PricedItem.parseMaps((List<Map<String, Object>>)tab.get("tools")));
     }
 }

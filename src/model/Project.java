@@ -72,6 +72,7 @@ public class Project {
             materialTab.instantiate(data.get(materialTab.getKey()));
             toolTab.instantiate(data.get(toolTab.getKey()));
             taskTab.instantiate(data.get(taskTab.getKey()));
+            costTab.instantiate(null);
             costTab.addCostSource(materialTab.getMaterials()).addCostSource(toolTab.getTools());
 
             reader.close();

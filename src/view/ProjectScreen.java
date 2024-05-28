@@ -9,7 +9,6 @@ import java.awt.event.ActionListener;
 
 
 public class ProjectScreen extends Screen {
-
     private JTabbedPane tabbedPane;
     private JButton backButton;
     private MainFrame mainFrame;
@@ -17,6 +16,11 @@ public class ProjectScreen extends Screen {
     private MaterialTab materialTab;
     private ToolTab toolTab;
     private CostTab costTab;
+
+    private TaskTabScreen taskTabScreen;
+    private MaterialTabScreen matTabScreen;
+    private ToolTabScreen toolTabScreen;
+    private CostTabScreen costTabScreen;
 
     public ProjectScreen(Models models, MainFrame mainFrame) {
         super(models);
@@ -34,24 +38,17 @@ public class ProjectScreen extends Screen {
     private void initializeUI() {
         tabbedPane = new JTabbedPane();
         backButton = new JButton();
-
-        //TaskTab taskTab = new TaskTab();
-        TaskTabScreen taskTabScreen = new TaskTabScreen(this.taskTab);
-
-        MaterialTab materialTab = new MaterialTab();
-        MaterialTabScreen MatTabScreen = new MaterialTabScreen(this.materialTab);
-
-        //ToolTab toolTab = new ToolTab();
-        ToolTabScreen toolTabScreen = new ToolTabScreen(this.toolTab);
-
-        //CostTab costTab = new CostTab();
-        CostTabScreen costTabScreen = new CostTabScreen(this.costTab);
+        
+        this.taskTabScreen = new TaskTabScreen(this.taskTab);
+        this.matTabScreen = new MaterialTabScreen(this.materialTab);
+        this.toolTabScreen = new ToolTabScreen(this.toolTab);
+        this.costTabScreen = new CostTabScreen(this.costTab);
 
 
 
         // Add tabs
         tabbedPane.addTab("Tasks", taskTabScreen);
-        tabbedPane.addTab("Materials", MatTabScreen);
+        tabbedPane.addTab("Materials", matTabScreen);
         tabbedPane.addTab("Tools", toolTabScreen);
         tabbedPane.addTab("Costs", costTabScreen);
 //        tabbedPane.addTab("<Back",homeScreen);
@@ -79,7 +76,9 @@ public class ProjectScreen extends Screen {
 
     @Override
     public void update() {
-
+        this.taskTabScreen.update();
+        this.matTabScreen.update();
+        this.toolTabScreen.update();
+        this.costTabScreen.update();
     }
-
 }

@@ -74,7 +74,7 @@ public class PricedItemTable extends JScrollPane {
     /**
      * Updates the JTable to show any changes.
      */
-    private void update() {
+    public void update() {
         ((AbstractTableModel)this.table.getModel()).fireTableDataChanged();
     }
     

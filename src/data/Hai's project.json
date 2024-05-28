@@ -38,6 +38,10 @@
     ]
   },
   "tasks": {
-    "tasks": []
+    "tasks": [
+        "Do this",
+        "Do that",
+        "kys :)"
+    ]
   }
 }
