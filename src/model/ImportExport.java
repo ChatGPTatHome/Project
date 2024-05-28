@@ -66,7 +66,7 @@ public class ImportExport {
         }
     }
 
-    public void pullData(String filePath) {
+    public boolean pullData(String filePath) {
         Gson gson = new Gson();
         File file = new File(filePath);
         try {
@@ -76,8 +76,10 @@ public class ImportExport {
             this.email = importExport.email;
             reader.close();
         } catch (Exception e) {
-            System.out.println(e.toString());
+            //System.out.println(e.toString());
+            return false;
         }
+        return true;
     }
 
     public void pushData(String filePath) {
