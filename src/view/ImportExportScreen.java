@@ -6,10 +6,38 @@ import model.Models;
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ * A view class for user's to import and export persistent data.
+ * Is a Screen.
+ *
+ * @author Anthony Chapkin
+ */
 public class ImportExportScreen extends Screen{
 
+    /**
+     * Model class that reads and writes persistent
+     * data such as settings.
+     */
     ImportExport importExport;
 
+    /**
+     * JLabel used to show where a file was
+     * exported to on the user's device.
+     */
+    JLabel labelExportPath;
+
+    /**
+     * JLabel used to show which file was
+     * imported from the user's device.
+     */
+    JLabel labelImportPath;
+
+    /**
+     * Constructor for this ImportExportScreen.
+     * Initializes fields, creates GUI, and wires listeners.
+     *
+     * @param models A Models class used to initialize model fields.
+     */
     public ImportExportScreen(Models models){
         super(models);
         this.importExport = getModel(ImportExport.class);
@@ -17,7 +45,7 @@ public class ImportExportScreen extends Screen{
         JPanel panel = new JPanel();
         panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
 
-        JLabel labelExportPath = new JLabel();
+        this.labelExportPath = new JLabel();
 
         JButton exportButton = new JButton("Export Settings");
         exportButton.addActionListener(e -> {
@@ -32,10 +60,10 @@ public class ImportExportScreen extends Screen{
             }
         });
         panel.add(exportButton);
-        panel.add(labelExportPath);
+        panel.add(this.labelExportPath);
         panel.add(new Label());
 
-        JLabel labelImportPath = new JLabel();
+        this.labelImportPath = new JLabel();
 
         JButton importButton = new JButton("Import Settings");
         importButton.addActionListener(e -> {
@@ -54,27 +82,27 @@ public class ImportExportScreen extends Screen{
             }
         });
         panel.add(importButton);
-        panel.add(labelImportPath);
+        panel.add(this.labelImportPath);
 
         this.add(panel);
 
     }
 
-
-
     /**
-     * Updates the ImportExport screen view.
+     * Clears the import and export paths.
      */
     @Override
-    public void update() {}
+    public void update() {
+        this.labelExportPath.setText("");
+        this.labelImportPath.setText("");
+    }
 
     /**
      * Gets the name for the ImportExport screen.
-     * @return The name of the ImportExport screen.
+     * @return the name of the ImportExport screen.
      */
     @Override
     public String getName() {
         return "ImportExport";
     }
-
 }
