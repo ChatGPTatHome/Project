@@ -68,14 +68,6 @@ public class ProjectScreen extends Screen {
         tabbedPane = new JTabbedPane();
         backButton = new JButton();
 
-        TaskTabScreen taskTabScreen = new TaskTabScreen(this.taskTab);
-
-        MaterialTabScreen MatTabScreen = new MaterialTabScreen(this.materialTab);
-
-        ToolTabScreen toolTabScreen = new ToolTabScreen(this.toolTab);
-
-        CostTabScreen costTabScreen = new CostTabScreen(this.costTab);
-
         this.taskTabScreen = new TaskTabScreen(this.taskTab);
         this.matTabScreen = new MaterialTabScreen(this.materialTab);
         this.toolTabScreen = new ToolTabScreen(this.toolTab);
