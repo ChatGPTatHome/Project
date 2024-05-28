@@ -7,7 +7,6 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-
 public class ProjectScreen extends Screen {
     private JTabbedPane tabbedPane;
     private JButton backButton;
@@ -16,6 +15,8 @@ public class ProjectScreen extends Screen {
     private MaterialTab materialTab;
     private ToolTab toolTab;
     private CostTab costTab;
+
+    private Project project;
 
     private TaskTabScreen taskTabScreen;
     private MaterialTabScreen matTabScreen;
@@ -26,6 +27,9 @@ public class ProjectScreen extends Screen {
         super(models);
 
         this.mainFrame = mainFrame;
+
+        this.project = this.getModel(Project.class);
+
         this.taskTab = this.getModel(TaskTab.class);
         this.materialTab = this.getModel(MaterialTab.class);
         this.toolTab = this.getModel(ToolTab.class);
@@ -38,30 +42,29 @@ public class ProjectScreen extends Screen {
     private void initializeUI() {
         tabbedPane = new JTabbedPane();
         backButton = new JButton();
-        
+
         this.taskTabScreen = new TaskTabScreen(this.taskTab);
         this.matTabScreen = new MaterialTabScreen(this.materialTab);
         this.toolTabScreen = new ToolTabScreen(this.toolTab);
         this.costTabScreen = new CostTabScreen(this.costTab);
-
-
 
         // Add tabs
         tabbedPane.addTab("Tasks", taskTabScreen);
         tabbedPane.addTab("Materials", matTabScreen);
         tabbedPane.addTab("Tools", toolTabScreen);
         tabbedPane.addTab("Costs", costTabScreen);
-//        tabbedPane.addTab("<Back",homeScreen);
+        // tabbedPane.addTab("<Back",homeScreen);
 
         add(tabbedPane, BorderLayout.CENTER);
 
         // Create Back Button
         backButton = new JButton("Back");
-        backButton.setBounds(10,10,10,10);
+        backButton.setBounds(10, 10, 10, 10);
         backButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                //System.out.println("Back button clicked"); // Placeholder action
+                // System.out.println("Back button clicked"); // Placeholder action
+                project.saveData();
                 mainFrame.focusCard("Home");
             }
         });
