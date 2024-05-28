@@ -29,6 +29,12 @@ public class ProjectScreen extends Screen {
     private MaterialTab materialTab;
     private ToolTab toolTab;
     private CostTab costTab;
+    private Project project;
+
+    private TaskTabScreen taskTabScreen;
+    private MaterialTabScreen matTabScreen;
+    private ToolTabScreen toolTabScreen;
+    private CostTabScreen costTabScreen;
 
     /**
      * Constructs a new ProjectScreen which sets up the UI components and initializes
@@ -37,13 +43,6 @@ public class ProjectScreen extends Screen {
      * @param models the data model collection this screen will manipulate and display.
      * @param mainFrame the main application frame to HomeScreen will return when the back button is pressed.
      */
-    private Project project;
-
-    private TaskTabScreen taskTabScreen;
-    private MaterialTabScreen matTabScreen;
-    private ToolTabScreen toolTabScreen;
-    private CostTabScreen costTabScreen;
-
     public ProjectScreen(Models models, MainFrame mainFrame) {
         super(models);
 
@@ -68,13 +67,13 @@ public class ProjectScreen extends Screen {
         tabbedPane = new JTabbedPane();
         backButton = new JButton();
 
-        TaskTabScreen taskTabScreen = new TaskTabScreen(this.taskTab);
+        taskTabScreen = new TaskTabScreen(this.taskTab);
 
-        MaterialTabScreen MatTabScreen = new MaterialTabScreen(this.materialTab);
+        matTabScreen = new MaterialTabScreen(this.materialTab);
 
-        ToolTabScreen toolTabScreen = new ToolTabScreen(this.toolTab);
+        toolTabScreen = new ToolTabScreen(this.toolTab);
 
-        CostTabScreen costTabScreen = new CostTabScreen(this.costTab);
+        costTabScreen = new CostTabScreen(this.costTab);
 
         this.taskTabScreen = new TaskTabScreen(this.taskTab);
         this.matTabScreen = new MaterialTabScreen(this.materialTab);
@@ -89,9 +88,15 @@ public class ProjectScreen extends Screen {
 
         add(tabbedPane, BorderLayout.CENTER);
 
+        JPanel buttonPanel = new JPanel();
+
         // Create Back Button
-        backButton = new JButton("Back");
-        backButton.setBounds(10, 10, 10, 10);
+        backButton = new JButton("<-back");
+        backButton.setSize(new Dimension(5, 5));
+        buttonPanel.add(backButton);
+        buttonPanel.setLayout(new BorderLayout());
+        buttonPanel.add(backButton, BorderLayout.WEST);
+
         backButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -100,7 +105,7 @@ public class ProjectScreen extends Screen {
             }
         });
 
-        add(backButton, BorderLayout.NORTH);
+        add(buttonPanel, BorderLayout.NORTH);
     }
 
     /**
