@@ -132,7 +132,7 @@ public class HomeScreen extends Screen {
                         filePath.insert(0, "src/data");
                         filePath.append(".json");
                         System.err.println("Selected file path: " + filePath.toString());
-                        project.getData(new File(filePath.toString()));
+                        project.pullData(new File(filePath.toString()));
                         mainFrame.focusCard("Project");
                     }
                 }
