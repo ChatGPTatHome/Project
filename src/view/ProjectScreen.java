@@ -33,6 +33,12 @@ public class ProjectScreen extends Screen {
     private MaterialTab materialTab;
     private ToolTab toolTab;
     private CostTab costTab;
+    private Project project;
+
+    private TaskTabScreen taskTabScreen;
+    private MaterialTabScreen matTabScreen;
+    private ToolTabScreen toolTabScreen;
+    private CostTabScreen costTabScreen;
 
     /**
      * Constructs a new ProjectScreen which sets up the UI components and
@@ -44,13 +50,6 @@ public class ProjectScreen extends Screen {
      * @param mainFrame the main application frame to HomeScreen will return when
      *                  the back button is pressed.
      */
-    private Project project;
-
-    private TaskTabScreen taskTabScreen;
-    private MaterialTabScreen matTabScreen;
-    private ToolTabScreen toolTabScreen;
-    private CostTabScreen costTabScreen;
-
     public ProjectScreen(Models models, MainFrame mainFrame) {
         super(models);
 
@@ -76,6 +75,15 @@ public class ProjectScreen extends Screen {
         tabbedPane = new JTabbedPane();
         backButton = new JButton();
 
+
+        taskTabScreen = new TaskTabScreen(this.taskTab);
+
+        matTabScreen = new MaterialTabScreen(this.materialTab);
+
+        toolTabScreen = new ToolTabScreen(this.toolTab);
+
+        costTabScreen = new CostTabScreen(this.costTab);
+
         this.taskTabScreen = new TaskTabScreen(this.taskTab);
         this.matTabScreen = new MaterialTabScreen(this.materialTab);
         this.toolTabScreen = new ToolTabScreen(this.toolTab);
@@ -89,9 +97,15 @@ public class ProjectScreen extends Screen {
 
         add(tabbedPane, BorderLayout.CENTER);
 
+        JPanel buttonPanel = new JPanel();
+
         // Create Back Button
-        backButton = new JButton("Back");
-        backButton.setBounds(10, 10, 10, 10);
+        backButton = new JButton("<-back");
+        backButton.setSize(new Dimension(5, 5));
+        buttonPanel.add(backButton);
+        buttonPanel.setLayout(new BorderLayout());
+        buttonPanel.add(backButton, BorderLayout.WEST);
+
         backButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -101,7 +115,7 @@ public class ProjectScreen extends Screen {
             }
         });
 
-        add(backButton, BorderLayout.NORTH);
+        add(buttonPanel, BorderLayout.NORTH);
     }
 
     /**
