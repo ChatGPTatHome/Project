@@ -11,7 +11,7 @@ public class Folder {
     private File currentDirectory;
 
     public Folder() {
-        this.rootDirectory = new File(System.getProperty("user.dir"), "data");
+        this.rootDirectory = new File("src/data/");
         this.currentDirectory = this.rootDirectory;
     }
 

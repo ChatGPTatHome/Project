@@ -1,173 +1,207 @@
-//package view;
-//
-//import java.awt.*;
-//import java.awt.event.MouseAdapter;
-//import java.awt.event.MouseEvent;
-//
-//import javax.swing.*;
-//
-//import model.ImportExport;
-//import model.Models;
-//
-///**
-// * @author Hai Duong, Jeremiah Brenio.
-// *
-// * @version v1.00
-// *
-// *          Displays a JPanel to set ownership of the App.
-// */
-//public class HomeScreen extends Screen {
-//    /**
-//     * Constructs a HomeScreen.
-//     *
-//     * @param owner The owner object of this app.
-//     */
-//
-//    private ImportExport importExport;
-//
-//    public HomeScreen(Models models) {
-//        super(models);
-//
-//        this.importExport = getModel(ImportExport.class);
-//        importExport.pullData();
-//
-//        this.setLayout(new BorderLayout());
-//
-//        JPanel home = new JPanel();
-//        home.setLayout(new BoxLayout(home, BoxLayout.Y_AXIS));
-//
-//        JPanel entries = new JPanel();
-//        entries.setLayout(new BoxLayout(entries, BoxLayout.X_AXIS));
-//
-//        JPanel nameEntry = new JPanel();
-//        nameEntry.add(new JLabel("Name:"));
-//
-//        JTextField nameField = new JTextField(10);
-//        nameEntry.add(nameField);
-//
-//        JPanel emailEntry = new JPanel();
-//        emailEntry.add(new JLabel("email:"));
-//        JTextField emailField = new JTextField(10);
-//        emailEntry.add(emailField);
-//
-//        entries.add(nameEntry);
-//        entries.add(emailEntry);
-//
-//        //-------
-//        JLabel titleLabel = new JLabel("Project");
-//        titleLabel.setFont(new Font("Arial", Font.BOLD, 16));
-//        titleLabel.setHorizontalAlignment(SwingConstants.CENTER);
-//
-//
-//        String [] projects = {"Project_1", "Project_2"};
-//
-//        JList list= new JList<>(projects);
-////        list.setPreferredSize(new Dimension(20, 20));
-////        list.setVisibleRowCount(5);
-//
-//        JPanel panel = new JPanel(new BorderLayout());
-//        panel.add(new JScrollPane(list));
-//        panel.add(titleLabel, BorderLayout.NORTH);
-//        add(panel);
-//        revalidate();
-//
-//        list.addMouseListener(new MouseAdapter() {
-//            @Override
-//            public void mouseClicked(MouseEvent e) {
-//                if (e.getClickCount() == 2){
-//                    int index = list.locationToIndex(e.getPoint());
-//                    if (index >= 0) {
-//                        String item = list.getModel().getElementAt(index).toString();
-//                        if ("Project_1".equals(item)) {
-//                            System.out.println("Hi");
-//                        } else if ("Project_2".equals(item)) {
-//                            System.out.println("Hello");
-//                        }
-//                    }
-//
-//                }
-//            }
-//        });
-//
-//        JButton button = new JButton("Submit");
-//        button.addActionListener(e -> {
-//            this.importExport.setName(nameField.getText());
-//            this.importExport.setEmail(emailField.getText());
-//        });
-//        home.add(button);
-//        home.add(panel);
-//
-//        this.add(home, BorderLayout.CENTER);
-//    }
-//
-//    /**
-//     * Updates the home screen view.
-//     */
-//    @Override
-//    public void update() {
-//    }
-//
-//    /**
-//     * Gets the name for the home screen.
-//     * @return The name of the home screen.
-//     */
-//    @Override
-//    public String getName() {
-//        return "Home";
-//    }
-//}
-
-
-//***************
 package view;
 
-import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import javax.swing.*;
+import java.io.File;
 
+import javax.swing.BoxLayout;
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTextField;
+import javax.swing.JTree;
+import javax.swing.SwingConstants;
+import javax.swing.tree.DefaultMutableTreeNode;
+import javax.swing.tree.DefaultTreeModel;
+import javax.swing.tree.TreeNode;
+
+import java.awt.BorderLayout;
+import java.awt.Dimension;
+import java.awt.FlowLayout;
+import java.awt.Font;
+
+import model.Folder;
 import model.ImportExport;
 import model.Models;
+import model.Project;
 
 /**
- * Displays a JPanel to set ownership of the App.
+ * Displays a Screen to set ownership of the App
+ * and Create Folders & Projects.
+ * 
+ * @author Hai Duong - Created UI and functions for creating owner settings
+ *         Windie Le - Created UI design for HomeScreen Project selection
+ *         Jeremiah Brenio - Created functions for creating folders and projects
  */
 public class HomeScreen extends Screen {
 
     private ImportExport importExport;
-    private JPanel mainPanel;
-    private ProjectScreen projectScreen;
-    private JPanel cards;
+    private Project project;
+    private MainFrame mainFrame;
+    private Folder folder;
 
-    public HomeScreen(Models models) {
+    // To update working directory
+    private DefaultMutableTreeNode root;
+    private DefaultTreeModel model;
+
+    /**
+     * Constructs the HomeScreen.
+     * 
+     * @param models    the models to be used
+     * @param mainFrame the main frame to be used
+     */
+    public HomeScreen(Models models, MainFrame mainFrame) {
         super(models);
-
+        this.mainFrame = mainFrame;
         this.importExport = getModel(ImportExport.class);
-        importExport.pullData();
+        this.importExport.pullData();
+        this.project = getModel(Project.class);
+        this.folder = getModel(Folder.class);
+        this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 
-        this.setLayout(new BorderLayout());
+        createProjectListPanel();
+        createModifyPanel();
+        createEntryFields();
+    }
 
-        mainPanel = new JPanel();
-        mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.Y_AXIS));
-
-        cards = new JPanel(new CardLayout());
+    /**
+     * Creates the panel that will contain the project list.
+     * 
+     * @author Windie Le
+     */
+    private void createProjectListPanel() {
         // Project List Panel
-        JLabel titleLabel = new JLabel("Project");
+        JLabel titleLabel = new JLabel("Project Menu");
         titleLabel.setFont(new Font("Arial", Font.BOLD, 16));
         titleLabel.setHorizontalAlignment(SwingConstants.CENTER);
 
-        String[] projects = {"Project_1", "Project_2", "Project_3", "Project_4", "Project_5", "Project_6", "Project_7"};
-        JList<String> projectList = new JList<>(projects);
-        projectList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-        projectList.setVisibleRowCount(2);
-        JScrollPane listScroller = new JScrollPane(projectList);
-        listScroller.setPreferredSize(new Dimension(250, 50));
+        JScrollPane treeScroller = new JScrollPane(createJTree());
+        treeScroller.setPreferredSize(new Dimension(250, 50));
 
         JPanel listPanel = new JPanel();
         listPanel.setLayout(new BorderLayout());
         listPanel.add(titleLabel, BorderLayout.NORTH);
-        listPanel.add(listScroller, BorderLayout.CENTER);
+        listPanel.add(treeScroller, BorderLayout.CENTER);
 
+        add(listPanel);
+    }
+
+    /**
+     * Creates the project directory for the user to select a project.
+     * 
+     * @author Jeremiah Brenio
+     */
+    private JTree createJTree() {
+
+        // Create JTree to display the project list
+        root = new DefaultMutableTreeNode();
+        model = new DefaultTreeModel(root);
+
+        // Retrieve JSON files from the data folder
+        retrieveJSONFiles(folder.getFileObject(), root, model);
+
+        JTree tree = new JTree(model);
+        tree.setRootVisible(false);
+
+        tree.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                if (e.getClickCount() == 2) {
+                    // Get the node at the location of the double-click
+                    DefaultMutableTreeNode node = (DefaultMutableTreeNode) tree.getLastSelectedPathComponent();
+                    if (node != null && node.isLeaf()) {
+                        // Get the file path by walking up the tree from the node
+                        StringBuilder filePath = new StringBuilder();
+                        filePath.append(node.getUserObject().toString());
+                        TreeNode parent = node.getParent();
+                        while (parent != null) {
+                            filePath.insert(0, parent.toString() + "/");
+                            parent = parent.getParent();
+                        }
+                        filePath.insert(0, "src/data");
+                        filePath.append(".json");
+                        System.err.println("Selected file path: " + filePath.toString());
+                        project.getData(new File(filePath.toString()));
+                        mainFrame.focusCard("Project");
+                    }
+                }
+            }
+
+        });
+
+        return tree;
+    }
+
+    private void retrieveJSONFiles(File dir, DefaultMutableTreeNode parent, DefaultTreeModel model) {
+        for (File file : dir.listFiles()) {
+            if (file.isDirectory()) {
+                // Create a new node and add it to the parent node
+                DefaultMutableTreeNode node = new DefaultMutableTreeNode(file.getName());
+                model.insertNodeInto(node, parent, parent.getChildCount());
+                retrieveJSONFiles(file, node, model);
+            } else if (file.getName().toLowerCase().endsWith(".json")) {
+                // Don't show the about.json and settings.json files
+                String blackList = file.getName().toLowerCase();
+                if (!blackList.equals("about.json") && !blackList.equals("settings.json")) {
+                    // Remove JSON extension from the file name and add it to the parent node.
+                    DefaultMutableTreeNode node = new DefaultMutableTreeNode(
+                            file.getName().substring(0, file.getName().length() - 5));
+                    model.insertNodeInto(node, parent, parent.getChildCount());
+                }
+            }
+        }
+    }
+
+    /**
+     * Creates the panel that will contain the buttons to create new folders and
+     * projects.
+     * 
+     * @author Jeremiah Brenio
+     */
+    private void createModifyPanel() {
+        // Modify Panel
+        JPanel modifyPanel = new JPanel();
+        modifyPanel.setLayout(new BoxLayout(modifyPanel, BoxLayout.Y_AXIS));
+
+        // New Folder Button
+        JButton folderButton = new JButton("New Folder");
+        folderButton.addActionListener(e -> {
+            String folderName = JOptionPane.showInputDialog("Enter folder name:");
+            if (folderName != null && !folderName.trim().isEmpty()) {
+                // Create new folder
+                File newFolder = new File(folder.getFileObject(), folderName);
+                if (!newFolder.exists()) {
+                    newFolder.mkdir();
+                    update();
+                }
+            }
+        });
+        modifyPanel.add(folderButton);
+
+        // New Project Button
+        JButton projectButton = new JButton("New Project");
+        projectButton.addActionListener(e -> {
+            String projectName = JOptionPane.showInputDialog("Enter project name:");
+            if (projectName != null && !projectName.trim().isEmpty()) {
+                // Create new JSON file
+                folder.createProject(projectName);
+                update();
+            }
+        });
+        modifyPanel.add(projectButton);
+
+        // Add the modify panel to the right side of the screen
+        this.add(modifyPanel, BorderLayout.NORTH);
+    }
+
+    /**
+     * Creates the entry fields for the user to input their name and email.
+     * 
+     * @author Hai Duong
+     */
+    private void createEntryFields() {
         // Entry Fields Panel
         JPanel entryFields = new JPanel();
         entryFields.setLayout(new BoxLayout(entryFields, BoxLayout.Y_AXIS));
@@ -194,33 +228,20 @@ public class HomeScreen extends Screen {
         });
         buttonPanel.add(submitButton);
 
-        mainPanel.add(listPanel);
-        mainPanel.add(entryFields);
-        mainPanel.add(buttonPanel);
-
-        projectScreen = new ProjectScreen();
-        cards.add(mainPanel, "Main Panel");
-        cards.add(projectScreen, "Project Screen");
-        add(cards, BorderLayout.CENTER);
-        projectList.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                if (e.getClickCount() == 2) {
-                    int index = projectList.locationToIndex(e.getPoint());
-                    if (index >= 0) {
-                        String item = projectList.getModel().getElementAt(index).toString();
-                        CardLayout cl = (CardLayout)(cards.getLayout());
-                        cl.show(cards, "Project Screen");
-                    }
-                }
-            }
-
-
-        });
+        add(entryFields);
+        add(buttonPanel);
     }
 
+    /**
+     * Updates the tree with the current JSON files and folders.
+     * 
+     * @author Jeremiah Brenio
+     */
     @Override
     public void update() {
+        root.removeAllChildren();
+        retrieveJSONFiles(folder.getFileObject(), root, model);
+        model.reload();
     }
 
     @Override
@@ -228,4 +249,3 @@ public class HomeScreen extends Screen {
         return "Home";
     }
 }
-

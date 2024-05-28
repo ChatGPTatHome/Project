@@ -92,7 +92,7 @@ public class MainFrame {
      * @param card The CardPanel to add without focus.
      */
     public Screen addCard(Class<? extends Screen> cardClass) {
-        return this.addCard(cardClass, false);
+        return this.addCard(cardClass, false, true);
     }
 
     /**
@@ -102,7 +102,7 @@ public class MainFrame {
      * @boolean focus Whether to focus on this card on start.
      */
     public Screen addCard(Screen card) {
-        return this.addCard(card, false);
+        return this.addCard(card, false, true);
     }
 
     /**
@@ -111,7 +111,7 @@ public class MainFrame {
      * @param card The CardPanel to add.
      * @boolean focus Whether to focus on this card on start.
      */
-    public Screen addCard(Class<? extends Screen> cardClass, boolean focus) {
+    public Screen addCard(Class<? extends Screen> cardClass, boolean focus, boolean createMenuTab) {
         Screen card;
 
         try {
@@ -128,7 +128,7 @@ public class MainFrame {
             throw new IllegalArgumentException("Bad card class.");
         }
         
-        return this.addCard(card, focus);
+        return this.addCard(card, focus, createMenuTab);
     }
 
     /**
@@ -137,8 +137,10 @@ public class MainFrame {
      * @param card The CardPanel to add.
      * @boolean focus Whether to focus on this card on start.
      */
-    public Screen addCard(Screen card, boolean focus) {
-        this.addMenuTab(card);
+    public Screen addCard(Screen card, boolean focus, boolean createMenuTab) {
+        if (createMenuTab) {
+            this.addMenuTab(card);
+        }
         this.panel.add(card, card.getName());
 
         return focus ? this.focusCard(card) : card;
@@ -184,6 +186,10 @@ public class MainFrame {
         this.cardLayout.show(this.panel, card.getName());
 
         return card;
+    }
+
+    public void focusCard(String cardName) {
+        this.cardLayout.show(this.panel, cardName);
     }
 
     /**

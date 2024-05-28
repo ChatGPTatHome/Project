@@ -55,4 +55,11 @@ public abstract class Screen extends JPanel {
     protected <T> T getModel(Class<T> modelClass) {
         return this.modelSource.getModel(modelClass);
     }
+
+    @Override
+    public void setVisible(boolean isVisible) {
+        this.update();
+        super.setVisible(isVisible);
+    }
+
 }
