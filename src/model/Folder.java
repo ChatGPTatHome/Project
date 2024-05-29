@@ -7,12 +7,25 @@ import java.util.Arrays;
 import java.util.Comparator;
 import java.io.FileFilter;
 
+/**
+ * Wrapper for java.io.File that keeps track of a
+ * root and current directory where root is hard-coded
+ * at ./src/data
+ * 
+ * @author Hai Duong
+ */
 public class Folder {
     private File rootDirectory;
     private File currentDirectory;
     private File[] currentListDirectory;
     private FileFilter filter;
 
+
+    /**
+     * Constructs a Folder object.
+     * 
+     * @author Hai Duong
+     */
     public Folder() {
         this.rootDirectory = new File("src/data/");
         this.currentDirectory = this.rootDirectory;
@@ -25,10 +38,22 @@ public class Folder {
         };
     }
 
+    /**
+     * Sets the filter so Folder.list() filters its output.
+     * 
+     * @param filter the filter.
+     * @author Hai Duong
+     */
     public void setFilter(FileFilter filter) {
         this.filter = filter;
     }
 
+    /**
+     * Lists all files and folders in the current directory.
+     * 
+     * @return the files and folders in current directory.
+     * @author Hai Duong
+     */
     public File[] list() {
         if (this.currentListDirectory == null) {
             this.currentListDirectory = this.currentDirectory.listFiles(this.filter);
@@ -48,31 +73,79 @@ public class Folder {
         return this.currentListDirectory;
     }
 
+    /**
+     * Checks if the current directory is a folder.
+     * 
+     * @return true if current directory is folder, false otherwise.
+     * @author Hai Duong
+     */
     public boolean isDirectory() {
         return this.currentDirectory.isDirectory();
     }
 
+    /**
+     * Goes into the given directory.
+     * 
+     * @param directory the directory to go into.
+     * @return true if the directory exists, false otherwise.
+     * @author Hai Duong
+     */
     public boolean enterDirectory(String directory) {
         this.currentListDirectory = null;
         this.currentDirectory = new File(this.currentDirectory, directory);
         return this.currentDirectory.exists();
     }
 
+    /**
+     * If the current directory does not exist, make it.
+     * 
+     * @author Hai Duong
+     */
     public void createFolder() {
         if (!this.currentDirectory.exists())
             this.currentDirectory.mkdir();
     }
 
+    /**
+     * Creates a folder with the given name and goes into it.
+     * 
+     * @param directory
+     * @author Hai Duong
+     */
     public void createFolder(String directory) {
-        this.enterDirectory(directory);
-        this.createFolder();
+        this.createFolder(directory, false);
     }
 
+    /**
+     * Creates a folder with the given name and may into it.
+     * 
+     * @param directory
+     * @author Hai Duong
+     */
+    public void createFolder(String directory, boolean goInto) {
+        this.enterDirectory(directory);
+        this.createFolder();
+
+        if (!goInto)
+            this.goBackDirectory();
+    }
+
+    /**
+     * Resets the current directory to the root directory.
+     * 
+     * @author Hai Duong
+     */
     public void resetDirectory() {
         this.currentListDirectory = null;
         this.currentDirectory = this.rootDirectory;
     }
 
+    /**
+     * Goes to parent directory if the current directory
+     * is not already the root directory.
+     * 
+     * @author Hai Duong
+     */
     public void goBackDirectory() {
         this.currentListDirectory = null;
         if (this.currentDirectory.equals(this.rootDirectory))
@@ -81,22 +154,57 @@ public class Folder {
         this.currentDirectory = this.currentDirectory.getParentFile();
     }
 
+    /**
+     * Gets the current directory as File object.
+     * 
+     * @return the current File object.
+     * @author Hai Duong
+     */
     public File getCurrentFileObject() {
         return this.currentDirectory;
     }
 
+    /**
+     * Gets a file object from within the current directory.
+     * 
+     * @param item the name (including extension) of the file object to get.
+     * @return the obtained file object
+     * @author Hai Duong
+     */
     public File getFileObject(String item) {
         return new File(this.currentDirectory, item);
     }
 
+    /**
+     * Gets a file object from within the current directory.
+     * 
+     * @param item the index (based on Folder.list) of the file object to get.
+     * @return the obtained file object
+     * @author Hai Duong
+     */
     public File getFileObject(int index) {
         return this.list()[index];
     }
 
+    /**
+     * Creates a completely empty file with json extension.
+     * 
+     * @param projectName the file name.
+     * @return null
+     * @author Hai Duong
+     */
     public FileWriter createProject(String projectName) {
         return this.createProject(projectName, true);
     }
 
+    /**
+     * Creates a project and returns a FileWriter if it is not closed.
+     * 
+     * @param projectName The name of the project.
+     * @param closeWriter Whether or not to close the FileWriter.
+     * @return The FileWriter if it is not closed. Null otherwise
+     * @author Hai Duong
+     */
     public FileWriter createProject(String projectName, boolean closeWriter) {
         File projectFile = new File(this.currentDirectory, projectName + ".json");
         try {
@@ -112,10 +220,24 @@ public class Folder {
         }
     }
 
+    /**
+     * Deletes the given file within the current directory.
+     * 
+     * @param item the name of the file (including extension if any).
+     * @return true if successfully deleted, false otherwise.
+     * @author Hai Duong
+     */
     public boolean deleteFile(String item) {
         return new File(this.currentDirectory, item).delete();
     }
 
+    /**
+     * Deletes the given file within the current directory.
+     * 
+     * @param item the index of the file (based on Folder.list).
+     * @return true if successfully deleted, false otherwise.
+     * @author Hai Duong
+     */
     public boolean deleteFile(int index) {
         return this.list()[index].delete();
     }
