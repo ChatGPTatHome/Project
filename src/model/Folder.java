@@ -111,4 +111,12 @@ public class Folder {
             return null;
         }
     }
+
+    public boolean deleteFile(String item) {
+        return new File(this.currentDirectory, item).delete();
+    }
+
+    public boolean deleteFile(int index) {
+        return this.list()[index].delete();
+    }
 }
