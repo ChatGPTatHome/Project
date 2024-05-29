@@ -8,7 +8,6 @@ import java.util.Comparator;
 import java.io.FileFilter;
 
 public class Folder {
-    // File already has getpath and getdir
     private File rootDirectory;
     private File currentDirectory;
     private File[] currentListDirectory;
@@ -45,7 +44,6 @@ public class Folder {
 
                     return (folderComparison == 0) ? nameComparison : folderComparison;
                 }
-                
             });
         }
         return this.currentListDirectory;
