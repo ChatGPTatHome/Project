@@ -37,9 +37,9 @@ public class Folder {
                 public int compare(File o1, File o2) {
                     int folderComparison = 0;
                     if (o1.isDirectory())
-                        folderComparison = 1;
+                        folderComparison--;
                     if (o2.isDirectory())
-                        folderComparison = -1;
+                        folderComparison++;
 
                     return (folderComparison == 0) ? o1.compareTo(o2) : folderComparison;
                 }
