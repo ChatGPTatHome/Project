@@ -26,19 +26,19 @@ import java.awt.event.ActionListener;
  * @version 1.0
  */
 public class ProjectScreen extends Screen {
-    private JTabbedPane tabbedPane;
-    private JButton backButton;
-    private MainFrame mainFrame;
-    private TaskTab taskTab;
-    private MaterialTab materialTab;
-    private ToolTab toolTab;
-    private CostTab costTab;
-    private Project project;
+    private JTabbedPane tabbedPane; // Holds the tabs
+    private JButton backButton; // Button to return to the home screen
+    private MainFrame mainFrame; // Main application frame
+    private TaskTab taskTab; // Tab for managing tasks
+    private MaterialTab materialTab; // Tab for managing materials
+    private ToolTab toolTab; // Tab for managing tools
+    private CostTab costTab; // Tab for managing costs
+    private Project project; // Project data model
 
-    private TaskTabScreen taskTabScreen;
-    private MaterialTabScreen matTabScreen;
-    private ToolTabScreen toolTabScreen;
-    private CostTabScreen costTabScreen;
+    private TaskTabScreen taskTabScreen; // Screen for the task tab
+    private MaterialTabScreen matTabScreen; // Screen for the material tab
+    private ToolTabScreen toolTabScreen; // Screen for the tool tab
+    private CostTabScreen costTabScreen; // Screen for the cost tab
 
     /**
      * Constructs a new ProjectScreen which sets up the UI components and
@@ -62,34 +62,31 @@ public class ProjectScreen extends Screen {
         this.toolTab = this.getModel(ToolTab.class);
         this.costTab = this.getModel(CostTab.class);
 
+        //Set layout for this screen
         setLayout(new BorderLayout());
+
+        // Initialize the user interface components
         initializeUI();
     }
 
     /**
-     * Initializes and configures the UI components of the screen, including setting
-     * up
+     * Initializes and configures the UI components of the screen, including setting up
+     *
      * the tabbed pane and back button functionalities.
+     *
+     * @author Windie Le
      */
     private void initializeUI() {
         tabbedPane = new JTabbedPane();
         backButton = new JButton();
 
-
-        taskTabScreen = new TaskTabScreen(this.taskTab);
-
-        matTabScreen = new MaterialTabScreen(this.materialTab);
-
-        toolTabScreen = new ToolTabScreen(this.toolTab);
-
-        costTabScreen = new CostTabScreen(this.costTab);
-
+        // Setup individual screens for each project aspect
         this.taskTabScreen = new TaskTabScreen(this.taskTab);
         this.matTabScreen = new MaterialTabScreen(this.materialTab);
         this.toolTabScreen = new ToolTabScreen(this.toolTab);
         this.costTabScreen = new CostTabScreen(this.costTab);
 
-        // Add tabs
+        // Add tabs to the tabbed pane
         tabbedPane.addTab("Tasks", taskTabScreen);
         tabbedPane.addTab("Materials", matTabScreen);
         tabbedPane.addTab("Tools", toolTabScreen);
@@ -106,12 +103,13 @@ public class ProjectScreen extends Screen {
         buttonPanel.setLayout(new BorderLayout());
         buttonPanel.add(backButton, BorderLayout.WEST);
 
+        // Setup action listener for the back button
         backButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                project.saveData();
-                mainFrame.focusCard("Home");
-                mainFrame.toggleMenuBar(true);
+                project.saveData();// Save project data when navigating back
+                mainFrame.focusCard("Home"); // Focus the home screen on the main frame
+                mainFrame.toggleMenuBar(true); // Toggle the menu bar visibility
             }
         });
 
