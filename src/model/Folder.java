@@ -17,7 +17,7 @@ import java.io.FileFilter;
 public class Folder {
     private File rootDirectory;
     private File currentDirectory;
-    private File[] currentListDirectory;
+    private File[] listFilesOutput;
     private FileFilter filter;
 
 
@@ -29,7 +29,7 @@ public class Folder {
     public Folder() {
         this.rootDirectory = new File("src/data/");
         this.currentDirectory = this.rootDirectory;
-        this.currentListDirectory = null;
+        this.listFilesOutput = null;
         this.filter = new FileFilter() {
             @Override
             public boolean accept(File f) {
@@ -54,10 +54,13 @@ public class Folder {
      * @return the files and folders in current directory.
      * @author Hai Duong
      */
-    public File[] list() {
-        if (this.currentListDirectory == null) {
-            this.currentListDirectory = this.currentDirectory.listFiles(this.filter);
-            Arrays.sort(this.currentListDirectory, new Comparator<File>() {
+    public File[] listFiles() {
+        if (!this.isDirectory())
+            return new File[]{};
+
+        if (this.listFilesOutput == null) {
+            this.listFilesOutput = this.currentDirectory.listFiles(this.filter);
+            Arrays.sort(this.listFilesOutput, new Comparator<File>() {
                 @Override
                 public int compare(File o1, File o2) {
                     int folderComparison = 0;
@@ -70,7 +73,7 @@ public class Folder {
                 }
             });
         }
-        return this.currentListDirectory;
+        return this.listFilesOutput;
     }
 
     /**
@@ -84,50 +87,54 @@ public class Folder {
     }
 
     /**
-     * Goes into the given directory.
+     * Goes into the given directory. If the current File is not a directory,
+     * this method returns the current File object instead of null.
      * 
-     * @param directory the directory to go into.
-     * @return true if the directory exists, false otherwise.
+     * @param target the directory/file to go into.
+     * @return the File object if the current File is not a directory. otherwise null.
      * @author Hai Duong
      */
-    public boolean enterDirectory(String directory) {
-        this.currentListDirectory = null;
-        this.currentDirectory = new File(this.currentDirectory, directory);
-        return this.currentDirectory.exists();
+    public File goNext(String target) {
+        this.listFilesOutput = null;
+
+        File nextFile = new File(this.currentDirectory, target);
+        if (!nextFile.exists())
+            throw new IllegalArgumentException("Directory/File does not exist");
+        this.currentDirectory = nextFile;
+
+        return !this.isDirectory() ? this.getCurrentFileObject() : null;
     }
 
     /**
-     * If the current directory does not exist, make it.
+     * Goes into the given directory. If the current File is not a directory,
+     * this method returns the current File object instead of null.
      * 
+     * @param target the directory/file to go into.
+     * @return the File object if the current File is not a directory. otherwise null.
      * @author Hai Duong
      */
-    public void createFolder() {
-        if (!this.currentDirectory.exists())
-            this.currentDirectory.mkdir();
+    public File goNext(int index) {
+        File nextFile = this.listFiles()[index];
+        if (!nextFile.exists())
+            throw new IllegalArgumentException("Directory/File does not exist");
+        this.currentDirectory = nextFile;
+
+        this.listFilesOutput = null;
+
+        return !this.isDirectory() ? this.getCurrentFileObject() : null;
     }
 
     /**
-     * Creates a folder with the given name and goes into it.
+     * Creates a folder with the given name.
      * 
      * @param directory
      * @author Hai Duong
      */
     public void createFolder(String directory) {
-        this.createFolder(directory, false);
-    }
-
-    /**
-     * Creates a folder with the given name and may into it.
-     * 
-     * @param directory
-     * @author Hai Duong
-     */
-    public void createFolder(String directory, boolean goInto) {
-        this.enterDirectory(directory);
-        this.createFolder();
-
-        if (!goInto)
-            this.goBackDirectory();
+        this.listFilesOutput = null;
+        File childDirectory = new File(this.currentDirectory, directory);
+        if (!childDirectory.exists())
+            childDirectory.mkdir();
     }
 
     /**
@@ -135,8 +142,8 @@ public class Folder {
      * 
      * @author Hai Duong
      */
-    public void resetDirectory() {
-        this.currentListDirectory = null;
+    public void goRoot() {
+        this.listFilesOutput = null;
         this.currentDirectory = this.rootDirectory;
     }
 
@@ -146,10 +153,11 @@ public class Folder {
      * 
      * @author Hai Duong
      */
-    public void goBackDirectory() {
-        this.currentListDirectory = null;
+    public void goBack() {
         if (this.currentDirectory.equals(this.rootDirectory))
             return;
+
+        this.listFilesOutput = null;
 
         this.currentDirectory = this.currentDirectory.getParentFile();
     }
@@ -171,7 +179,7 @@ public class Folder {
      * @return the obtained file object
      * @author Hai Duong
      */
-    public File getFileObject(String item) {
+    public File getChildFileObject(String item) {
         return new File(this.currentDirectory, item);
     }
 
@@ -182,8 +190,8 @@ public class Folder {
      * @return the obtained file object
      * @author Hai Duong
      */
-    public File getFileObject(int index) {
-        return this.list()[index];
+    public File getChildFileObject(int index) {
+        return this.listFiles()[index];
     }
 
     /**
@@ -239,6 +247,6 @@ public class Folder {
      * @author Hai Duong
      */
     public boolean deleteFile(int index) {
-        return this.list()[index].delete();
+        return this.listFiles()[index].delete();
     }
 }
