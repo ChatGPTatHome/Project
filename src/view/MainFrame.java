@@ -1,5 +1,6 @@
 package view;
 
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
@@ -47,7 +48,7 @@ public class MainFrame {
     public MainFrame() {
         // SETUP
         this.models = new Models();
-        
+
         // JFRAME STUFF
         this.frame = new JFrame("ProjectHub");
         this.frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -60,13 +61,16 @@ public class MainFrame {
 
         // JPANEL STUFF
         this.cardLayout = new CardLayout();
-        
+
         this.panel = new JPanel(this.cardLayout);
         this.frame.add(this.panel);
 
         // JMENU STUFF
         this.menuBar = new JMenuBar();
         this.frame.setJMenuBar(this.menuBar);
+
+        // ICON
+        this.frame.setIconImage(new ImageIcon("src/data/PH.png").getImage());
     }
 
     /**
@@ -78,8 +82,8 @@ public class MainFrame {
 
     private static boolean hasModelConstructor(Class<? extends Screen> cardClass) {
         for (Constructor<?> constructor : cardClass.getDeclaredConstructors()) {
-            if ((constructor.getParameterCount() == 1) 
-            && (constructor.getParameterTypes()[0] == Models.class))
+            if ((constructor.getParameterCount() == 1)
+                    && (constructor.getParameterTypes()[0] == Models.class))
                 return true;
         }
 
@@ -117,17 +121,17 @@ public class MainFrame {
         try {
             if (MainFrame.hasModelConstructor(cardClass)) {
                 Constructor<?> cardConstructor = cardClass.getConstructor(Models.class);
-                card = (Screen)(cardConstructor.newInstance(new Object[] { this.models }));
+                card = (Screen) (cardConstructor.newInstance(new Object[] { this.models }));
             } else {
                 Constructor<?> cardConstructor = cardClass.getConstructor();
-                card = (Screen)(cardConstructor.newInstance());
+                card = (Screen) (cardConstructor.newInstance());
                 card.setModelSource(this.models);
             }
         } catch (Exception e) {
             e.printStackTrace();
             throw new IllegalArgumentException("Bad card class.");
         }
-        
+
         return this.addCard(card, focus, createMenuTab);
     }
 
@@ -153,10 +157,11 @@ public class MainFrame {
      */
     private void addMenuTab(Screen card) {
         JMenu menu = new JMenu(card.getName());
-        
+
         menu.addMouseListener(new MouseListener() {
             @Override
-            public void mouseClicked(MouseEvent e) {}
+            public void mouseClicked(MouseEvent e) {
+            }
 
             @Override
             public void mousePressed(MouseEvent e) {
@@ -164,15 +169,18 @@ public class MainFrame {
             }
 
             @Override
-            public void mouseReleased(MouseEvent e) {}
+            public void mouseReleased(MouseEvent e) {
+            }
 
             @Override
-            public void mouseEntered(MouseEvent e) {}
+            public void mouseEntered(MouseEvent e) {
+            }
 
             @Override
-            public void mouseExited(MouseEvent e) {}
+            public void mouseExited(MouseEvent e) {
+            }
         });
-        
+
         this.menuBar.add(menu);
     }
 
@@ -180,7 +188,8 @@ public class MainFrame {
      * Shows the given card.
      * 
      * @param card The card to show.
-//     */
+     *             //
+     */
     public Screen focusCard(Screen card) {
         card.update();
         this.cardLayout.show(this.panel, card.getName());
