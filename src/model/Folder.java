@@ -35,14 +35,13 @@ public class Folder {
             Arrays.sort(this.currentListDirectory, new Comparator<File>() {
                 @Override
                 public int compare(File o1, File o2) {
-                    int nameComparison = Integer.signum(o1.compareTo(o2));
                     int folderComparison = 0;
                     if (o1.isDirectory())
-                        folderComparison--;
+                        folderComparison = 1;
                     if (o2.isDirectory())
-                        folderComparison++;
+                        folderComparison = -1;
 
-                    return (folderComparison == 0) ? nameComparison : folderComparison;
+                    return (folderComparison == 0) ? o1.compareTo(o2) : folderComparison;
                 }
             });
         }
@@ -82,7 +81,7 @@ public class Folder {
         this.currentDirectory = this.currentDirectory.getParentFile();
     }
 
-    public File getThisFileObject() {
+    public File getCurrentFileObject() {
         return this.currentDirectory;
     }
 

@@ -51,7 +51,7 @@ public class HomeScreen extends Screen {
     // To update working directory
     private DefaultMutableTreeNode root;
     private DefaultTreeModel model;
-    private File currFile = new Folder().getThisFileObject();
+    private File currFile = new Folder().getCurrentFileObject();
 
     /**
      * Constructs the HomeScreen.
@@ -111,7 +111,7 @@ public class HomeScreen extends Screen {
         model = new DefaultTreeModel(root);
 
         // Retrieve JSON files from the data folder
-        retrieveJSONFiles(folder.getThisFileObject(), root, model);
+        retrieveJSONFiles(folder.getCurrentFileObject(), root, model);
 
         JTree tree = new JTree(model);
         tree.setRootVisible(false);
@@ -186,7 +186,7 @@ public class HomeScreen extends Screen {
             String folderName = JOptionPane.showInputDialog("Enter folder name:");
             if (folderName != null && !folderName.trim().isEmpty()) {
                 // Create new folder
-                File newFolder = new File(folder.getThisFileObject(), folderName);
+                File newFolder = new File(folder.getCurrentFileObject(), folderName);
                 if (!newFolder.exists()) {
                     newFolder.mkdir();
                     update();
@@ -262,7 +262,7 @@ public class HomeScreen extends Screen {
     @Override
     public void update() {
         root.removeAllChildren();
-        retrieveJSONFiles(folder.getThisFileObject(), root, model);
+        retrieveJSONFiles(folder.getCurrentFileObject(), root, model);
         model.reload();
     }
 
