@@ -5,6 +5,7 @@ import model.Models;
 
 import javax.swing.*;
 import java.awt.*;
+import java.io.File;
 
 /**
  * A view class for user's to import and export persistent data.
@@ -12,7 +13,7 @@ import java.awt.*;
  *
  * @author Anthony Chapkin
  */
-public class ImportExportScreen extends Screen{
+public class ImportExportScreen extends Screen {
 
     /**
      * Model class that reads and writes persistent
@@ -38,7 +39,7 @@ public class ImportExportScreen extends Screen{
      *
      * @param models A Models class used to initialize model fields.
      */
-    public ImportExportScreen(Models models){
+    public ImportExportScreen(Models models) {
         super(models);
         this.importExport = getModel(ImportExport.class);
 
@@ -49,7 +50,7 @@ public class ImportExportScreen extends Screen{
 
         JButton exportButton = new JButton("Export Settings");
         exportButton.addActionListener(e -> {
-            JFileChooser chooser = new JFileChooser();
+            JFileChooser chooser = new JFileChooser(new File("."));
             chooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
             int r = chooser.showSaveDialog(null);
 
@@ -67,7 +68,7 @@ public class ImportExportScreen extends Screen{
 
         JButton importButton = new JButton("Import Settings");
         importButton.addActionListener(e -> {
-            JFileChooser chooser = new JFileChooser();
+            JFileChooser chooser = new JFileChooser(new File("."));
             chooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
             int r = chooser.showOpenDialog(null);
 
@@ -99,6 +100,7 @@ public class ImportExportScreen extends Screen{
 
     /**
      * Gets the name for the ImportExport screen.
+     * 
      * @return the name of the ImportExport screen.
      */
     @Override
