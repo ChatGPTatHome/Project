@@ -20,7 +20,6 @@ public class Folder {
     private File[] listFilesOutput;
     private FileFilter filter;
 
-
     /**
      * Constructs a Folder object.
      * 
@@ -56,23 +55,21 @@ public class Folder {
      */
     public File[] listFiles() {
         if (!this.isDirectory())
-            return new File[]{};
+            return new File[] {};
 
-        if (this.listFilesOutput == null) {
-            this.listFilesOutput = this.currentDirectory.listFiles(this.filter);
-            Arrays.sort(this.listFilesOutput, new Comparator<File>() {
-                @Override
-                public int compare(File o1, File o2) {
-                    int folderComparison = 0;
-                    if (o1.isDirectory())
-                        folderComparison--;
-                    if (o2.isDirectory())
-                        folderComparison++;
+        this.listFilesOutput = this.currentDirectory.listFiles(this.filter);
+        Arrays.sort(this.listFilesOutput, new Comparator<File>() {
+            @Override
+            public int compare(File o1, File o2) {
+                int folderComparison = 0;
+                if (o1.isDirectory())
+                    folderComparison--;
+                if (o2.isDirectory())
+                    folderComparison++;
 
-                    return (folderComparison == 0) ? o1.compareTo(o2) : folderComparison;
-                }
-            });
-        }
+                return (folderComparison == 0) ? o1.compareTo(o2) : folderComparison;
+            }
+        });
         return this.listFilesOutput;
     }
 
@@ -91,7 +88,8 @@ public class Folder {
      * this method returns the current File object instead of null.
      * 
      * @param target the directory/file to go into.
-     * @return the File object if the current File is not a directory. otherwise null.
+     * @return the File object if the current File is not a directory. otherwise
+     *         null.
      * @author Hai Duong
      */
     public File goNext(String target) {
@@ -110,7 +108,8 @@ public class Folder {
      * this method returns the current File object instead of null.
      * 
      * @param target the directory/file to go into.
-     * @return the File object if the current File is not a directory. otherwise null.
+     * @return the File object if the current File is not a directory. otherwise
+     *         null.
      * @author Hai Duong
      */
     public File goNext(int index) {
@@ -170,6 +169,26 @@ public class Folder {
      */
     public File getCurrentFileObject() {
         return this.currentDirectory;
+    }
+
+    /**
+     * Sets the current file object.
+     *
+     * @param file The new current file object.
+     * @author Jeremiah Brenio
+     */
+    public void setCurrentFileObject(File file) {
+        this.currentDirectory = file;
+    }
+
+    /**
+     * Sets the current file object.
+     *
+     * @param file The new current file object.
+     * @author Jeremiah Brenio
+     */
+    public void setCurrentFileObject(String path) {
+        this.currentDirectory = new File(this.currentDirectory, path);
     }
 
     /**
