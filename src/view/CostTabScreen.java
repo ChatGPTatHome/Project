@@ -105,7 +105,9 @@ public class CostTabScreen extends Screen {
     @Override
     public void update() {
         this.costField.getTextField().setText(Double.toString(costModel.getCost()));
-        this.remainderField.getTextField().setText(Double.toString(Double.parseDouble(this.budgetField.getTextField().getText()) - costModel.getCost()));
+        this.remainderField.getTextField().setText(String.format("%.2f", 
+            Double.parseDouble(this.budgetField.getTextField().getText()) - costModel.getCost()
+        ));
     }
 
     @Override
