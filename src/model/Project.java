@@ -76,7 +76,7 @@ public class Project {
             materialTab.instantiate(data.get(materialTab.getKey()));
             toolTab.instantiate(data.get(toolTab.getKey()));
             taskTab.instantiate(data.get(taskTab.getKey()));
-            costTab.instantiate(null);
+            costTab.instantiate(data.get(costTab.getKey()));
             costTab.addCostSource(materialTab.getMaterials()).addCostSource(toolTab.getTools());
 
             reader.close();
@@ -102,9 +102,10 @@ public class Project {
             FileWriter writer = new FileWriter(currFile);
 
             Map<String, Object> data = new HashMap<>();
-            data.put(materialTab.getKey(), Collections.singletonMap(materialTab.getKey(), materialTab.getMaterials()));
-            data.put(toolTab.getKey(), Collections.singletonMap(toolTab.getKey(), toolTab.getTools()));
-            data.put(taskTab.getKey(), Collections.singletonMap(taskTab.getKey(), taskTab.getTasks()));
+            data.put(materialTab.getKey(), materialTab);
+            data.put(toolTab.getKey(), toolTab);
+            data.put(taskTab.getKey(), taskTab);
+            data.put(costTab.getKey(), costTab);
 
             // Convert the map to a JSON string
             String json = gson.toJson(data);
@@ -133,9 +134,10 @@ public class Project {
             FileWriter writer = new FileWriter(file);
 
             Map<String, Object> data = new HashMap<>();
-            data.put(materialTab.getKey(), Collections.singletonMap(materialTab.getKey(), new ArrayList<>()));
-            data.put(toolTab.getKey(), Collections.singletonMap(toolTab.getKey(), new ArrayList<>()));
-            data.put(taskTab.getKey(), Collections.singletonMap(taskTab.getKey(), new ArrayList<>()));
+            data.put(materialTab.getKey(), materialTab);
+            data.put(toolTab.getKey(), toolTab);
+            data.put(taskTab.getKey(), taskTab);
+            data.put(costTab.getKey(), costTab);
 
             // Convert the map to a JSON string
             String json = gson.toJson(data);
@@ -162,9 +164,10 @@ public class Project {
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
         try {
             Map<String, Object> data = new HashMap<>();
-            data.put(materialTab.getKey(), Collections.singletonMap(materialTab.getKey(), new ArrayList<>()));
-            data.put(toolTab.getKey(), Collections.singletonMap(toolTab.getKey(), new ArrayList<>()));
-            data.put(taskTab.getKey(), Collections.singletonMap(taskTab.getKey(), new ArrayList<>()));
+            data.put(materialTab.getKey(), materialTab);
+            data.put(toolTab.getKey(), toolTab);
+            data.put(taskTab.getKey(), taskTab);
+            data.put(costTab.getKey(), costTab);
 
             // Convert the map to a JSON string
             String json = gson.toJson(data);
