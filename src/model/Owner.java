@@ -14,7 +14,7 @@ import java.nio.file.Paths;
  *
  */
 public class Owner {
-    
+
     /** The Owner's name. */
     private String name;
 
@@ -62,5 +62,4 @@ public class Owner {
     public String getEmail() {
         return email;
     }
-
 }
