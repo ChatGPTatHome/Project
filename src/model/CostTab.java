@@ -10,6 +10,7 @@ import java.util.Map;
  * @author Hai Duong
  */
 public class CostTab extends Tab {
+    double budget;
     List<List<PricedItem>> costSources;
 
     /**
@@ -18,17 +19,38 @@ public class CostTab extends Tab {
      * @author Hai Duong
      */
     public CostTab() {
+        this.budget = 0;
         this.costSources = new ArrayList<List<PricedItem>>();
+    }
+
+    /**
+     * Gets the budget.
+     * 
+     * @return the current budget.
+     */
+    public double getBudget() {
+        return this.budget;
+    }
+
+    /**
+     * Sets the budget to the given amount.
+     * 
+     * @param budget the new budget value
+     * @author Hai Duong
+     */
+    public void setBudget(double budget) {
+        this.budget = budget;
     }
 
     @Override
     public String getKey() {
-        return null;
+        return "Cost";
     }
 
     @Override
     public void instantiate(Map<String, Object> tab) {
         this.costSources.clear();
+        this.budget = (double)tab.get("budget");
     }
 
     /**
@@ -63,5 +85,9 @@ public class CostTab extends Tab {
         }
 
         return total;
+    }
+
+    public double getRemaining() {
+        return this.budget - this.getCost();
     }
 }

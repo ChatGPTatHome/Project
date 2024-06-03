@@ -39,7 +39,7 @@ public class CostTabScreen extends Screen {
         constraints.anchor = GridBagConstraints.CENTER;
 
         this.budgetField = new LabeledTextField("Budget: ", 12);
-        budgetField.getTextField().setText("0.0");
+        budgetField.getTextField().setText(Double.toString(costModel.getBudget()));
         
         this.costField = new LabeledTextField("Cost: ", 12);
         costField.makeReadOnly();
@@ -58,15 +58,18 @@ public class CostTabScreen extends Screen {
                     e.consume();
                     return;
                 }
+
+                JTextField textField = (JTextField)e.getSource();
                 
                 try {
-                    JTextField textField = (JTextField)e.getSource();
                     int cursor = textField.getCaretPosition();
                     this.dispatched = true;
                     textField.dispatchEvent(e);
                     this.dispatched = false;
                     double budget = Double.parseDouble(budgetField.getTextField().getText());
                     budgetField.getTextField().setText(Double.toString(budget));
+
+                    costModel.setBudget(Double.valueOf(textField.getText()));
 
                     update();
                     
@@ -77,6 +80,7 @@ public class CostTabScreen extends Screen {
                         textField.setCaretPosition(Math.min(budgetField.getTextField().getText().length(), cursor + 1));
                 } catch (NumberFormatException err) {
                     budgetField.getTextField().setText("0.0");
+                    costModel.setBudget(0);
                 }
 
                 e.consume();
@@ -104,8 +108,9 @@ public class CostTabScreen extends Screen {
 
     @Override
     public void update() {
+        this.budgetField.getTextField().setText(Double.toString(costModel.getBudget()));
         this.costField.getTextField().setText(Double.toString(costModel.getCost()));
-        this.remainderField.getTextField().setText(Double.toString(Double.parseDouble(this.budgetField.getTextField().getText()) - costModel.getCost()));
+        this.remainderField.getTextField().setText(String.format("%.2f", costModel.getRemaining()));
     }
 
     @Override

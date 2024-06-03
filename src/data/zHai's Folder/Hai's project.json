@@ -37,6 +37,45 @@
       }
     ]
   },
+  "Cost": {
+    "budget": 42.0,
+    "costSources": [
+      [
+        {
+          "name": "Diamond Boots",
+          "price": 27.5,
+          "quantity": 1
+        },
+        {
+          "name": "Diamond leggings",
+          "price": 33.0,
+          "quantity": 2
+        },
+        {
+          "name": "Diamond helmet",
+          "price": 27.0,
+          "quantity": 3
+        },
+        {
+          "name": "Diamond chestplate",
+          "price": 35.0,
+          "quantity": 4
+        }
+      ],
+      [
+        {
+          "name": "Crafting table",
+          "price": 0.42,
+          "quantity": 1
+        },
+        {
+          "name": "Hands",
+          "price": 50.0,
+          "quantity": 2
+        }
+      ]
+    ]
+  },
   "tasks": {
     "tasks": [
       "Do this",
