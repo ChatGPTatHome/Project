@@ -255,7 +255,7 @@ public class Folder {
      * @author Hai Duong
      */
     public void deleteFile(String item) {
-        Folder.deleteFile(new File(this.currentDirectory, item));;
+        Folder.deleteFile(new File(this.currentDirectory, item));
     }
 
     /**
@@ -266,9 +266,16 @@ public class Folder {
      * @author Hai Duong
      */
     public void deleteFile(int index) {
-        Folder.deleteFile(this.listFiles()[index]);;
+        Folder.deleteFile(this.listFiles()[index]);
     }
 
+    /**
+     * Recursively deletes all files in a directory and
+     * deletes the directory itself. If the given file
+     * is just a file then that file will be deleted.
+     * 
+     * @param file the file or directory to delete
+     */
     private static void deleteFile(File file) {
         if (file.delete())
             return;
