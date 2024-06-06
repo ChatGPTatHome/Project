@@ -3,8 +3,6 @@ package model;
 import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -14,20 +12,32 @@ import com.google.gson.reflect.TypeToken;
 import java.lang.reflect.Type;
 
 /**
- * Project Model to save and load data of Tab models.
+ * The Project class contains multiple tabs for managing
+ * materials, tools, tasks, and costs.
+ * The class uses the Gson library for JSON serialization and deserialization.
  * 
  * @author Jeremiah Brenio
  */
 public class Project {
 
-    // All tab data
+    /** The material tab for managing materials */
     private MaterialTab materialTab;
+    /** The tool tab for managing tools */
     private ToolTab toolTab;
+    /** The task tab for managing tasks */
     private TaskTab taskTab;
+    /** The cost tab for managing costs */
     private CostTab costTab;
 
+    /** The current file associated with the project */
     private File currFile;
 
+    /**
+     * Constructs a new Project object with empty tabs.
+     * Initializes the materialTab, toolTab, taskTab, and costTab.
+     * 
+     * @author Jeremiah Brenio
+     */
     public Project() {
         this.materialTab = new MaterialTab();
         this.toolTab = new ToolTab();
@@ -35,18 +45,42 @@ public class Project {
         this.costTab = new CostTab();
     }
 
+    /**
+     * Sets the material tab for the project.
+     * 
+     * @param materialTab the material tab to set
+     * @author Jeremiah Brenio
+     */
     public void setMaterialTab(MaterialTab materialTab) {
         this.materialTab = materialTab;
     }
 
+    /**
+     * Sets the tool tab for the project.
+     * 
+     * @param toolTab the tool tab to set
+     * @author Jeremiah Brenio
+     */
     public void setToolTab(ToolTab toolTab) {
         this.toolTab = toolTab;
     }
 
+    /**
+     * Sets the task tab for the project.
+     * 
+     * @param taskTab the task tab to set
+     * @author Jeremiah Brenio
+     */
     public void setTaskTab(TaskTab taskTab) {
         this.taskTab = taskTab;
     }
 
+    /**
+     * Sets the cost tab for the project.
+     * 
+     * @param costTab the cost tab to set
+     * @author Jeremiah Brenio
+     */
     public void setCostTab(CostTab costTab) {
         this.costTab = costTab;
     }
@@ -57,9 +91,8 @@ public class Project {
      * tabs using the data.
      * It also adds the materials and tools to the costTab.
      * 
+     * @param file the JSON file to get the data from
      * @author Jeremiah Brenio
-     * 
-     * @param file the JSON to get the data from.
      */
     public void pullData(File file) {
         currFile = file;
@@ -88,12 +121,10 @@ public class Project {
 
     /**
      * Saves the current project data to a JSON file.
-     * Formatted with line breaks and indentation for
-     * readability.
-     *
-     * @author Jeremiah Brenio
+     * The JSON file is formatted with line breaks and indentation for readability.
      * 
-     * @param file The JSON to save the data to.
+     * @param file the JSON file to save the data to
+     * @author Jeremiah Brenio
      */
     public void saveData() {
         // format JSON to look readable
@@ -121,12 +152,10 @@ public class Project {
     /**
      * Creates a new project with empty tabs.
      * Saves the project to a JSON file.
-     * Formatted with line breaks and indentation for
-     * readability.
+     * The JSON file is formatted with line breaks and indentation for readability.
      * 
+     * @param file the JSON file to save the data to
      * @author Jeremiah Brenio
-     * 
-     * @param file The JSON to save the data to.
      */
     public void createProject(File file) {
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
@@ -153,12 +182,10 @@ public class Project {
     /**
      * Creates a new project with empty tabs.
      * Saves the project to a JSON file.
-     * Formatted with line breaks and indentation for
-     * readability.
+     * The JSON file is formatted with line breaks and indentation for readability.
      * 
+     * @param writer the FileWriter to save the data to
      * @author Jeremiah Brenio
-     * 
-     * @param file The JSON to save the data to.
      */
     public void createProject(FileWriter writer) {
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
