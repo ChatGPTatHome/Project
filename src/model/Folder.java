@@ -182,7 +182,7 @@ public class Folder {
     /**
      * Sets the current file object.
      *
-     * @param String The filename of the new current file object.
+     * @param path The filename of the new current file object.
      * @author Jeremiah Brenio
      */
     public void setCurrentFileObject(String path) {
