@@ -153,7 +153,7 @@ public class ImportExportTest {
         createFailSettings();
 
         // Should be caught by the try-catch block
-        importExport.pullData();
+        assertFalse(importExport.pullData(), "Shouldn't be able to read from settings.json");
         assertEquals("N/A", importExport.getName(), "Should be 'N/A'");
         assertEquals("N/A", importExport.getEmail(), "Should be 'N/A'");
     }
@@ -167,10 +167,10 @@ public class ImportExportTest {
     @Test
     public void testPullDataException3() throws IOException {
         createTestSettings();
-        importExport.pullData();
+        assertTrue(importExport.pullData());
         createFailSettings();
         // Should be caught by the try-catch block
-        importExport.pullData();
+        assertFalse(importExport.pullData(), "Shouldn't be able to read from settings.json");
         assertEquals("testuser", importExport.getName(), "Should be 'testuser'");
         assertEquals("testuser@example.com", importExport.getEmail(), "Should be 'testuser@example.com'");
     }
@@ -183,7 +183,7 @@ public class ImportExportTest {
      */
     @Test
     public void testUpdateSettings1() throws IOException {
-        importExport.updateSettings();
+        assertTrue(importExport.updateSettings());
         assertEquals("N/A", importExport.getName(), "Should be 'N/A'");
         assertEquals("N/A", importExport.getEmail(), "Should be 'N/A'");
         FileReader reader = new FileReader("./src/data/settings.json");
@@ -204,8 +204,8 @@ public class ImportExportTest {
     @Test
     public void testUpdateSettings2() throws IOException {
         createTestSettings();
-        importExport.pullData();
-        importExport.updateSettings();
+        assertTrue(importExport.pullData());
+        assertTrue(importExport.updateSettings());
         assertEquals("testuser", importExport.getName(), "Should be 'testuser'");
         assertEquals("testuser@example.com", importExport.getEmail(), "Should be 'testuser@example.com'");
         FileReader reader = new FileReader("./src/data/settings.json");
@@ -227,7 +227,7 @@ public class ImportExportTest {
     public void testPushData1() throws IOException {
         File testPath = new File("./src/test");
         testPath.mkdir();
-        importExport.pushData(testPath.getPath());
+        assertTrue(importExport.pushData(testPath.getPath()));
 
         FileReader reader = new FileReader(testPath.getPath() + "/settings.json");
         Gson gson = new Gson();
@@ -253,7 +253,7 @@ public class ImportExportTest {
         testPath.mkdir();
         importExport.setName("testuser");
         importExport.setEmail("testuser@example.com");
-        importExport.pushData(testPath.getPath());
+        assertTrue(importExport.pushData(testPath.getPath()));
 
         FileReader reader = new FileReader(testPath.getPath() + "/settings.json");
         Gson gson = new Gson();
@@ -277,9 +277,9 @@ public class ImportExportTest {
     public void testPushDataException() throws IOException {
         File failFile = new File("nonexistent");
         assertEquals(false, failFile.exists(), "This file should not exist");
-        importExport.pushData(failFile.toString());
+        assertFalse(importExport.pushData(failFile.toString()));
         File settingsFile = new File(failFile.toString() + "/settings.json");
-        assertEquals(false, settingsFile.exists(), "settings.json should not be created");
+        assertFalse(settingsFile.exists(), "settings.json should not be created");
     }
 
 }
