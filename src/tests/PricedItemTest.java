@@ -8,7 +8,20 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * Test class for the PricedItem model.
+ * This class tests the parseMaps method of PricedItem, ensuring it correctly interprets
+ * and converts a list of maps into a list of PricedItem objects.
+ *
+ * @author Windie Le
+ */
 public class PricedItemTest {
+
+    /**
+     * Tests the parseMaps method to verify if it accurately parses input data from a list of maps.
+     * Each map represents a PricedItem with properties: name, price, and quantity.
+     * This method checks if the parsed objects have the correct attributes set based on the input data.
+     */
     @Test
     public void testParseMaps() {
         // Prepare test data
