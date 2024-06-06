@@ -19,7 +19,7 @@ public class ProjectTests {
      * Creates a project, saves it, and then pulls it to
      * compare any differences between the project before and after pulling.
      * The test will fail if there is a difference.
-     * 
+     *
      * @author Hai Duong
      */
     @Test

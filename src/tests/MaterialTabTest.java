@@ -11,9 +11,20 @@ import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * Tests the functionality of the MaterialTab class.
+ * This class is designed to ensure that the MaterialTab correctly initializes,
+ * handles key retrieval, and processes instantiation with given data.
+ *
+ * @author Windie Le
+ */
 public class MaterialTabTest {
     private MaterialTab tab;
 
+    /**
+     * Sets up the test environment before each test method.
+     * Initializes a new instance of MaterialTab to ensure each test starts with a fresh state.
+     */
     @BeforeEach
     public void setUp() {
         tab = new MaterialTab();
@@ -21,6 +32,7 @@ public class MaterialTabTest {
 
     /**
      * Test initial state of MaterialTab.
+     * Ensures that the materials list is not null and is initially empty.
      */
     @Test
     public void testInitialState() {
@@ -30,6 +42,7 @@ public class MaterialTabTest {
 
     /**
      * Test getKey method.
+     * Ensures that the correct key is returned.
      */
     @Test
     public void testGetKey() {
@@ -38,6 +51,8 @@ public class MaterialTabTest {
 
     /**
      * Test instantiate method by simulating input data.
+     * Checks that the materials list is properly populated with data provided through a simulated map,
+     * mimicking the way data might be loaded from JSON or another data source.
      */
     @Test
     public void testInstantiate() {

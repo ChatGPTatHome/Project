@@ -12,10 +12,21 @@ import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+/**
+ * Test class for CostTab.
+ * This class tests various functionalities of the CostTab class, ensuring correct handling
+ * of budget initialization, updating, and cost management through a series of unit tests.
+ *
+ * @author Windie Le
+ */
 public class CostTabTest {
 
     private CostTab costTab;
 
+    /**
+     * Sets up a new instance of CostTab before each test method is executed.
+     * This ensures that each test is run with a fresh instance of the class.
+     */
     @BeforeEach
     public void setUp(){
         costTab = new CostTab();
@@ -23,6 +34,7 @@ public class CostTabTest {
 
     /**
      *Test initial state of CostTab.
+     * Verifies that the default budget is set to zero and no cost sources are added initially.
      */
     @Test
     public void testInitialState(){
@@ -32,6 +44,7 @@ public class CostTabTest {
 
     /**
      * Test setting and getting the budget.
+     * Verifies that the budget can be updated and correctly retrieved.
      */
     @Test
     public void testSetAndGetBudget(){
@@ -41,6 +54,7 @@ public class CostTabTest {
 
     /**
      * Test getKey method.
+     * Verifies that the method returns the correct key associated with the CostTab class.
      */
     @Test
     public void testGetKey(){
@@ -49,6 +63,7 @@ public class CostTabTest {
 
     /**
      * Test adding cost sources and calculating costs.
+     * Verifies that the total cost is calculated correctly after adding multiple cost sources.
      */
     @Test
     public void testAddCostSourceAndGetCost(){
@@ -66,7 +81,8 @@ public class CostTabTest {
     }
 
     /**
-     * Test calculating the remaining budget.
+     * Test calculating the remaining budget after costs have been added.
+     * Verifies that the remaining budget is computed correctly by subtracting the total cost from the budget.
      */
     @Test
     public void testGetRemaining(){
@@ -81,6 +97,7 @@ public class CostTabTest {
 
     /**
      * Test the instantiate method.
+     * Verifies that the budget is correctly set through the instantiate method using a data map.
      */
     @Test
     public void testInstantiate() {
