@@ -23,6 +23,8 @@ public class ImportExport {
     /**
      * Constructor for this ImportExport model.
      * Sets the name and email to default values.
+     *
+     * @author Anthony Chapkin
      */
     public ImportExport() {
         name = "N/A";
@@ -33,6 +35,8 @@ public class ImportExport {
      * Getter method for user's name.
      *
      * @return user's name as a String.
+     *
+     * @author Anthony Chapkin
      */
     public String getName() {
         return this.name;
@@ -42,6 +46,8 @@ public class ImportExport {
      * Getter method for user's email.
      *
      * @return user's email as a String.
+     *
+     * @author Anthony Chapkin
      */
     public String getEmail() {
         return this.email;
@@ -51,6 +57,8 @@ public class ImportExport {
      * Setter method for user's name.
      *
      * @param name User's name as a String.
+     *
+     * @author Anthony Chapkin
      */
     public void setName(String name) {
         this.name = name;
@@ -60,6 +68,8 @@ public class ImportExport {
      * Setter method for user's email.
      *
      * @param email User's email as a String.
+     *
+     * @author Anthony Chapkin
      */
     public void setEmail(String email) {
         this.email = email;
@@ -68,24 +78,35 @@ public class ImportExport {
     /**
      * Writes the current state of this model to
      * persistent data. Has a built-in file path.
+     *
+     * @return true or false that the data from the
+     * default file was read and used to update fields.
+     *
+     * @author Anthony Chapkin
      */
-    public void updateSettings() {
+    public boolean updateSettings() {
         Gson gson = new Gson();
         File file = new File("./src/data/settings.json");
         try {
             FileWriter writer = new FileWriter(file);
             gson.toJson(this, writer);
             writer.close();
+            return true;
         } catch (Exception e) {
-            System.out.printf("ImportExport Update: %s\n", e);
+            return false;
         }
     }
 
     /**
      * Reads persistent data and updates the fields accordingly.
      * Has an in-built file path to fetch data from.
+     *
+     * @return true or false that data from file was read
+     * and used to update fields.
+     *
+     * @author Anthony Chapkin
      */
-    public void pullData() {
+    public boolean pullData() {
         Gson gson = new Gson();
         File file = new File("./src/data/settings.json");
         try {
@@ -94,8 +115,9 @@ public class ImportExport {
             this.name = importExport.name;
             this.email = importExport.email;
             reader.close();
+            return true;
         } catch (Exception e) {
-            System.out.printf("ImportExport Pull: %s\n", e);
+            return false;
         }
     }
 
@@ -105,16 +127,20 @@ public class ImportExport {
      *
      * @param filePath The file path of the file to be written
      *                 data to. Is a String.
+     * @return true or false that data was written to file.
+     *
+     * @author Anthony Chapkin
      */
-    public void pushData(String filePath) {
+    public boolean pushData(String filePath) {
         Gson gson = new Gson();
         File file = new File(filePath + "/settings.JSON");
         try {
             FileWriter writer = new FileWriter(file);
             gson.toJson(this, writer);
             writer.close();
+            return true;
         } catch (Exception e) {
-            System.out.printf("ImportExport Push: %s\n", e);
+            return false;
         }
     }
 
@@ -125,6 +151,8 @@ public class ImportExport {
      * @param filePath The file path of a file used to update fields.
      *                 Is a String, and file type should be a JSON.
      * @return true or false that file was read and used to update fields.
+     *
+     * @author Anthony Chapkin
      */
     public boolean pullData(String filePath) {
         Gson gson = new Gson();
