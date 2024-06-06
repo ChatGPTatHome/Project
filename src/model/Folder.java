@@ -254,8 +254,8 @@ public class Folder {
      * @return true if successfully deleted, false otherwise.
      * @author Hai Duong
      */
-    public boolean deleteFile(String item) {
-        return new File(this.currentDirectory, item).delete();
+    public void deleteFile(String item) {
+        Folder.deleteFile(new File(this.currentDirectory, item));;
     }
 
     /**
@@ -265,7 +265,17 @@ public class Folder {
      * @return true if successfully deleted, false otherwise.
      * @author Hai Duong
      */
-    public boolean deleteFile(int index) {
-        return this.listFiles()[index].delete();
+    public void deleteFile(int index) {
+        Folder.deleteFile(this.listFiles()[index]);;
+    }
+
+    private static void deleteFile(File file) {
+        if (file.delete())
+            return;
+        
+        for (File innerFile : file.listFiles())
+            Folder.deleteFile(innerFile);
+
+        file.delete();
     }
 }
