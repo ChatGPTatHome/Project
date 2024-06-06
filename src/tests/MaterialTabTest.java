@@ -1,4 +1,5 @@
 package tests;
+
 import model.MaterialTab;
 import model.PricedItem;
 import org.junit.jupiter.api.BeforeEach;
@@ -23,7 +24,10 @@ public class MaterialTabTest {
 
     /**
      * Sets up the test environment before each test method.
-     * Initializes a new instance of MaterialTab to ensure each test starts with a fresh state.
+     * Initializes a new instance of MaterialTab to ensure each test starts with a
+     * fresh state.
+     * 
+     * @author Windie Le
      */
     @BeforeEach
     public void setUp() {
@@ -33,16 +37,20 @@ public class MaterialTabTest {
     /**
      * Test initial state of MaterialTab.
      * Ensures that the materials list is not null and is initially empty.
+     * 
+     * @author Windie Le
      */
     @Test
     public void testInitialState() {
-        assertNotNull(tab.getMaterials(),"Material list should not be null");
+        assertNotNull(tab.getMaterials(), "Material list should not be null");
         assertTrue(tab.getMaterials().isEmpty(), "Material list should be empty");
     }
 
     /**
      * Test getKey method.
      * Ensures that the correct key is returned.
+     * 
+     * @author Windie Le
      */
     @Test
     public void testGetKey() {
@@ -51,8 +59,11 @@ public class MaterialTabTest {
 
     /**
      * Test instantiate method by simulating input data.
-     * Checks that the materials list is properly populated with data provided through a simulated map,
+     * Checks that the materials list is properly populated with data provided
+     * through a simulated map,
      * mimicking the way data might be loaded from JSON or another data source.
+     * 
+     * @author Windie Le
      */
     @Test
     public void testInstantiate() {
@@ -72,8 +83,8 @@ public class MaterialTabTest {
         List<PricedItem> materials = tab.getMaterials();
         assertFalse(materials.isEmpty(), "Material list should not be empty after instantiation");
         assertEquals(1, materials.size(), "Material list should contain one item");
-        assertEquals( "Steel", materials.get(0).name(), "Check material name");
-        assertEquals(150.00, materials.get(0).price(),  "Check material price");
+        assertEquals("Steel", materials.get(0).name(), "Check material name");
+        assertEquals(150.00, materials.get(0).price(), "Check material price");
         assertEquals(20, materials.get(0).quantity(), "Check material quantity");
     }
 }

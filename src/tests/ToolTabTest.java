@@ -12,8 +12,10 @@ import java.util.Map;
 
 /**
  * Test class for ToolTab.
- * This class provides unit tests for the ToolTab class to ensure that it properly initializes,
- * handles the retrieval of its key, and correctly processes instantiation with tools data.
+ * This class provides unit tests for the ToolTab class to ensure that it
+ * properly initializes,
+ * handles the retrieval of its key, and correctly processes instantiation with
+ * tools data.
  *
  * @author Windie Le
  */
@@ -21,7 +23,9 @@ public class ToolTabTest {
     private ToolTab toolTab;
 
     /**
-     *  Sets up a new instance of ToolTab before each test method is executed.
+     * Sets up a new instance of ToolTab before each test method is executed.
+     * 
+     * @author Windie Le
      */
     @BeforeEach
     public void setUp() {
@@ -30,7 +34,10 @@ public class ToolTabTest {
 
     /**
      * Test the initial state of ToolTab.
-     * Verifies that the tool list is properly initialized and empty, confirming readiness for data.
+     * Verifies that the tool list is properly initialized and empty, confirming
+     * readiness for data.
+     * 
+     * @author Windie Le
      */
     @Test
     public void testInitialState() {
@@ -41,6 +48,8 @@ public class ToolTabTest {
     /**
      * Test getKey method.
      * Ensure returns the correct key associated with the tools data.
+     * 
+     * @author Windie Le
      */
     @Test
     public void testGetKey() {
@@ -50,6 +59,8 @@ public class ToolTabTest {
     /**
      * Test adding tools and retrieving them.
      * Ensure it correctly parses and loads tools from a given map of data.
+     * 
+     * @author Windie Le
      */
     @Test
     public void testInstantiate() {

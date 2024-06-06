@@ -12,7 +12,8 @@ import java.util.Map;
 
 /**
  * Test class for TaskTab.
- * This class verifies the functionality of the TaskTab class, ensuring that tasks can be properly initialized,
+ * This class verifies the functionality of the TaskTab class, ensuring that
+ * tasks can be properly initialized,
  * manipulated, and retrieved.
  *
  * @author Windie Le
@@ -22,7 +23,10 @@ public class TaskTabTest {
 
     /**
      * Sets up a fresh instance of TaskTab before each test.
-     * This ensures that each test starts with a clean state and no tasks are carried over from previous tests.
+     * This ensures that each test starts with a clean state and no tasks are
+     * carried over from previous tests.
+     * 
+     * @author Windie Le
      */
     @BeforeEach
     public void setUp() {
@@ -31,7 +35,10 @@ public class TaskTabTest {
 
     /**
      * Test the initial state of TaskTab.
-     * Ensures that the task list is properly initialized and empty, verifying the class's readiness for new data.
+     * Ensures that the task list is properly initialized and empty, verifying the
+     * class's readiness for new data.
+     * 
+     * @author Windie Le
      */
     @Test
     public void testInitialState() {
@@ -42,6 +49,8 @@ public class TaskTabTest {
     /**
      * Test getKey method.
      * Ensure it returns the correct key associated with task data.
+     * 
+     * @author Windie Le
      */
     @Test
     public void testGetKey() {
@@ -50,8 +59,11 @@ public class TaskTabTest {
 
     /**
      * Test adding tasks and retrieving them.
-     * This simulates a real-world scenario where tasks are loaded from a data source and verifies
+     * This simulates a real-world scenario where tasks are loaded from a data
+     * source and verifies
      * that tasks are stored and retrieved correctly.
+     * 
+     * @author Windie Le
      */
     @Test
     public void testAddAndRetrieveTasks() {
@@ -75,6 +87,8 @@ public class TaskTabTest {
      * Test the behavior of instantiate method with an empty task list.
      * This test is important for verifying the behavior of the
      * instantiate method when it encounters an empty dataset.
+     * 
+     * @author Windie Le
      */
     @Test
     public void testInstantiateWithEmptyList() {

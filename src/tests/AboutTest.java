@@ -9,18 +9,21 @@ import static org.junit.jupiter.api.Assertions.*;
  * Tests the functionality of the About class.
  * This class ensures that the About class correctly initializes
  * and updates its properties such as version, group name, and developers list.
- * Each test checks specific aspects of the About class after default initialization
+ * Each test checks fields of About class after default initialization
  * and after calling the update method.
  *
  * @author Windie Le
  */
 class AboutTest {
 
+    /** Instance of the About class. */
     private About about;
 
     /**
      * Sets up the test environment before each test.
      * This method initializes the About object that will be used in each test.
+     * 
+     * @author Windie Le
      */
     @BeforeEach
     void setUp() {
@@ -29,7 +32,10 @@ class AboutTest {
 
     /**
      * Tests the default constructor of the About class.
-     * Verifies that the newly created About object has the expected default values for its properties.
+     * Verifies that the newly created About object has the expected default values
+     * for its properties.
+     * 
+     * @author Windie Le
      */
     @Test
     void testDefaultConstructor() {
@@ -40,8 +46,11 @@ class AboutTest {
 
     /**
      * Tests the updateAbout method in the About class.
-     * After invoking this method, verifies that all About properties are updated to expected values,
+     * After invoking this method, verifies that all About properties are updated to
+     * expected values,
      * including version, group name, and developers list.
+     * 
+     * @author Windie Le
      */
     @Test
     void testUpdateAboutSuccessful() {
@@ -58,8 +67,11 @@ class AboutTest {
     }
 
     /**
-     * Tests the version property of the About class after the updateAbout method is called.
+     * Tests the version property of the About class after the updateAbout method is
+     * called.
      * Verifies the version is updated correctly.
+     * 
+     * @author Windie Le
      */
     @Test
     public void testVersion() {
@@ -68,19 +80,27 @@ class AboutTest {
     }
 
     /**
-     * Tests the developers property of the About class after the updateAbout method is called.
-     * Verifies the developers list is updated correctly and matches the expected array.
+     * Tests the developers property of the About class after the updateAbout method
+     * is called.
+     * Verifies the developers list is updated correctly and matches the expected
+     * array.
+     * 
+     * @author Windie Le
      */
     @Test
     public void testDevelopers() {
         about.updateAbout();
-        String[] expectedDevelopers = {"Anthony Chapkin", "Hai Duong", "Jeremiah Brenio", "Windie Le"};
-        assertArrayEquals(expectedDevelopers, about.getDevelopers(), "Developers array should match the expected value");
+        String[] expectedDevelopers = { "Anthony Chapkin", "Hai Duong", "Jeremiah Brenio", "Windie Le" };
+        assertArrayEquals(expectedDevelopers, about.getDevelopers(),
+                "Developers array should match the expected value");
     }
 
     /**
-     * Tests the group name property of the About class after the updateAbout method is called.
+     * Tests the group name property of the About class after the updateAbout method
+     * is called.
      * Verifies the group name is updated correctly.
+     * 
+     * @author Windie Le
      */
     @Test
     public void testGroupName() {
@@ -89,6 +109,3 @@ class AboutTest {
     }
 
 }
-
-
-
