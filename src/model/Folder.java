@@ -88,8 +88,7 @@ public class Folder {
      * this method returns the current File object instead of null.
      * 
      * @param target the directory/file to go into.
-     * @return the File object if the current File is not a directory. otherwise
-     *         null.
+     * @return the File object if the current File is not a directory. otherwise null.
      * @author Hai Duong
      */
     public File goNext(String target) {
@@ -107,9 +106,8 @@ public class Folder {
      * Goes into the given directory. If the current File is not a directory,
      * this method returns the current File object instead of null.
      * 
-     * @param target the directory/file to go into.
-     * @return the File object if the current File is not a directory. otherwise
-     *         null.
+     * @param index the directory/file index to go into.
+     * @return the File object if the current File is not a directory. otherwise null.
      * @author Hai Duong
      */
     public File goNext(int index) {
@@ -184,7 +182,7 @@ public class Folder {
     /**
      * Sets the current file object.
      *
-     * @param file The new current file object.
+     * @param String The filename of the new current file object.
      * @author Jeremiah Brenio
      */
     public void setCurrentFileObject(String path) {
@@ -205,7 +203,7 @@ public class Folder {
     /**
      * Gets a file object from within the current directory.
      * 
-     * @param item the index (based on Folder.list) of the file object to get.
+     * @param index the index (based on Folder.list) of the file object to get.
      * @return the obtained file object
      * @author Hai Duong
      */
@@ -260,7 +258,7 @@ public class Folder {
     /**
      * Deletes the given file within the current directory.
      * 
-     * @param item the index of the file (based on Folder.list).
+     * @param index the index of the file (based on Folder.list).
      * @author Hai Duong
      */
     public void deleteFile(int index) {
