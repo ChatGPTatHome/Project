@@ -4,7 +4,6 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.File;
 import java.io.FileFilter;
-import java.util.Enumeration;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -19,17 +18,16 @@ import javax.swing.JTree;
 import javax.swing.SwingConstants;
 import javax.swing.event.TreeExpansionEvent;
 import javax.swing.event.TreeExpansionListener;
-import javax.swing.event.TreeWillExpandListener;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
-import javax.swing.tree.ExpandVetoException;
 import javax.swing.tree.TreeNode;
-import javax.swing.tree.TreePath;
-
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
 
 import model.CostTab;
 import model.Folder;
@@ -51,16 +49,25 @@ import view.components.CustomTreeCellRenderer;
  */
 public class HomeScreen extends Screen {
 
+    /** An instance of importExport. */
     private ImportExport importExport;
+    /** An instance of project. */
     private Project project;
+    /** An instance of mainFrame. */
     private MainFrame mainFrame;
+    /** An instance of folder. */
     private Folder folder;
 
-    // To update working directory
+    /** A JTree to keep track of working directory. */
     private JTree tree;
+    /** A DefaultMutableTreeNode to keep track of the root. */
     private DefaultMutableTreeNode root;
+    /** A DefaultTreeModel to keep track of the model if the JTree. */
     private DefaultTreeModel model;
-    Set<Integer> expandedRows;
+    /** A Set of Integers of the JTree's rows to keep track of expanded rows. */
+    private Set<Integer> expandedRows;
+    /** A GridBagConstraints to keep track of the layout. */
+    GridBagConstraints gbc;
 
     /**
      * Constructs the HomeScreen.
@@ -81,7 +88,10 @@ public class HomeScreen extends Screen {
         this.project.setCostTab(models.getModel(CostTab.class));
 
         this.folder = getModel(Folder.class);
-        // hide the about.json, settings.json, and ph.png from root data folder
+        /*
+         * hide the about.json, settings.json, ph.png,
+         * and license.txt from root data folder
+         */
         folder.setFilter(new FileFilter() {
             @Override
             public boolean accept(File file) {
@@ -98,7 +108,8 @@ public class HomeScreen extends Screen {
             }
         });
 
-        this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+        this.setLayout(new GridBagLayout());
+        gbc = new GridBagConstraints();
 
         createProjectListPanel();
         createModifyPanel();
@@ -113,18 +124,26 @@ public class HomeScreen extends Screen {
     private void createProjectListPanel() {
         // Project List Panel
         JLabel titleLabel = new JLabel("Project Menu");
-        titleLabel.setFont(new Font("Arial", Font.BOLD, 16));
+        titleLabel.setFont(new Font("Arial", Font.BOLD, 24));
         titleLabel.setHorizontalAlignment(SwingConstants.CENTER);
 
         JScrollPane treeScroller = new JScrollPane(createJTree());
-        treeScroller.setPreferredSize(new Dimension(250, 50));
+        treeScroller.setPreferredSize(new Dimension(300, 200));
 
-        JPanel listPanel = new JPanel();
-        listPanel.setLayout(new BorderLayout());
-        listPanel.add(titleLabel, BorderLayout.NORTH);
-        listPanel.add(treeScroller, BorderLayout.CENTER);
+        // Title label at the top
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        gbc.gridwidth = 2;
+        gbc.anchor = GridBagConstraints.NORTH;
+        gbc.weighty = 0;
+        add(titleLabel, gbc);
 
-        add(listPanel);
+        // JTree viewer on the left
+        gbc.gridx = 0;
+        gbc.gridy = 1;
+        gbc.gridwidth = 1;
+        gbc.anchor = GridBagConstraints.WEST;
+        add(treeScroller, gbc);
     }
 
     /**
@@ -166,6 +185,11 @@ public class HomeScreen extends Screen {
 
         // Add a mouse listener to the tree to detect activity on a project menu
         tree.addMouseListener(new MouseAdapter() {
+
+            /*
+             * If the user clicks on an empty space, go to the root directory.
+             * Essentially deselects the current selection.
+             */
             @Override
             public void mousePressed(MouseEvent e) {
                 if (tree.getPathForLocation(e.getX(), e.getY()) == null) {
@@ -174,6 +198,10 @@ public class HomeScreen extends Screen {
                 }
             }
 
+            /*
+             * If the user single-clicks on a project, remember its filepath.
+             * If the user double-clicks on a project, load the project.
+             */
             @Override
             public void mouseClicked(MouseEvent e) {
                 if (e.getClickCount() == 1) {
@@ -265,6 +293,7 @@ public class HomeScreen extends Screen {
         modifyPanel.setLayout(new BoxLayout(modifyPanel, BoxLayout.Y_AXIS));
 
         // New Folder Button
+        JPanel folderPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
         JButton folderButton = new JButton("New Folder");
         folderButton.addActionListener(e -> {
             if (tree.getLastSelectedPathComponent() == null) {
@@ -285,9 +314,11 @@ public class HomeScreen extends Screen {
             }
 
         });
-        modifyPanel.add(folderButton);
+        folderPanel.add(folderButton);
+        modifyPanel.add(folderPanel);
 
         // New Project Button
+        JPanel projectPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
         JButton projectButton = new JButton("New Project");
         projectButton.addActionListener(e -> {
             if (tree.getLastSelectedPathComponent() == null) {
@@ -307,10 +338,14 @@ public class HomeScreen extends Screen {
                 }
             }
         });
-        modifyPanel.add(projectButton);
+        projectPanel.add(projectButton);
+        modifyPanel.add(projectPanel);
 
         // Delete Button
+        JPanel deletePanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
         JButton deleteButton = new JButton("REMOVE FILE");
+        deleteButton.setBackground(new Color(255, 102, 102));
+        // deleteButton.setOpaque(true);
         deleteButton.addActionListener(e -> {
             // If file is not selected, do nothing
             if (tree.getLastSelectedPathComponent() == null) {
@@ -324,14 +359,20 @@ public class HomeScreen extends Screen {
                     "Are you sure you want to delete: " + selected + "?",
                     "Delete File", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
             if (confirm == JOptionPane.YES_OPTION) {
-                folder.getCurrentFileObject().delete();
+                selected = folder.getCurrentFileObject().getName();
+                folder.goBack();
+                folder.deleteFile(selected);
                 update();
             }
         });
-        modifyPanel.add(deleteButton);
+        deletePanel.add(deleteButton);
+        modifyPanel.add(deletePanel);
 
-        // Add the modify panel to the right side of the screen
-        this.add(modifyPanel, BorderLayout.NORTH);
+        // Modify panel on the right
+        gbc.gridx = 2;
+        gbc.gridy = 1;
+        gbc.anchor = GridBagConstraints.EAST;
+        add(modifyPanel, gbc);
     }
 
     /**
@@ -346,12 +387,12 @@ public class HomeScreen extends Screen {
 
         JPanel nameEntry = new JPanel(new FlowLayout(FlowLayout.CENTER));
         nameEntry.add(new JLabel("Name:"));
-        JTextField nameField = new JTextField(10);
+        JTextField nameField = new JTextField(20);
         nameEntry.add(nameField);
 
         JPanel emailEntry = new JPanel(new FlowLayout(FlowLayout.CENTER));
-        emailEntry.add(new JLabel("email:"));
-        JTextField emailField = new JTextField(10);
+        emailEntry.add(new JLabel("Email:"));
+        JTextField emailField = new JTextField(20);
         emailEntry.add(emailField);
 
         entryFields.add(nameEntry);
@@ -366,8 +407,15 @@ public class HomeScreen extends Screen {
         });
         buttonPanel.add(submitButton);
 
-        add(entryFields);
-        add(buttonPanel);
+        JPanel panel = new JPanel(new BorderLayout());
+        panel.add(entryFields, BorderLayout.CENTER);
+        panel.add(buttonPanel, BorderLayout.SOUTH);
+        // Entry fields at the bottom middle
+        gbc.gridx = 0;
+        gbc.gridy = 2;
+        gbc.gridwidth = 2;
+        gbc.anchor = GridBagConstraints.SOUTH;
+        add(panel, gbc);
     }
 
     /**
