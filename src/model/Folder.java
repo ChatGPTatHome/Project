@@ -274,9 +274,9 @@ public class Folder {
      * @author Hai Duong
      */
     private static void deleteFile(File file) {
-        if (file.delete())
+        if (file.delete() || !file.exists())
             return;
-        
+
         for (File innerFile : file.listFiles())
             Folder.deleteFile(innerFile);
 
