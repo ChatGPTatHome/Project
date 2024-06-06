@@ -3,7 +3,6 @@ package view;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JScrollBar;
 import javax.swing.JScrollPane;
 import javax.swing.JSeparator;
 import javax.swing.JTextArea;
@@ -16,6 +15,12 @@ import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.nio.file.Files;
 
+/**
+ * AcknowledgementsScreen displays any open souce projects used
+ * to develop ProjectHub.
+ * 
+ * @author Hai Duong
+ */
 public class AcknowledgementsScreen extends Screen {
     public AcknowledgementsScreen() {
         final String[] gsonLicense = new String[1];

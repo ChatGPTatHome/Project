@@ -7,7 +7,20 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
+/**
+ * HyperlinkLabel is a button with no background or border
+ * that attempts to mimic a JLabel.
+ * 
+ * @author Hai Duong
+ */
 public class HyperlinkLabel extends JPanel {
+    /**
+     * Creates a HyperlinkLabel with the given text and action listener.
+     * 
+     * @param text text to display.
+     * @param listener action to perform when clicked.
+     * @author Hai Duong
+     */
     public HyperlinkLabel(String text, ActionListener listener) {
         this.setLayout(new FlowLayout(FlowLayout.LEFT));
 
