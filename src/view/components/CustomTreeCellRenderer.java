@@ -12,21 +12,48 @@ import java.awt.Component;
 import java.io.File;
 
 /**
- * CustomTreeCellRenderer class to render the tree nodes with custom
- * icons.
+ * This class extends the DefaultTreeCellRenderer class and overrides the
+ * getTreeCellRendererComponent method to customize the rendering of tree nodes.
+ * It sets a custom icon for directory nodes in the tree.
+ * 
+ * The class also provides a constructor that initializes the folderIcon with
+ * the
+ * default directory icon from the UIManager.
  * 
  * @author Jeremiah Brenio
  */
 public class CustomTreeCellRenderer extends DefaultTreeCellRenderer {
 
+    /** The icon for directory nodes in the tree. */
     private Icon folderIcon;
 
+    /**
+     * Constructs a CustomTreeCellRenderer object.
+     * Initializes the folderIcon with the default directory icon from the
+     * UIManager.
+     */
     public CustomTreeCellRenderer() {
         super();
 
         folderIcon = UIManager.getIcon("FileView.directoryIcon");
     }
 
+    /**
+     * Returns the component used to render the tree cell.
+     * Overrides the getTreeCellRendererComponent method of the
+     * DefaultTreeCellRenderer class.
+     * 
+     * @param tree     the JTree instance being rendered
+     * @param value    the value of the tree node being rendered
+     * @param selected true if the node is selected, false otherwise
+     * @param expanded true if the node is expanded, false otherwise
+     * @param leaf     true if the node is a leaf, false otherwise
+     * @param row      the row index of the node being rendered
+     * @param hasFocus true if the node has focus, false otherwise
+     * @return the component used to render the tree cell
+     * 
+     * @author Jeremiah Brenio
+     */
     @Override
     public Component getTreeCellRendererComponent(JTree tree, Object value,
             boolean selected, boolean expanded,
