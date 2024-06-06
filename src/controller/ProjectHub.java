@@ -28,6 +28,7 @@ public class ProjectHub {
         window.addCard(ProfileScreen.class);
         window.addCard(ImportExportScreen.class);
         window.addCard(projectScreen, false, false);
+        window.addCard(AcknowledgementsScreen.class);
 
         window.start();
     }

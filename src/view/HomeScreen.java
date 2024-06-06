@@ -91,6 +91,8 @@ public class HomeScreen extends Screen {
                     return false;
                 if (file.getPath().toLowerCase().equals("src\\data\\ph.png"))
                     return false;
+                if (file.getPath().toLowerCase().equals("src\\data\\gson_license.txt"))
+                    return false;
 
                 return true;
             }
