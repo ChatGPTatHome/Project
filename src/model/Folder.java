@@ -251,7 +251,6 @@ public class Folder {
      * Deletes the given file within the current directory.
      * 
      * @param item the name of the file (including extension if any).
-     * @return true if successfully deleted, false otherwise.
      * @author Hai Duong
      */
     public void deleteFile(String item) {
@@ -262,7 +261,6 @@ public class Folder {
      * Deletes the given file within the current directory.
      * 
      * @param item the index of the file (based on Folder.list).
-     * @return true if successfully deleted, false otherwise.
      * @author Hai Duong
      */
     public void deleteFile(int index) {
@@ -275,6 +273,7 @@ public class Folder {
      * is just a file then that file will be deleted.
      * 
      * @param file the file or directory to delete
+     * @author Hai Duong
      */
     private static void deleteFile(File file) {
         if (file.delete())
