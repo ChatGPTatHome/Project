@@ -31,11 +31,25 @@ public class MaterialTab extends Tab {
         return this.materials;
     }
 
+    /**
+     * Gets they key that belongs to the desired section of the map equivalent
+     * of JSON data. In this case key is "materials" for MaterialsTab.
+     *
+     * @author Hai Duong
+     */
     @Override
     public String getKey() {
         return "materials";
     }
 
+    /**
+     * Instantiates the members of tab classes so that they are no longer
+     * in null state.
+     *
+     * @param tab Map equivalent of JSON data to parse.
+     *
+     * @author Hai Duong.
+     */
     @SuppressWarnings("unchecked")
     @Override
     public void instantiate(Map<String, Object> tab) {

@@ -13,6 +13,7 @@ import java.io.FileFilter;
  * at ./src/data
  * 
  * @author Hai Duong
+ * @author Jeremiah Brenio - Two methods coded.
  */
 public class Folder {
     private File rootDirectory;

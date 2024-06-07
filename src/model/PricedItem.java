@@ -13,8 +13,10 @@ public record PricedItem(String name, double price, int quantity) {
     /**
      * Parse a map that links string keys to strings (name), doubles (price), or integers (quantity).
      * 
-     * @param maps
-     * @return
+     * @param maps A List of Maps for parsing.
+     * @return A list of PricedItems.
+     *
+     * @author Hai Duong
      */
     public static List<PricedItem> parseMaps(List<Map<String, Object>> maps) {
         List<PricedItem> output = new ArrayList<>();

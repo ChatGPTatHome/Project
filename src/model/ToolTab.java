@@ -10,6 +10,10 @@ import java.util.Map;
  * @author Hai Duong
  */
 public class ToolTab extends Tab {
+
+    /**
+     * List of PriceItem objects representing tools.
+     */
     private List<PricedItem> tools;
 
     /**
@@ -31,11 +35,27 @@ public class ToolTab extends Tab {
         return this.tools;
     }
 
+    /**
+     * Gets they key that belongs to the desired section of the map equivalent
+     * of JSON data. In this case the key is "tools" for this ToolTab.
+     *
+     * @return the String key.
+     *
+     * @author Hai Duong
+     */
     @Override
     public String getKey() {
         return "tools";
     }
 
+    /**
+     * Instantiates the members of tab classes so that they are no longer
+     * in null state.
+     *
+     * @param tab Map equivalent of JSON data to parse.
+     *
+     * @author Hai Duong.
+     */
     @SuppressWarnings("unchecked")
     @Override
     public void instantiate(Map<String, Object> tab) {

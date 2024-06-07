@@ -13,17 +13,19 @@ public abstract class Tab {
     /**
      * Gets they key that belongs to the desired section of the map equivalent
      * of JSON data.
-     * 
+     *
+     * @return the String key.
+     *
      * @author Hai Duong
      */
     public abstract String getKey();
 
     /**
-     * Instantiates the members of tab classes so they are no longer
+     * Instantiates the members of tab classes so that they are no longer
      * in null state.
-     * 
+     *
      * @param tab Map equivalent of JSON data to parse.
-     * 
+     *
      * @author Hai Duong.
      */
     public abstract void instantiate(Map<String, Object> tab);

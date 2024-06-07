@@ -122,8 +122,7 @@ public class Project {
     /**
      * Saves the current project data to a JSON file.
      * The JSON file is formatted with line breaks and indentation for readability.
-     * 
-     * @param file the JSON file to save the data to
+     *
      * @author Jeremiah Brenio
      */
     public void saveData() {

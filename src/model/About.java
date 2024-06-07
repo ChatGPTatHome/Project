@@ -36,6 +36,8 @@ public class About {
     /**
      * Constructor for this About model.
      * Sets fields to default values.
+     *
+     * @author Anthony Chapkin
      */
     public About() {
         this.version = 0.0;
@@ -46,6 +48,8 @@ public class About {
     /**
      * Reads persistent data, and updates fields
      * accordingly. Has a built-in file path.
+     *
+     * @author Anthony Chapkin
      */
     public void updateAbout() {
         Gson gson = new Gson();
@@ -66,6 +70,8 @@ public class About {
      * Getter method for the apps version.
      *
      * @return the apps version as a double.
+     *
+     * @author Anthony Chapkin
      */
     public double getVersion() {
         return this.version;
@@ -75,6 +81,8 @@ public class About {
      * Getter method for the apps developers names.
      *
      * @return String array of developer names.
+     *
+     * @author Anthony Chapkin
      */
     public String[] getDevelopers() {
         return this.developers.clone();
@@ -85,6 +93,8 @@ public class About {
      * developed this app.
      *
      * @return the group's name as a String.
+     *
+     * @author Anthony Chapkin
      */
     public String getGroupName() {
         return this.groupName;
