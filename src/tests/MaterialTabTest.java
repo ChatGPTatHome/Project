@@ -20,6 +20,11 @@ import static org.junit.jupiter.api.Assertions.*;
  * @author Windie Le
  */
 public class MaterialTabTest {
+
+    /**
+     * MaterialTab field used to test methods in
+     * MaterialTab in unit tests.
+     */
     private MaterialTab tab;
 
     /**

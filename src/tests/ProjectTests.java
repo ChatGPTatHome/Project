@@ -14,6 +14,16 @@ import model.Project;
 import model.TaskTab;
 import model.ToolTab;
 
+/**
+ * Test class for Project class.
+ * Uses a single integration test to assert that
+ * Project functions as intended in a use case
+ * scenario and all interdependent methods
+ * work properly together.
+ * Uses JUnit 4.
+ *
+ * @author Hai Duong
+ */
 public class ProjectTests {
     /**
      * Creates a project, saves it, and then pulls it to

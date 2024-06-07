@@ -19,6 +19,11 @@ import java.util.Map;
  * @author Windie Le
  */
 public class TaskTabTest {
+
+    /**
+     * TaskTab field used to test methods in TaskTab
+     * in unit tests.
+     */
     private TaskTab taskTab;
 
     /**

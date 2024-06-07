@@ -20,6 +20,11 @@ import java.util.Map;
  * @author Windie Le
  */
 public class ToolTabTest {
+
+    /**
+     * ToolTab field used to test ToolTab methods
+     * in unit tests.
+     */
     private ToolTab toolTab;
 
     /**
