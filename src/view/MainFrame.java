@@ -16,11 +16,15 @@ import java.awt.event.MouseListener;
 import java.lang.reflect.Constructor;
 
 /**
- * @author Anthony Chapkin, Hai Duong, Jeremiah Brenio, Windie Le.
+ * Contains the main JFrame used by the app which
+ * contains all Screens.
+ *
+ * @author Anthony Chapkin
+ * @author Hai Duong
+ * @author Jeremiah Brenio
+ * @author Windie Le
  *
  * @version v1.00
- * 
- *          Displays an empty GUI.
  */
 public class MainFrame {
     // constants
@@ -39,12 +43,39 @@ public class MainFrame {
     /** Scaling size of the window. */
     private static final int SCALE = 2;
 
+    /**
+     * A Models field that contains all model Objects
+     * used and shared by all classes.
+     */
     private final Models models;
+
+    /**
+     * The main JFrame that contains all GUI.
+     */
     private final JFrame frame;
+
+    /**
+     * A CardLayout to allow easy switching
+     * between Screen in the frame.
+     */
     private final CardLayout cardLayout;
+
+    /**
+     * Panel that all other GUI sits upon.
+     */
     private final JPanel panel;
+
+    /**
+     * A JMenuBar used to switch between Screens.
+     */
     private final JMenuBar menuBar;
 
+    /**
+     * Constructs this MainFrame, and sets up the frame,
+     * panel, and menuBar.
+     *
+     * @author Hai Duong
+     */
     public MainFrame() {
         // SETUP
         this.models = new Models();
@@ -75,11 +106,24 @@ public class MainFrame {
 
     /**
      * Gets the Models object from this MainFrame. Use cautiously.
+     *
+     * @return the Models instance used by most classes.
+     *
+     * @author Hai Duong
      */
     public Models getModelSource() {
         return this.models;
     }
 
+    /**
+     * Checks of a model has a constructor.
+     *
+     * @param cardClass the Screen Class to be checked
+     *                  for a constructor.
+     * @return true or false that constructor exists.
+     *
+     * @author Hai Duong
+     */
     private static boolean hasModelConstructor(Class<? extends Screen> cardClass) {
         for (Constructor<?> constructor : cardClass.getDeclaredConstructors()) {
             if ((constructor.getParameterCount() == 1)
@@ -91,19 +135,28 @@ public class MainFrame {
     }
 
     /**
-     * Adds the given card.
+     * Adds the given card. Does not focus card
+     * but does create a MenuTab.
      * 
-     * @param card The CardPanel to add without focus.
+     * @param cardClass The CardPanel Class to add without focus.
+     * @return the Screen that was added.
+     *
+     * @author Hai Duong
+     * @author Anthony Chapkin - Made it compatible with ProjectHub.
      */
     public Screen addCard(Class<? extends Screen> cardClass) {
         return this.addCard(cardClass, false, true);
     }
 
     /**
-     * Adds the given card.
+     * Adds the given card. Does not focus
+     * the card nor does it create a MenuTab.
      * 
      * @param card The CardPanel to add.
-     * @boolean focus Whether to focus on this card on start.
+     * @return the Screen that was added.
+     *
+     * @author Hai Duong
+     * @author Anthony Chapkin - Made it compatible with ProjectHub.
      */
     public Screen addCard(Screen card) {
         return this.addCard(card, false, true);
@@ -112,8 +165,15 @@ public class MainFrame {
     /**
      * Adds the given card.
      * 
-     * @param card The CardPanel to add.
-     * @boolean focus Whether to focus on this card on start.
+     * @param cardClass The CardPanel Class to add.
+     * @param focus boolean if we should focus the
+     *              added card.
+     * @param createMenuTab boolean if we should create a
+     *                      MenuTab for the added Screen.
+     * @return the Screen we added.
+     *
+     * @author Hai Duong
+     * @author Anthony Chapkin - Made it compatible with ProjectHub.
      */
     public Screen addCard(Class<? extends Screen> cardClass, boolean focus, boolean createMenuTab) {
         Screen card;
@@ -139,7 +199,13 @@ public class MainFrame {
      * Adds the given card.
      * 
      * @param card The CardPanel to add.
-     * @boolean focus Whether to focus on this card on start.
+     * @param focus Whether to focus on this card on start.
+     * @param createMenuTab Whether to create a MenuTab for the
+     *                      card or not.
+     * @return the Screen we added.
+     *
+     * @author Hai Duong
+     * @author Anthony Chapkin - Made it compatible with ProjectHub.
      */
     public Screen addCard(Screen card, boolean focus, boolean createMenuTab) {
         if (createMenuTab) {
@@ -154,6 +220,8 @@ public class MainFrame {
      * Adds a card to the JMenu.
      * 
      * @param card the card to add.
+     *
+     * @author Hai Duong
      */
     private void addMenuTab(Screen card) {
         JMenu menu = new JMenu(card.getName());
@@ -188,7 +256,9 @@ public class MainFrame {
      * Shows the given card.
      * 
      * @param card The card to show.
-     *             //
+     * @return the Screen that was focused.
+     *
+     * @author Hai Duong
      */
     public Screen focusCard(Screen card) {
         card.update();
@@ -197,12 +267,22 @@ public class MainFrame {
         return card;
     }
 
+    /**
+     * Focuses a Screen by its name.
+     *
+     * @param cardName the Screens name
+     *                 as a String.
+     *
+     * @author Anthony Chapkin
+     */
     public void focusCard(String cardName) {
         this.cardLayout.show(this.panel, cardName);
     }
 
     /**
      * Reveals the JFrame.
+     *
+     * @author Jeremiah Brenio
      */
     public void start() {
         frame.setVisible(true);
@@ -213,6 +293,8 @@ public class MainFrame {
      *
      * @param isVisible true or false if MenuBar should
      *                  be visible. Is a boolean.
+     *
+     * @author Anthony Chapkin
      */
     public void toggleMenuBar(boolean isVisible) {
         this.menuBar.setVisible(isVisible);

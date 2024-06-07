@@ -18,12 +18,18 @@ import view.components.SubmittableTextField;
  * @author Hai Duong
  */
 public class TaskTabScreen extends Screen {
+
+    /**
+     * A ListJListSyncer field that stores
+     * Strings representing tasks.
+     */
     ListJListSyncer<String> list;
     
     /**
      * Constructs a TaskTabScreen.
      * 
      * @param taskModel the TaskTab model to use.
+     *
      * @author Hai Duong.
      */
     public TaskTabScreen(TaskTab taskModel) {
@@ -68,11 +74,24 @@ public class TaskTabScreen extends Screen {
         this.add(bottomRow, constraints);
     }
 
+    /**
+     * Gets this Screens name.
+     *
+     * @return this Screens name as
+     * a String "Tasks".
+     *
+     * @author Hai Duong
+     */
     @Override
     public String getName() {
         return "Tasks";
     }
 
+    /**
+     * Updates this TaskTabScreen's GUI
+     *
+     * @author Hai Duong
+     */
     @Override
     public void update() {
         this.list.update();

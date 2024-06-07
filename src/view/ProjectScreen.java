@@ -13,32 +13,79 @@ import java.awt.event.ActionListener;
  * This class extends Screen and allows the user to interact with different
  * facets
  * of a project including tasks, materials, tools, and costs.
- *
  * The interface is built around a JTabbedPane that holds various tabs for
  * different
  * sections of the project data. Each tab is associated with a specific aspect
  * of the project
  * and allows for detailed management and interaction.
- *
  * The class also includes a back button to navigate back to the home.
  *
  * @author Windie Le
+ * @author Anthony Chapkin - Minor additions.
+ * @author Hai Duong - Minor additions.
  * @version 1.0
  */
 public class ProjectScreen extends Screen {
-    private JTabbedPane tabbedPane; // Holds the tabs
-    private JButton backButton; // Button to return to the home screen
-    private MainFrame mainFrame; // Main application frame
-    private TaskTab taskTab; // Tab for managing tasks
-    private MaterialTab materialTab; // Tab for managing materials
-    private ToolTab toolTab; // Tab for managing tools
-    private CostTab costTab; // Tab for managing costs
-    private Project project; // Project data model
 
-    private TaskTabScreen taskTabScreen; // Screen for the task tab
-    private MaterialTabScreen matTabScreen; // Screen for the material tab
-    private ToolTabScreen toolTabScreen; // Screen for the tool tab
-    private CostTabScreen costTabScreen; // Screen for the cost tab
+    /**
+     * Holds the tabs.
+     */
+    private JTabbedPane tabbedPane;
+
+    /**
+     * Button to return to the home screen.
+     */
+    private JButton backButton;
+
+    /**
+     * Main application frame.
+     */
+    private MainFrame mainFrame;
+
+    /**
+     * Tab for managing tasks.
+     */
+    private TaskTab taskTab;
+
+    /**
+     * Tab for managing materials.
+     */
+    private MaterialTab materialTab;
+
+    /**
+     * Tab for managing tools.
+     */
+    private ToolTab toolTab;
+
+    /**
+     * Tab for managing costs.
+     */
+    private CostTab costTab;
+
+    /**
+     * Project data model.
+     */
+    private Project project;
+
+    /**
+     * Screen for the task tab.
+     */
+    private TaskTabScreen taskTabScreen;
+
+    /**
+     * Screen for the material tab.
+     */
+    private MaterialTabScreen matTabScreen;
+
+    /**
+     * Screen for the tool tab.
+     */
+    private ToolTabScreen toolTabScreen;
+
+    /**
+     * Screen for the cost tab.
+     */
+    private CostTabScreen costTabScreen;
 
     /**
      * Constructs a new ProjectScreen which sets up the UI components and
@@ -49,6 +96,8 @@ public class ProjectScreen extends Screen {
      *                  display.
      * @param mainFrame the main application frame to HomeScreen will return when
      *                  the back button is pressed.
+     *
+     * @author Windie Le
      */
     public ProjectScreen(Models models, MainFrame mainFrame) {
         super(models);
@@ -71,7 +120,6 @@ public class ProjectScreen extends Screen {
 
     /**
      * Initializes and configures the UI components of the screen, including setting up
-     *
      * the tabbed pane and back button functionalities.
      *
      * @author Windie Le
@@ -119,7 +167,10 @@ public class ProjectScreen extends Screen {
     /**
      * Return name of the screen
      * 
-     * @return Project
+     * @return this Screens name as
+     *         a String "Project".
+     *
+     * @author Anthony Chapkin
      */
     @Override
     public String getName() {
@@ -128,6 +179,8 @@ public class ProjectScreen extends Screen {
 
     /**
      * Update content of screen
+     *
+     * @author Hai Duong
      */
     @Override
     public void update() {

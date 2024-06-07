@@ -18,12 +18,18 @@ import view.components.SubmittableTextField;
  * @author Hai Duong
  */
 public class MaterialTabScreen extends Screen {
+
+    /**
+     * A PricedItemTable field that shows the user
+     * all the materials.
+     */
     private PricedItemTable table;
     
     /**
      * Constructs a MaterialTabScreen.
      * 
      * @param materialModel the material model
+     *
      * @author Hai Duong.
      */
     public MaterialTabScreen(MaterialTab materialModel) {
@@ -86,11 +92,24 @@ public class MaterialTabScreen extends Screen {
         }
     }
 
+    /**
+     * Gets this Screens name.
+     *
+     * @return this Screens name as
+     * a String "Materials".
+     *
+     * @author Hai Duong
+     */
     @Override
     public String getName() {
         return "Materials";
     }
 
+    /**
+     * Updates the table.
+     *
+     * @author Hai Duong
+     */
     @Override
     public void update() {
         this.table.update();

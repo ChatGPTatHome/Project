@@ -19,15 +19,32 @@ import view.components.LabeledTextField;
  * @author Hai Duong
  */
 public class CostTabScreen extends Screen {
+
+    /**
+     * A CostTab field used by this CostTabScreen.
+     */
     CostTab costModel;
+
+    /**
+     * A LabeledTextField used to show the budget.
+     */
     LabeledTextField budgetField;
+
+    /**
+     * A LabeledTextField used to show the cost.
+     */
     LabeledTextField costField;
+
+    /**
+     * A LabeledTextField used to show the remaining budget.
+     */
     LabeledTextField remainderField;
     
     /**
-     * Construct a CostTabScreen,
+     * Construct a CostTabScreen.
      * 
      * @param costModel the costModel.
+     *
      * @author Hai Duong.
      */
     public CostTabScreen(CostTab costModel) {
@@ -106,6 +123,11 @@ public class CostTabScreen extends Screen {
         this.update();
     }
 
+    /**
+     * Updates this CostTabScreen's GUI
+     *
+     * @author Hai Duong
+     */
     @Override
     public void update() {
         this.budgetField.getTextField().setText(Double.toString(costModel.getBudget()));
@@ -113,6 +135,14 @@ public class CostTabScreen extends Screen {
         this.remainderField.getTextField().setText(String.format("%.2f", costModel.getRemaining()));
     }
 
+    /**
+     * Gets this Screens name.
+     *
+     * @return this Screens name as
+     * a String "Costs".
+     *
+     * @author Hai Duong
+     */
     @Override
     public String getName() {
         return "Costs";

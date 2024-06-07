@@ -18,12 +18,18 @@ import view.components.SubmittableTextField;
  * @author Hai Duong
  */
 public class ToolTabScreen extends Screen {
+
+    /**
+     * A PricedItemTable field used to show
+     * all tools.
+     */
     private PricedItemTable table;
 
     /**
      * Constructs a ToolTabScreen
      * 
      * @param toolModel the tool model
+     *
      * @author Hai Duong.
      */
     public ToolTabScreen(ToolTab toolModel) {
@@ -86,11 +92,24 @@ public class ToolTabScreen extends Screen {
         }
     }
 
+    /**
+     * Gets this Screens name.
+     *
+     * @return this Screens name as
+     * a String "Tools".
+     *
+     * @author Hai Duong
+     */
     @Override
     public String getName() {
         return "Tools";
     }
 
+    /**
+     * Updates this ToolTabScreen's GUI
+     *
+     * @author Hai Duong
+     */
     @Override
     public void update() { 
         this.table.update();

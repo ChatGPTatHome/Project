@@ -38,6 +38,8 @@ public class ImportExportScreen extends Screen {
      * Initializes fields, creates GUI, and wires listeners.
      *
      * @param models A Models class used to initialize model fields.
+     *
+     * @author Anthony Chapkin
      */
     public ImportExportScreen(Models models) {
         super(models);
@@ -91,6 +93,8 @@ public class ImportExportScreen extends Screen {
 
     /**
      * Clears the import and export paths.
+     *
+     * @author Anthony Chapkin
      */
     @Override
     public void update() {
@@ -102,6 +106,8 @@ public class ImportExportScreen extends Screen {
      * Gets the name for the ImportExport screen.
      * 
      * @return the name of the ImportExport screen.
+     *
+     * @author Windie Le
      */
     @Override
     public String getName() {

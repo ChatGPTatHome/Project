@@ -31,6 +31,8 @@ public class AboutScreen extends Screen {
      *
      * @param models A Models object used to initialize
      *               models used by this AboutScreen.
+     *
+     * @author Anthony Chapkin
      */
     public AboutScreen(Models models) {
         this.about = models.getModel(About.class);
@@ -43,6 +45,8 @@ public class AboutScreen extends Screen {
      * Getter for the name of this Screen.
      *
      * @return the String constant field NAME.
+     *
+     * @author Anthony Chapkin
      */
     @Override
     public String getName() {
@@ -52,6 +56,8 @@ public class AboutScreen extends Screen {
     /**
      * Implements and overrides Screen's update()
      * method. Has no functionality.
+     *
+     * @author Anthony Chapkin
      */
     @Override
     public void update() {
@@ -61,6 +67,8 @@ public class AboutScreen extends Screen {
     /**
      * Sets up the GUI for this AboutScreen. Uses About model
      * to fetch persistent data.
+     *
+     * @author Anthony Chapkin
      */
     private void setUpPanel() {
         JPanel panel1 = new JPanel();

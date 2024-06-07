@@ -16,12 +16,19 @@ import java.awt.GridLayout;
 import java.nio.file.Files;
 
 /**
- * AcknowledgementsScreen displays any open souce projects used
+ * AcknowledgementsScreen displays any open source projects used
  * to develop ProjectHub.
  * 
  * @author Hai Duong
  */
 public class AcknowledgementsScreen extends Screen {
+
+    /**
+     * Constructor for this AcknowledgementsScreen.
+     * Sets up all the GUI.
+     *
+     * @author Hai Duong
+     */
     public AcknowledgementsScreen() {
         final String[] gsonLicense = new String[1];
         try {
@@ -74,12 +81,26 @@ public class AcknowledgementsScreen extends Screen {
         constraints.weighty = 1;
         this.add(libraryContainer, constraints);
     }
-    
+
+    /**
+     * Gets this Screens name.
+     *
+     * @return this Screens name as
+     * a String "Acknowledgements".
+     *
+     * @author Hai Duong
+     */
     @Override
     public String getName() {
         return "Acknowledgements";
     }
 
+    /**
+     * Doesn't do anything, just
+     * implements the abstract method.
+     *
+     * @author Hai Duong
+     */
     @Override
     public void update() {
         

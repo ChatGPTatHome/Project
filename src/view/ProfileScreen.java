@@ -11,11 +11,12 @@ import model.ImportExport;
 import model.Models;
 
 /**
- * @author Jeremiah Brenio, Hai Duong.
+ * Displays a JPanel to display ownership of the App.
  *
- * @version v1.00
- *
- *          Displays a JPanel to display ownership of the App.
+ * @author Jeremiah Brenio
+ * @author Hai Duong
+ * @author Anthony Chapkin - Minor additions
+ * @version v1.0
  */
 public class ProfileScreen extends Screen {
 
@@ -35,7 +36,7 @@ public class ProfileScreen extends Screen {
      * @param modelSource The model source to retrieve data.
      * @author Jeremiah Brenio - Created GUI and functionality to display owner's
      *         name and email.
-     *         Hai Duong - Added compatability with modelSource to access
+     * @author Hai Duong - Added compatability with modelSource to access
      *         ImportExport.class.
      */
     public ProfileScreen(Models modelSource) {
@@ -70,9 +71,12 @@ public class ProfileScreen extends Screen {
     }
 
     /**
-     * Returns the name of the Screen.
-     * 
-     * @author Hai Duong
+     * Gets this Screens name.
+     *
+     * @return this Screens name as
+     * a String "profile".
+     *
+     * @author Anthony Chapkin
      */
     @Override
     public String getName() {

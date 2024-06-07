@@ -44,8 +44,8 @@ import view.components.CustomTreeCellRenderer;
  * and Create Folders & Projects.
  * 
  * @author Hai Duong - Created UI and functions for creating owner settings
- *         Windie Le - Created UI design for HomeScreen Project selection
- *         Jeremiah Brenio - Created functions for creating folders and projects
+ * @author Windie Le - Created UI design for HomeScreen Project selection
+ * @author Jeremiah Brenio - Created functions for creating folders and projects
  */
 public class HomeScreen extends Screen {
 
@@ -74,6 +74,8 @@ public class HomeScreen extends Screen {
      * 
      * @param models    the models to be used
      * @param mainFrame the main frame to be used
+     *
+     * @author Jeremiah Brenio
      */
     public HomeScreen(Models models, MainFrame mainFrame) {
         super(models);
@@ -148,6 +150,8 @@ public class HomeScreen extends Screen {
 
     /**
      * Creates the project directory for the user to select a project.
+     *
+     * @return a JTree created for the user.
      * 
      * @author Jeremiah Brenio
      */
@@ -257,11 +261,11 @@ public class HomeScreen extends Screen {
      * Recursively retrieves JSON files from the data folder and adds them to the
      * JTree
      * 
-     * @author Jeremiah Brenio
-     * 
      * @param dir    - Current File
      * @param parent - Parent Node
      * @param model  - Tree Model
+     *
+     * @author Jeremiah Brenio
      */
     private void retrieveJSONFiles(File dir, DefaultMutableTreeNode parent, DefaultTreeModel model) {
         folder.setCurrentFileObject(dir);
@@ -438,6 +442,14 @@ public class HomeScreen extends Screen {
         folder.setCurrentFileObject(currentFile);
     }
 
+    /**
+     * Gets this Screens name.
+     *
+     * @return this Screens name as
+     * a String "Home".
+     *
+     * @author Hai Duong
+     */
     @Override
     public String getName() {
         return "Home";

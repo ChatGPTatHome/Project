@@ -5,10 +5,16 @@ import model.Models;
 /**
  * Standard for JPanels to be added into CardLayout Panel.
  * 
- * @author Hai Duong.
+ * @author Hai Duong
+ * @author Anthony Chapkin - Minor addition.
  * @version v1.00
  */
 public abstract class Screen extends JPanel {
+
+    /**
+     * A Models field that contains the Models
+     * instance shared by a lot of classes.
+     */
     private Models modelSource;
 
     /**
@@ -22,13 +28,24 @@ public abstract class Screen extends JPanel {
     
     /**
      * Constructs a CardPanel
-     * 
+     *
+     * @param modelSource the Models to be used
+     *                    by this Screen.
+     *
      * @author Hai Duong
      */
     public Screen(Models modelSource) {
         this.modelSource = modelSource;
     }
 
+    /**
+     * Sets this Screens modelSource.
+     *
+     * @param modelSource the Models that becomes
+     *                    this Screens modelSource.
+     *
+     * @author Hai Duong
+     */
     public void setModelSource(Models modelSource) {
         this.modelSource = modelSource;
     }
@@ -56,6 +73,15 @@ public abstract class Screen extends JPanel {
         return this.modelSource.getModel(modelClass);
     }
 
+    /**
+     * When this Screen is setVisible, updates
+     * this Screen and sets visible its parent.
+     *
+     * @param isVisible  true to make the component visible; false to
+     *          make it invisible
+     *
+     * @author Anthony Chapkin
+     */
     @Override
     public void setVisible(boolean isVisible) {
         this.update();
