@@ -1,4 +1,3 @@
-
 package view.components;
 
 import javax.swing.tree.DefaultMutableTreeNode;
@@ -15,7 +14,6 @@ import java.io.File;
  * This class extends the DefaultTreeCellRenderer class and overrides the
  * getTreeCellRendererComponent method to customize the rendering of tree nodes.
  * It sets a custom icon for directory nodes in the tree.
- * 
  * The class also provides a constructor that initializes the folderIcon with
  * the
  * default directory icon from the UIManager.
@@ -31,6 +29,8 @@ public class CustomTreeCellRenderer extends DefaultTreeCellRenderer {
      * Constructs a CustomTreeCellRenderer object.
      * Initializes the folderIcon with the default directory icon from the
      * UIManager.
+     *
+     * @author Jeremiah Brenio
      */
     public CustomTreeCellRenderer() {
         super();

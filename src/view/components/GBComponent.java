@@ -8,6 +8,8 @@ import java.awt.GridBagConstraints;
  * to child JPanels. A copied GridBagConstraints should be passed into
  * the child to prevent side effects. Also, setChildConstraints should be
  * called prior to adding the JPanel.
+ *
+ * @author Hai Duong
  */
 public interface GBComponent {
     /**
@@ -15,7 +17,9 @@ public interface GBComponent {
      * object itself). If no valid members exist, this function does nothing.
      * This function may override the given constraints.
      * 
-     * @param constraints the new contraints.
+     * @param constraints the new constraints.
+     *
+     * @author Hai Duong
      */
     public void setChildConstraints(GridBagConstraints constraints);
 }

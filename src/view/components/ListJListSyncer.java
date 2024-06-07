@@ -15,14 +15,30 @@ import javax.swing.ListSelectionModel;
  * @author Hai Duong
  */
 public class ListJListSyncer<T> extends JScrollPane {
+
+    /**
+     * A DefaultListModel field used to store elements
+     * of some type T.
+     */
     private DefaultListModel<T> listModel;
+
+    /**
+     * A JList field that holds listModel.
+     */
     private JList<T> listPanel;
+
+    /**
+     * A List field that stores elements
+     * of some type T.
+     */
     private List<T> list;
     
     /**
      * Constructs a ListJList Syncer with the given list.
      * 
      * @param list the list to sync with a JList.
+     *
+     * @author Hai Duong
      */
     public ListJListSyncer(List<T> list) {
         this.list = list;
@@ -43,6 +59,8 @@ public class ListJListSyncer<T> extends JScrollPane {
      * Adds the given element to the given list and JList.
      * 
      * @param element the element to add.
+     *
+     * @author Hai Duong
      */
     public void addRow(T element) {
         this.list.add(element);
@@ -53,7 +71,9 @@ public class ListJListSyncer<T> extends JScrollPane {
      * Removes the element at the given index from the
      * given list and JList.
      * 
-     * @param element the element that was removed.
+     * @param index The index to remove an element at.
+     *
+     * @author Hai Duong
      */
     public T removeRow(int index) {
         this.list.remove(index);
@@ -65,6 +85,8 @@ public class ListJListSyncer<T> extends JScrollPane {
      * and JList.
      * 
      * @return the element that was removed or null if no element was removed.
+     *
+     * @author Hai Duong
      */
     public T removeSelectedRow() {
         int index = this.listPanel.getSelectedIndex();
@@ -75,7 +97,7 @@ public class ListJListSyncer<T> extends JScrollPane {
     }
 
     /**
-     * Resyncs the list model with list.
+     * Re-syncs the list model with list.
      * 
      * @author Hai Duong
      */

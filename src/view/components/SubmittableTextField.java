@@ -18,11 +18,39 @@ import javax.swing.JTextField;
  * @author Hai Duong
  */
 public class SubmittableTextField extends JPanel implements GBComponent {
+
+    /**
+     * A List field that contains FilteredTextFields.
+     */
     private List<FilteredTextField> textFields;
+
+    /**
+     * A JButton field that submits.
+     */
     private JButton button;
+
+    /**
+     * An int field that is the length of each
+     * text field.
+     */
     private int length;
+
+    /**
+     * A boolean field that dictates if
+     * all elements should be stacked or not.
+     */
     private boolean vertical;
+
+    /**
+     * A Runnable field that runs a method with no arguments
+     * and has no return.
+     */
     Runnable actionCallback;
+
+    /**
+     * A GridBagConstraints field that is used to
+     * set the constraints on the layout.
+     */
     GridBagConstraints constraints;
     
     /**
@@ -31,6 +59,8 @@ public class SubmittableTextField extends JPanel implements GBComponent {
      * 
      * @param length the length of each text field.
      * @param buttonLabel the text on the submit button.
+     *
+     * @author Hai Duong
      */
     public SubmittableTextField(int length, String buttonLabel) {
         this(length, buttonLabel, false);
@@ -44,6 +74,8 @@ public class SubmittableTextField extends JPanel implements GBComponent {
      * @param length the length of each text field.
      * @param buttonLabel the text on the submit button.
      * @param vertical true if all elements should be stacked
+     *
+     * @author Hai Duong
      */
     public SubmittableTextField(int length, String buttonLabel, boolean vertical) {
         super(new GridBagLayout());
@@ -67,6 +99,13 @@ public class SubmittableTextField extends JPanel implements GBComponent {
         this.add(this.button);
     }
 
+    /**
+     * Notifies this component that it now has a parent component.
+     * When this method is invoked, the chain of parent
+     * components is set up with KeyboardAction event listeners.
+     *
+     * @author Hai Duong
+     */
     @Override
     public void addNotify() {
         super.addNotify();
@@ -90,6 +129,8 @@ public class SubmittableTextField extends JPanel implements GBComponent {
      * Gets the submit button.
      * 
      * @return the submit button.
+     *
+     * @author Hai Duong
      */
     public JButton getButton() {
         return this.button;
@@ -97,10 +138,12 @@ public class SubmittableTextField extends JPanel implements GBComponent {
 
     /**
      * Sets the action callback. The action callback will be 
-     * ran when all text fields are validated and the submit button
+     * run when all text fields are validated and the submit button
      * is pressed.
      * 
      * @param actionCallback the callback to call.
+     *
+     * @author Hai Duong
      */
     public void setActionCallback(Runnable actionCallback) {
         this.actionCallback = actionCallback;
@@ -111,6 +154,8 @@ public class SubmittableTextField extends JPanel implements GBComponent {
      * 
      * @param validationCallback the callback to validate a text field's input.
      * @return the created text field.
+     *
+     * @author Hai Duong
      */
     public JTextField addTextField(Function<String, Boolean> validationCallback) {
         return this.addTextField("", validationCallback);
@@ -122,6 +167,8 @@ public class SubmittableTextField extends JPanel implements GBComponent {
      * @param label the text field's label.
      * @param verifyCallback the callback to validate a text field's input.
      * @return the created text field.
+     *
+     * @author Hai Duong
      */
     public JTextField addTextField(String label, Function<String, Boolean> verifyCallback) {
         FilteredTextField textField = new FilteredTextField(label, this.length, this.vertical, verifyCallback);
@@ -135,6 +182,8 @@ public class SubmittableTextField extends JPanel implements GBComponent {
      * submit button).
      * 
      * @param constraints the GridBagConstraints instance.
+     *
+     * @author Hai Duong
      */
     @Override
     public void setChildConstraints(GridBagConstraints constraints) {

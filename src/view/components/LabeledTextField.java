@@ -8,16 +8,34 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 /**
- * LabeldTextField is a JPanel which contains both a JLabel
+ * LabeledTextField is a JPanel which contains both a JLabel
  * and a JTextField. These two components should be related to
  * each other.
  * 
  * @author Hai Duong
  */
 public class LabeledTextField extends JPanel implements GBComponent {
+
+    /**
+     * JTextField field contained by this class. Is shown on screen.
+     * on screen.
+     */
     private JTextField textField;
+
+    /**
+     * JLabel field contained by this class. Is shown on screen.
+     */
     private JLabel label;
-    
+
+    /**
+     * Constructs this LabeledTextField by calling
+     * the other constructor with vertical set to false.
+     *
+     * @param label the text to appear next to the text field.
+     * @param length the length of the text field.
+     *
+     * @author Hai Duong
+     */
     public LabeledTextField(String label, int length) {
         this(label, length, false);
     }
@@ -29,7 +47,9 @@ public class LabeledTextField extends JPanel implements GBComponent {
      * 
      * @param label the text to appear next to the text field.
      * @param length the length of the text field.
-     * @param vertical whether or not to place label above text field.
+     * @param vertical whether to place label above text field.
+     *
+     * @author Hai Duong
      */
     public LabeledTextField(String label, int length, boolean vertical) {
         super(new GridBagLayout());
@@ -49,6 +69,8 @@ public class LabeledTextField extends JPanel implements GBComponent {
      * Gets the JTextField object.
      * 
      * @return the JTextField object.
+     *
+     * @author Hai Duong
      */
     public JTextField getTextField() {
         return this.textField;
@@ -57,12 +79,23 @@ public class LabeledTextField extends JPanel implements GBComponent {
     /**
      * Turns the JTextField into readonly mode. When in readonly
      * mode, modifications can still by made through code (not user input).
+     *
+     * @author Hai Duong
      */
     public void makeReadOnly() {
         this.textField.setEditable(false);
         this.textField.setFocusable(false);
     }
 
+    /**
+     * Sets the GridBagConstraints of any JPanel members (but not this
+     * object itself). If no valid members exist, this function does nothing.
+     * This function may override the given constraints.
+     *
+     * @param constraints the new constraints.
+     *
+     * @author Hai Duong
+     */
     @Override
     public void setChildConstraints(GridBagConstraints constraints) {
         GridBagLayout layout = (GridBagLayout)this.getLayout();

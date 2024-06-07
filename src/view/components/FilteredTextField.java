@@ -10,6 +10,10 @@ import java.util.function.Function;
  * @author Hai Duong
  */
 public class FilteredTextField extends LabeledTextField {
+
+    /**
+     * Function used for String validation
+     */
     private Function<String, Boolean> validationCallback;
     
     /**
@@ -19,8 +23,10 @@ public class FilteredTextField extends LabeledTextField {
      * 
      * @param label the label of the text field.
      * @param length the length of the text field.
-     * @param vertical whether or not to place the label above the text field.
+     * @param vertical whether to place the label above the text field.
      * @param validationCallback validates a string from the text field. Returns true if string is valid.
+     *
+     * @author Hai Duong
      */
     public FilteredTextField(String label, int length, boolean vertical, Function<String, Boolean> validationCallback) {
         super(label, length, vertical);
@@ -29,9 +35,11 @@ public class FilteredTextField extends LabeledTextField {
 
     /**
      * Validates the text field. If an error occurs or false is returned then
-     * false will be returned from this function. Otherwise true is return.
+     * false will be returned from this function. Otherwise, true is returned.
      * 
      * @return true if text field was successfully validated.
+     *
+     * @author Hai Duong
      */
     public boolean validateField() {
         try {
@@ -41,6 +49,15 @@ public class FilteredTextField extends LabeledTextField {
         }
     }
 
+    /**
+     * Sets the GridBagConstraints of any JPanel members (but not this
+     * object itself). If no valid members exist, this function does nothing.
+     * This function may override the given constraints.
+     *
+     * @param constraints the new constraints.
+     *
+     * @author Hai Duong
+     */
     @Override
     public void setChildConstraints(GridBagConstraints constraints) {
         super.setChildConstraints(constraints);

@@ -15,14 +15,25 @@ import model.PricedItem;
  * 
  * @author Hai Duong
  */
-public class PricedItemTable extends JScrollPane {    
+public class PricedItemTable extends JScrollPane {
+
+    /**
+     * A List field that stores PriceItems.
+     */
     private List<PricedItem> list;
+
+    /**
+     * A JTable list shown on screen, and is made of
+     * elements in list.
+     */
     private JTable table;
     
     /**
      * Constructs a JTable from the given list of PricedItem objects.
      * 
      * @param itemSource the list of PricedItem objects.
+     *
+     * @author Hai Duong
      */
     public PricedItemTable(List<PricedItem> itemSource) {
         this.list = itemSource;
@@ -73,37 +84,46 @@ public class PricedItemTable extends JScrollPane {
 
     /**
      * Updates the JTable to show any changes.
+     *
+     * @author Hai Duong
      */
     public void update() {
         ((AbstractTableModel)this.table.getModel()).fireTableDataChanged();
     }
     
     /**
-     * Adds a PricedItem to the List and upates the table.
+     * Adds a PricedItem to the List and updates the table.
      * 
      * @param name the name of the PricedItem.
      * @param price the price of the PricedItem.
      * @param quantity the quantity of the PricedItem.
      * @throws NumberFormatException if any string cannot be converted to their proper type.
+     *
+     * @author Hai Duong
      */
     public void addRow(String name, String price, String quantity) throws NumberFormatException {
         this.addRow(name, Double.valueOf(price), Integer.valueOf(quantity));
     }
     
     /**
-     * Adds a PricedItem to the List and upates the table.
+     * Adds a PricedItem to the List and updates the table.
+     *
      * @param name the name of the PricedItem.
      * @param price the price of the PricedItem.
      * @param quantity the quantity of the PricedItem.
+     *
+     * @author Hai Duong
      */
     public void addRow(String name, double price, int quantity) {
         this.addRow(new PricedItem(name, price, quantity));
     }
     
     /**
-     * Adds a PricedItem to the List and upates the table.
+     * Adds a PricedItem to the List and updates the table.
      * 
      * @param item the PricedItem to add.
+     *
+     * @author Hai Duong
      */
     public void addRow(PricedItem item) {
         this.list.add(item);
@@ -115,6 +135,8 @@ public class PricedItemTable extends JScrollPane {
      * 
      * @param index the index of the PricedItem to remove in the list.
      * @return the removed PricedItem.
+     *
+     * @author Hai Duong
      */
     public PricedItem removeRow(int index) {
         PricedItem item = this.list.remove(index);
@@ -128,6 +150,8 @@ public class PricedItemTable extends JScrollPane {
      * then this method does nothing.
      * 
      * @return The removed PricedItem or null if nothing was removed.
+     *
+     * @author Hai Duong
      */
     public PricedItem removeSelectedRow() {
         int index = this.table.getSelectedRow();
